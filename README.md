@@ -32,6 +32,7 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
     Create a `.env` file in the root directory and set your Discord bot token like so:
 
     ```
+    PYTHONPATH=.
     BOT_TOKEN=your-bot-token-here
     ```
     Replace `your-bot-token-here` with your actual bot token.
