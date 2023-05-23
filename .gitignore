@@ -1,21 +1,16 @@
 # Python cache files
 __pycache__/
-*.pyc
-*.pyo
 
 # Logs
 *.log
 
 # Editor files
 .vscode/
-*.swp
-*.swo
-*.swn
+
 
 # Environnement virtuel
 env/
+.env
 
 # Fichiers de build
-build/
-dist/
-*.egg-info/
+
