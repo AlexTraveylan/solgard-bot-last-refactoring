@@ -3,6 +3,9 @@ import discord
 import os
 
 BOT_KEY = os.getenv("BOT_KEY")
+if BOT_KEY is None:
+    raise ValueError("BOT_KEY not found")
+
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
