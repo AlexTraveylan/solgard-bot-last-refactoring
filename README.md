@@ -37,7 +37,14 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
     ```
     Replace `your-bot-token-here` with your actual bot token.
 
-4. **Run the bot**
+4. **Set entrypoint**
+
+    open the file app/entrypoint/connect.exemple.py
+    rename CONNECT_JSON_exemple in CONNECT_JSON
+    rename the file connect.exemple.py in connect.py
+    insert you connexion json (use a mitm with a proxy for get it)
+
+5. **Run the bot**
 
     You can now run the bot using the following command:
 

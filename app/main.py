@@ -1,9 +1,11 @@
 from discord.ext import commands
 import discord
+from dotenv import load_dotenv
 import os
 
 from app.core.models.connect_user import ConnectUser
 
+load_dotenv()
 BOT_KEY = os.getenv("BOT_KEY")
 if BOT_KEY is None:
     raise ValueError("BOT_KEY not found")
