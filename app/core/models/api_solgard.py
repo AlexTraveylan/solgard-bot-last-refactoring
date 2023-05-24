@@ -6,7 +6,7 @@ class ApiSolgard:
         self.user_id = user_id
         self.session_id = session_id
 
-    def connect_and_set_session_id(self, connect_json: dict[str, any]) -> None:
+    def connect_and_set_session_id(self, connect_json) -> None:
         """Request solgard api for connect set, self.session_id"""
 
         url = f"https://api-live.thor.snowprintstudios.com/player/player2/userId/{self.user_id}"
@@ -21,7 +21,7 @@ class ApiSolgard:
         except:
             raise ValueError("Connexion failed")
 
-    def api_endpoint(self, json: dict[str, any]) -> dict[str, any]:
+    def api_endpoint(self, json):
         if self.session_id is None:
             raise ValueError("You cant do that without session_id, connect first")
 
