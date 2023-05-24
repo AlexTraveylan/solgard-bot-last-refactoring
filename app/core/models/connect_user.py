@@ -30,7 +30,7 @@ class ConnectUser:
         """request the game api for get and set session_id, needed for all futurs requests"""
         self._set_user_id()
         self._set_connexion_json()
-        api = ApiSolgard()
+        api = ApiSolgard(self.user_id)
         new_session_id = api.connect_and_set_session_id(connect_json=self._connect_json)
         self.session_id = new_session_id
 
