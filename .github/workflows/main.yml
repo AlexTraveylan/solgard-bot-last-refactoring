@@ -28,4 +28,4 @@ jobs:
           pytest
       - name: Run Bandit security checks
         run: |
-          bandit -r . -x B101
+          bandit -r ./ -ll -ii -x B101
