@@ -1,15 +1,12 @@
-# insert your connect json
-# rename the file connect.json
-# rename the var CONNECT_JSON
-CONNECT_JSON_exemple = {
+{
     "builtInMultiConfigVersion": "insert your connexion json and rename the file connect.json",
-    "installId": "insert your connexion json and rename the file connect.json",
+    "installId": "aaaaaaa-bbbbb-6666-bbbb-s54f6ds5465fs4",
     "playerEvent": {
-        "createdOn": "insert your connexion json and rename the file connect.json",
-        "gameConfigVersion": "insert your connexion json and rename the file connect.json",
-        "multiConfigVersion": "insert your connexion json and rename the file connect.json",
+        "createdOn": "111111111111",
+        "gameConfigVersion": "sf2sd2fs21fds2f2s1fs321fd3s1f",
+        "multiConfigVersion": "sdf2sd524fsd346fsd464s56fs",
         "playerEventData": {
-            "clientSecret": "insert your connexion json and rename the file connect.json",
+            "clientSecret": "sdfs524f5ds4-sf5d4s-sfdsfsf-sssss-ssssssssssssss",
             "deviceData": {
                 "buildString": "insert your connexion json and rename the file connect.json",
                 "countryCode": "insert your connexion json and rename the file connect.json",
@@ -27,12 +24,12 @@ CONNECT_JSON_exemple = {
                 "ram": 3851,
                 "screenHeight": 1792,
                 "screenWidth": 828,
-                "store": "insert your connexion json and rename the file connect.json",
+                "store": "insert your connexion json and rename the file connect.json"
             },
             "gameCenterUserId": "insert your connexion json and rename the file connect.json",
-            "userId": "insert your connexion json and rename the file connect.json5",
+            "userId": "1a1a1a11a1a-1a1a1-1a1a1-1a1a-a1a1a11a1a1a"
         },
         "playerEventType": "CONNECT",
-        "universeVersion": "insert your connexion json and rename the file connect.json",
-    },
+        "universeVersion": "insert your connexion json and rename the file connect.json"
+    }
 }

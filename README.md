@@ -4,6 +4,7 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
 
 ## Features
 
+- **Connect:** Connect yourself to the game with python 
 - **Players Statistics:** Track and display player statistics on guild boss and clash.
 - **Attacks/Bombs remining:** The bot can say in discord remining bombs and attacks
 - **Clash targets:** assign targets
@@ -17,7 +18,7 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
 
    ```bash
    git clone https://github.com/AlexTraveylan/solgard-bot-last-refactoring.git
-
+   ```
 
 2. **Install the dependencies**
 
@@ -25,6 +26,7 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
 
     ```bash
     pip install -r requirements.txt
+    ```
 
 
 3. **Set up your Discord Bot Token**
@@ -39,17 +41,17 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
 
 4. **Set entrypoint**
 
-    open the file app/entrypoint/connect.exemple.py
-    rename CONNECT_JSON_exemple in CONNECT_JSON
-    rename the file connect.exemple.py in connect.py
-    insert you connexion json (use a mitm with a proxy for get it)
-
+    - open the file app/entrypoint/connect.exemple.json
+    - rename the file connect.exemple.json in connect.json
+    - insert your CONNECT json (use a mitm with a proxy for get it)
+     
 5. **Run the bot**
 
     You can now run the bot using the following command:
 
     ```
-    python bot.py
+    python app/main.py
+    ```
 
 
 ## Contributing

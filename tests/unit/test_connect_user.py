@@ -1,7 +1,7 @@
 import pytest
+from app.adapters.jsonreader import read_json
 from app.core.models.connect_user import ConnectUser
 from app.core.models.version import Versions
-from tests.data.connect import FAKE_CONNECT_JSON
 
 
 class FakeVersions(Versions):
@@ -15,8 +15,10 @@ class FakeVersions(Versions):
 class FakeConnectUser(ConnectUser):
     def __init__(self):
         super().__init__()
+        FAKE_CONNECT_JSON = read_json("tests/data/connect.json")
         self._connect_json = FAKE_CONNECT_JSON
         self.version = FakeVersions
+        super().__post_init__()
 
 
 def test_set_connexion_json():
@@ -33,23 +35,12 @@ def test_set_connexion_json():
 
 def test_set_user_id():
     connexion = FakeConnectUser()
-    connexion._set_user_id()
 
     assert connexion.user_id == "fakeUser"
 
 
 def test_get_user_id_session_id_raise_without_nothing():
     connexion = FakeConnectUser()
-
-    with pytest.raises(ValueError) as exc_info:
-        connexion.get_user_id_session_id()
-
-    assert str(exc_info.value) == "You have to connect first"
-
-
-def test_get_user_id_session_id_raise_with_only_user_id():
-    connexion = FakeConnectUser()
-    connexion._set_user_id()
 
     with pytest.raises(ValueError) as exc_info:
         connexion.get_user_id_session_id()
