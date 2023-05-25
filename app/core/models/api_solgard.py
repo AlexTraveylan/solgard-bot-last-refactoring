@@ -1,4 +1,5 @@
 import requests
+from requests import RequestException
 
 
 def connect_and_set_session_id(user_id: str, connect_json: dict[str, any]) -> str:
@@ -11,7 +12,7 @@ def connect_and_set_session_id(user_id: str, connect_json: dict[str, any]) -> st
         session_id_extracted = response.json()["eventResult"]["eventResponseData"]["userData"]["sessionId"]
 
         return session_id_extracted
-    except:
+    except RequestException:
         raise ValueError("Connexion failed")
 
 
@@ -29,8 +30,8 @@ class ApiSolgard:
         try:
             response = requests.post(url, json=json)
             return response.json()
-        except:
-            raise ValueError("Request failed")
+        except RequestException as e:
+            raise ValueError("Request failed") from e
 
     def api_channel(self, json: dict[str, any]) -> dict[str, any]:
         if self.session_id is None:
@@ -41,5 +42,5 @@ class ApiSolgard:
         try:
             response = requests.post(url, json=json)
             return response.json()
-        except:
-            raise ValueError("Request failed")
+        except RequestException as e:
+            raise ValueError("Request failed") from e
