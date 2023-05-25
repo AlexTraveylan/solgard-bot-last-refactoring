@@ -8,7 +8,7 @@ def connect_and_set_session_id(user_id: str, connect_json: dict[str, any]) -> st
     url = f"https://api-live.thor.snowprintstudios.com/player/player2/userId/{user_id}"
 
     try:
-        response = requests.post(url, json=connect_json)
+        response = requests.post(url, json=connect_json, timeout=5)
         session_id_extracted = response.json()["eventResult"]["eventResponseData"]["userData"]["sessionId"]
 
         return session_id_extracted
@@ -28,7 +28,7 @@ class ApiSolgard:
         url = f"https://api-live.thor.snowprintstudios.com/player/player2/userId/{self.user_id}/sessionId/{self.session_id}"
 
         try:
-            response = requests.post(url, json=json)
+            response = requests.post(url, json=json, timeout=5)
             return response.json()
         except RequestException as e:
             raise ValueError("Request failed") from e
@@ -40,7 +40,7 @@ class ApiSolgard:
         url = f"https://channel-live.thor.snowprintstudios.com/events/lp/userId/{self.user_id}/sessionId/{self.session_id}"
 
         try:
-            response = requests.post(url, json=json)
+            response = requests.post(url, json=json, timeout=5)
             return response.json()
         except RequestException as e:
             raise ValueError("Request failed") from e
