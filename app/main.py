@@ -1,4 +1,5 @@
 import io
+import time
 from typing import Literal
 from discord.ext import commands
 import discord
@@ -16,6 +17,7 @@ if BOT_KEY is None:
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
+print(time.tzname)
 
 
 @bot.event
