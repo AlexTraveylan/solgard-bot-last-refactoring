@@ -17,7 +17,6 @@ if BOT_KEY is None:
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="!", intents=intents)
-print(time.tzname)
 
 
 @bot.event
@@ -40,6 +39,7 @@ async def test(context: commands.Context):
     )
     embed.set_image(url="https://img.freepik.com/photos-premium/image-galaxie-coloree-dans-ciel-ai-generative_791316-9864.jpg?w=2000")
     embed.add_field(name="2eme champ", value="contenu du 2eme champ")
+    embed.add_field(name="fuseau horaire", value=f"{time.tzname}")
     await context.send(embed=embed)
 
 
