@@ -52,11 +52,11 @@ class Player_2_data:
     user_id: str
     session_id: str
     # use methods for set them
-    play_2_content: dict[str, any] = None
+    play_2_content: dict[str, any] = field(default_factory=dict)
     guild_id: str = None
     guild_name: str = None
     guild_members: dict[str, str] = field(default_factory=dict)
-    bombs_attacks: BombsAttacks = BombsAttacks()  # element 0 will be total
+    bombs_attacks: BombsAttacks = field(default_factory=lambda: BombsAttacks())  # TODO element 0 shloud be total
     # dependancies
     json_api = JsonAPI()
 
