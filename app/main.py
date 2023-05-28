@@ -93,12 +93,14 @@ async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4, 5] = 0):
         title = f"Recapitulatif de {display_name_day}"
     if nb_day == 0:
         if total_attacks_missing + total_bombs_missing == 0:
-            description = "Toutes les attaques et les bombes ont été utilisées, bravo a tous."
+            description = "Toutes les attaques et les bombes ont été utilisées, bravo a tous.\n"
         else:
-            description = f"Attaques et bombes restantes du jour.\nIl reste :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes"
+            description = (
+                f"Attaques et bombes restantes du jour.\nIl reste au total :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes\n"
+            )
     else:
         description = f"Demande d'un recapitulatif des attaque(s) et bombe(s) manquante(s) {nb_day} jour(s) dans le passé.\nDemande faite par {context.author.mention}\n"
-        description += f"Attaques et bombes oubliées :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes"
+        description += f"Total des attaques et bombes oubliées :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes\n"
 
     now = datetime.datetime.now()
     colour = discord.Colour.dark_blue()
