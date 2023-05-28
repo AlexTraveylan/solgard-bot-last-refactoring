@@ -81,8 +81,8 @@ async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4, 5] = 0):
     members_missing_something = [
         member for member in members if (member.nb_attacks_used_by_day[nb_day] == 0 or member.nb_bomb_used_by_day[nb_day] == 0)
     ]
-    total_attacks_missing = sum([attacks.nb_attacks_used_by_day[nb_day] for attacks in members_missing_something])
-    total_bombs_missing = sum([bombs.nb_bomb_used_by_day[nb_day] for bombs in members_missing_something])
+    total_attacks_missing = sum([(2 - attacks.nb_attacks_used_by_day[nb_day]) for attacks in members_missing_something])
+    total_bombs_missing = sum([(1 - bombs.nb_bomb_used_by_day[nb_day]) for bombs in members_missing_something])
 
     display_name_day = display_day_name_n_day_in_the_past(datetime.datetime.utcnow(), nb_day)
 
