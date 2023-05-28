@@ -1,5 +1,4 @@
 import datetime
-import locale
 from typing import Literal
 import pytz
 from babel.dates import format_date
@@ -29,7 +28,6 @@ def is_on_day(nb_day_passed: Literal[0, 1, 2, 3, 4, 5], begin_day: int, actual_t
 
 
 def display_day_name_n_day_in_the_past(now: datetime.datetime, nb_day_in_past: Literal[0, 1, 2, 3, 4, 5]):
-    locale.setlocale(locale.LC_TIME, "fr_FR.UTF-8")
     now -= datetime.timedelta(hours=5)
     one_day_before = now - datetime.timedelta(days=nb_day_in_past)
     day_name = format_date(one_day_before, "EEEE", locale="fr")
