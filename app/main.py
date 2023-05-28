@@ -6,6 +6,7 @@ import discord
 from dotenv import load_dotenv
 import os
 import datetime
+from app.adapters.date_time_fonctions import display_day_name_n_day_in_the_past
 
 from app.core.models.connect_user import ConnectUser
 from app.core.models.player_2 import Player_2_data
@@ -40,7 +41,7 @@ async def test(context: commands.Context):
     embed.set_image(url="https://img.freepik.com/photos-premium/image-galaxie-coloree-dans-ciel-ai-generative_791316-9864.jpg?w=2000")
     embed.add_field(name="2eme champ", value="contenu du 2eme champ")
     embed.add_field(name="fuseau horaire", value=f"{time.tzname}")
-    await context.send(embed=embed)
+    return await context.send(embed=embed)
 
 
 @bot.command("connect_test")
@@ -48,7 +49,7 @@ async def connect_test(context: commands.Context):
     user = ConnectUser()
     user.connect_and_get_new_session_id()
 
-    await context.send(f"```Connexion reussie :\nuser_id : {user.user_id}\nSession_id : {user.session_id}\n```")
+    return await context.send(f"```Connexion reussie :\nuser_id : {user.user_id}\nSession_id : {user.session_id}\n```")
 
 
 @bot.command("get_play_2")
@@ -68,7 +69,7 @@ async def get_play_2(context: commands.Context):
 
     response = message.getvalue()
 
-    await context.send(response)
+    return await context.send(response)
 
 
 @bot.command("ab")
@@ -76,29 +77,39 @@ async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4, 5] = 0):
     user = ConnectUser()
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
-
-    title = "Attaque(s) et bombe(s)"
-    if nb_day == 0:
-        description = "Attaques et bombes restantes de la journée"
-    else:
-        description = (
-            f"Attaque(s) et bombe(s) manquante(s) {nb_day} jour(s) en arriere.\nJ'ai un bug non géré si vous demandez le mercredi de pause.\n"
-        )
-
-    now = datetime.datetime.now()
-    colour = discord.Colour.blue()
-
-    embed = discord.Embed(
-        title=title,
-        description=description,
-        timestamp=now,
-        colour=colour,
-    )
-
     members = play_2.bombs_attacks.members_bomb_attacks
     members_missing_something = [
         member for member in members if (member.nb_attacks_used_by_day[nb_day] == 0 or member.nb_bomb_used_by_day[nb_day] == 0)
     ]
+    total_attacks_missing = sum([attacks.nb_attacks_used_by_day[nb_day] for attacks in members_missing_something])
+    total_bombs_missing = sum([bombs.nb_bomb_used_by_day[nb_day] for bombs in members_missing_something])
+
+    display_name_day = display_day_name_n_day_in_the_past(datetime.datetime.utcnow(), nb_day)
+
+    title = f"Bilan pour {display_name_day}"
+    if nb_day == 0:
+        title = "Bilan actuel"
+    else:
+        title = f"Recapitulatif de {display_name_day}"
+    if nb_day == 0:
+        if total_attacks_missing + total_bombs_missing == 0:
+            description = "Toutes les attaques et les bombes ont été utilisées, bravo a tous."
+        else:
+            description = f"Attaques et bombes restantes du jour.\nIl reste :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes"
+    else:
+        description = f"Demande d'un recapitulatif des attaque(s) et bombe(s) manquante(s) {nb_day} jour(s) dans le passé.\nDemande faite par {context.author.mention}\n"
+        description += f"Attaques et bombes oubliées :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes"
+
+    now = datetime.datetime.now()
+    colour = discord.Colour.dark_blue()
+    color = discord.Color.dark_magenta()
+
+    embed = discord.Embed(title=title, description=description, timestamp=now, colour=colour, color=color)
+
+    is_rest_day = len(members_missing_something) == len(members)
+    if is_rest_day:
+        embed.description = "Aucune attaque et bombe un jour de repos"
+        return await context.send(embed=embed)
 
     for member in members_missing_something:
         member_name = play_2.guild_members[member.member_id]
@@ -106,19 +117,20 @@ async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4, 5] = 0):
         member_nb_atck = member.nb_attacks_used_by_day[nb_day]
         is_attack_done = member_nb_atck == 2
         if is_attack_done:
-            display_atck = "Toutes les attaques effectués"
+            display_atck = ""
         else:
-            display_atck = f"{2 - member_nb_atck} attaques restantes"
+            remaining_attacks = 2 - member_nb_atck
+            display_atck = f"{':crossed_swords:' * remaining_attacks}  {remaining_attacks} attaques restantes\n"
 
         member_nb_bomb = member.nb_bomb_used_by_day[nb_day]
         is_bomb_done = member_nb_bomb == 1
         if is_bomb_done:
             display_bomb = ""
         else:
-            display_bomb = "Bombe non utilisée"
-        embed.add_field(name=f"{member_name}", value=f"{display_atck}\n{display_bomb}", inline=False)
+            display_bomb = ":bomb:  Bombe non utilisée"
+        embed.add_field(name=f"{member_name}", value=f"{display_atck}{display_bomb}\n", inline=False)
 
-    await context.send(embed=embed)
+    return await context.send(embed=embed)
 
 
 bot.run(BOT_KEY)

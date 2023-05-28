@@ -1,34 +1,8 @@
 from dataclasses import dataclass, field
-import datetime
-from typing import Literal
-import pytz
+from app.adapters.date_time_fonctions import debutJourneeByTimecode, is_on_day
 
 from app.core.entrypoint.json_api import JsonAPI
 from app.core.models.api_solgard import ApiSolgard
-
-
-def debutJourneeByTimecode(timecode: int) -> int:
-    paris_tz = pytz.timezone('Europe/Paris')
-    dt = datetime.datetime.utcfromtimestamp(timecode / 1000.0)
-    dt = pytz.UTC.localize(dt).astimezone(paris_tz)  # Convert to Paris timezone
-
-    day_start = dt.replace(hour=7, minute=0, second=0, microsecond=0)
-
-    if dt.hour < 7:
-        day_start = day_start - datetime.timedelta(days=1)
-
-    begin_day_timestamp = int(day_start.timestamp() * 1000)
-
-    return begin_day_timestamp
-
-
-
-def is_on_day(nb_day_passed: Literal[0, 1, 2, 3, 4, 5], begin_day: int, actual_timestamp: int) -> bool:
-    one_day_timestamp = 24 * 60 * 60 * 1000
-    if nb_day_passed == 0:
-        return actual_timestamp > begin_day
-    else:
-        return begin_day - one_day_timestamp * nb_day_passed < actual_timestamp < begin_day - one_day_timestamp * (nb_day_passed - 1)
 
 
 DEFAULT_COUNT_DICT = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
