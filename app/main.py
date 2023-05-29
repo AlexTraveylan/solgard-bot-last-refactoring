@@ -104,9 +104,8 @@ async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4, 5] = 0):
 
     now = datetime.datetime.now()
     colour = discord.Colour.dark_blue()
-    color = discord.Color.dark_magenta()
 
-    embed = discord.Embed(title=title, description=description, timestamp=now, colour=colour, color=color)
+    embed = discord.Embed(title=title, description=description, timestamp=now, colour=colour)
 
     is_rest_day = len(members_missing_something) == len(members)
     if is_rest_day:
@@ -122,16 +121,48 @@ async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4, 5] = 0):
             display_atck = ""
         else:
             remaining_attacks = 2 - member_nb_atck
-            display_atck = f"{':crossed_swords:' * remaining_attacks}  {remaining_attacks} attaques restantes\n"
+            display_atck = f"{':crossed_swords:' * remaining_attacks}"
 
         member_nb_bomb = member.nb_bomb_used_by_day[nb_day]
         is_bomb_done = member_nb_bomb == 1
         if is_bomb_done:
             display_bomb = ""
         else:
-            display_bomb = ":bomb:  Bombe non utilisée"
-        embed.add_field(name=f"{member_name}", value=f"{display_atck}{display_bomb}\n", inline=False)
+            display_bomb = ":bomb:"
+        embed.add_field(name=f"{member_name}", value=f"{display_bomb}{display_atck}\n", inline=False)
 
+    return await context.send(embed=embed)
+
+
+@bot.command("b")
+async def b(context: commands.Context):
+    user = ConnectUser()
+    user.connect_and_get_new_session_id()
+    play_2 = Player_2_data(*user.get_user_id_session_id())
+    members = play_2.bombs_attacks.members_bomb_attacks
+    members_missing_something = [member for member in members if member.nb_bomb_used_by_day[0] == 0]
+    total_bombs_missing = len(members_missing_something)
+
+    title = "Bombes restantes aujourd'hui."
+    description_io = io.StringIO()
+
+    now = datetime.datetime.now()
+    colour = discord.Colour.yellow()
+
+    embed = discord.Embed(title=title, description="description", timestamp=now, colour=colour)
+
+    if total_bombs_missing == 0:
+        description_io.write("Toutes les bombes ont été utilisées.\n")
+        embed.description = description_io.getvalue()
+        return await context.send(embed=embed)
+    else:
+        description_io.write(f"Il reste {total_bombs_missing} bombes non utilisées.\n")
+
+    for member in members_missing_something:
+        member_name = play_2.guild_members[member.member_id]
+        description_io.write(f":bomb:  {member_name}\n")
+
+    embed.description = description_io.getvalue()
     return await context.send(embed=embed)
 
 

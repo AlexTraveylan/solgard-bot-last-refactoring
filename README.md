@@ -5,10 +5,7 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
 ## Features
 
 - **Connect:** Connect yourself to the game with python 
-- **Players Statistics:** Track and display player statistics on guild boss and clash.
 - **Attacks/Bombs remining:** The bot can say in discord remining bombs and attacks
-- **Clash targets:** assign targets
-- **Clash remining:** The bot can say in discord remining attacks for clash
 
 ## Installation
 
@@ -22,9 +19,20 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
 
 2. **Install the dependencies**
 
-    Navigate into the cloned repository and run the following command:
+    Navigate into the cloned repository, create and activated venv and install dependencies :
 
+    - windows
+    ```powershell
+    cd solgard-bot-last-refactoring
+    python -m venv env
+    env\Scripts\activate
+    pip install -r requirements.txt
+    ```
+    - linux
     ```bash
+    cd solgard-bot-last-refactoring
+    python -m venv env
+    source env/bin/activate
     pip install -r requirements.txt
     ```
 
@@ -57,8 +65,8 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
 ## Contributing
 
 We welcome contributions to the Solgard Discord Bot! 
-AlexTraveylan
-Soear
+- AlexTraveylan
+- Soear
 
 ## License
 
