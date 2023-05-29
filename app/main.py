@@ -79,7 +79,7 @@ async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4, 5] = 0):
     play_2 = Player_2_data(*user.get_user_id_session_id())
     members = play_2.bombs_attacks.members_bomb_attacks
     members_missing_something = [
-        member for member in members if (member.nb_attacks_used_by_day[nb_day] == 0 or member.nb_bomb_used_by_day[nb_day] == 0)
+        member for member in members if (member.nb_attacks_used_by_day[nb_day] < 2 or member.nb_bomb_used_by_day[nb_day] == 0)
     ]
     total_attacks_missing = sum([(2 - attacks.nb_attacks_used_by_day[nb_day]) for attacks in members_missing_something])
     total_bombs_missing = sum([(1 - bombs.nb_bomb_used_by_day[nb_day]) for bombs in members_missing_something])
