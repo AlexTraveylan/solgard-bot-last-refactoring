@@ -5,7 +5,7 @@ from app.core.entrypoint.json_api import JsonAPI
 from app.core.models.api_solgard import ApiSolgard
 
 
-DEFAULT_COUNT_DICT = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+DEFAULT_COUNT_DICT = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0}
 
 
 @dataclass
@@ -35,7 +35,7 @@ class Player_2_data:
     guild_id: str = None
     guild_name: str = None
     guild_members: dict[str, str] = field(default_factory=dict)
-    bombs_attacks: BombsAttacks = field(default_factory=lambda: BombsAttacks())  # TODO element 0 shloud be total
+    bombs_attacks: BombsAttacks = field(default_factory=lambda: BombsAttacks())
     # dependancies
     json_api = JsonAPI()
 
@@ -67,7 +67,7 @@ class Player_2_data:
             self.bombs_attacks.members_bomb_attacks.append(MemberBombAttacks(member_user_id))
 
     def _set_bombs_info(self):
-        """set bombs and attacks for eatch members 5 days in the past"""
+        """set bombs and attacks for eatch members 4 days in the past"""
 
         player = self.play_2_content["eventResult"]["eventResponseData"]["player"]
         actual_timecode: int = player["timestamp"]
@@ -110,9 +110,3 @@ class Player_2_data:
                     member_concerned.nb_bomb_used_by_day[4] += 1
                 else:
                     member_concerned.nb_attacks_used_by_day[4] += 1
-
-            if is_on_day(5, begin_day, activity_timestamp):
-                if isBomb:
-                    member_concerned.nb_bomb_used_by_day[5] += 1
-                else:
-                    member_concerned.nb_attacks_used_by_day[5] += 1

@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import os
 import datetime
 from app.adapters.date_time_fonctions import display_day_name_n_day_in_the_past
+from app.core.models.ab_module import ABModule
 
 from app.core.models.connect_user import ConnectUser
 from app.core.models.player_2 import Player_2_data
@@ -73,63 +74,21 @@ async def get_play_2(context: commands.Context):
 
 
 @bot.command("ab")
-async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4, 5] = 0):
+async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4] = 0):
     user = ConnectUser()
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
-    members = play_2.bombs_attacks.members_bomb_attacks
-    members_missing_something = [
-        member for member in members if (member.nb_attacks_used_by_day[nb_day] < 2 or member.nb_bomb_used_by_day[nb_day] == 0)
-    ]
-    total_attacks_missing = sum([(2 - attacks.nb_attacks_used_by_day[nb_day]) for attacks in members_missing_something])
-    total_bombs_missing = sum([(1 - bombs.nb_bomb_used_by_day[nb_day]) for bombs in members_missing_something])
+    ab_module = ABModule(play_2, nb_day)
 
-    display_name_day = display_day_name_n_day_in_the_past(datetime.datetime.utcnow(), nb_day)
-
-    title = f"Bilan pour {display_name_day}"
-    if nb_day == 0:
-        title = "Bilan actuel"
-    else:
-        title = f"Recapitulatif de {display_name_day}"
-    if nb_day == 0:
-        if total_attacks_missing + total_bombs_missing == 0:
-            description = "Toutes les attaques et les bombes ont été utilisées, bravo a tous.\n"
-        else:
-            description = (
-                f"Attaques et bombes restantes du jour.\nIl reste au total :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes\n"
-            )
-    else:
-        description = f"Demande d'un recapitulatif des attaque(s) et bombe(s) manquante(s) {nb_day} jour(s) dans le passé.\nDemande faite par {context.author.mention}\n"
-        description += f"Total des attaques et bombes oubliées :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes\n"
-
+    title = ab_module.title()
+    description = ab_module.description()
     now = datetime.datetime.now()
     colour = discord.Colour.dark_blue()
-
     embed = discord.Embed(title=title, description=description, timestamp=now, colour=colour)
 
-    is_rest_day = len(members_missing_something) == len(members)
-    if is_rest_day:
-        embed.description = "Aucune attaque et bombe un jour de repos"
-        return await context.send(embed=embed)
-
-    for member in members_missing_something:
-        member_name = play_2.guild_members[member.member_id]
-
-        member_nb_atck = member.nb_attacks_used_by_day[nb_day]
-        is_attack_done = member_nb_atck == 2
-        if is_attack_done:
-            display_atck = ""
-        else:
-            remaining_attacks = 2 - member_nb_atck
-            display_atck = f"{':crossed_swords:' * remaining_attacks}"
-
-        member_nb_bomb = member.nb_bomb_used_by_day[nb_day]
-        is_bomb_done = member_nb_bomb == 1
-        if is_bomb_done:
-            display_bomb = ""
-        else:
-            display_bomb = ":bomb:"
-        embed.add_field(name=f"{member_name}", value=f"{display_bomb}{display_atck}\n", inline=False)
+    fields_data = ab_module.embed_fields()
+    for field in fields_data:
+        embed.add_field(name=field[0], value=field[1], inline=False)
 
     return await context.send(embed=embed)
 
