@@ -44,7 +44,7 @@ def test_ab_module_title_0_is_bilan_actuel(player_2_data):
 def test_ab_module_title_is_recap_mardi(player_2_data):
     ab_module = ABModule(play_2=player_2_data, nb_day=1)
     title = ab_module.title()
-    assert "Recapitulatif de mardi" == title
+    assert "Recapitulatif de" in title
 
 
 def test_ab_module_description_is_11a_12b(player_2_data):

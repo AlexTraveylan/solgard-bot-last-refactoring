@@ -8,6 +8,7 @@ import os
 import datetime
 from app.adapters.date_time_fonctions import display_day_name_n_day_in_the_past
 from app.core.models.ab_module import ABModule
+from app.core.models.b_module import BModule
 
 from app.core.models.connect_user import ConnectUser
 from app.core.models.player_2 import Player_2_data
@@ -28,21 +29,7 @@ async def on_ready():
 
 @bot.command("test")
 async def test(context: commands.Context):
-    now = datetime.datetime.now()
-    colour = discord.Colour.blue()
-    embed = discord.Embed(
-        title="Test embed de test",
-        color=discord.Color.yellow(),
-        description="Alors, blabla blablabla blabalblabalblabla. Voila\nThe end.",
-        timestamp=now,
-        type="image",
-        colour=colour,
-        url="https://img.freepik.com/photos-premium/image-galaxie-coloree-dans-ciel-ai-generative_791316-9864.jpg?w=2000",
-    )
-    embed.set_image(url="https://img.freepik.com/photos-premium/image-galaxie-coloree-dans-ciel-ai-generative_791316-9864.jpg?w=2000")
-    embed.add_field(name="2eme champ", value="contenu du 2eme champ")
-    embed.add_field(name="fuseau horaire", value=f"{time.tzname}")
-    return await context.send(embed=embed)
+    pass
 
 
 @bot.command("connect_test")
@@ -98,30 +85,14 @@ async def b(context: commands.Context):
     user = ConnectUser()
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
-    members = play_2.bombs_attacks.members_bomb_attacks
-    members_missing_something = [member for member in members if member.nb_bomb_used_by_day[0] == 0]
-    total_bombs_missing = len(members_missing_something)
+    b_module = BModule(play_2)
 
-    title = "Bombes restantes aujourd'hui."
-    description_io = io.StringIO()
-
+    title = b_module.title()
+    description = b_module.description()
     now = datetime.datetime.now()
     colour = discord.Colour.yellow()
+    embed = discord.Embed(title=title, description=description, timestamp=now, colour=colour)
 
-    embed = discord.Embed(title=title, description="description", timestamp=now, colour=colour)
-
-    if total_bombs_missing == 0:
-        description_io.write("Toutes les bombes ont été utilisées.\n")
-        embed.description = description_io.getvalue()
-        return await context.send(embed=embed)
-    else:
-        description_io.write(f"Il reste {total_bombs_missing} bombes non utilisées.\n")
-
-    for member in members_missing_something:
-        member_name = play_2.guild_members[member.member_id]
-        description_io.write(f":bomb:  {member_name}\n")
-
-    embed.description = description_io.getvalue()
     return await context.send(embed=embed)
 
 
