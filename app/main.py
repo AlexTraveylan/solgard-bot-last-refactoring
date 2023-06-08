@@ -1,12 +1,10 @@
 import io
-import time
 from typing import Literal
-from discord.ext import commands
-import discord
+import interactions
+
 from dotenv import load_dotenv
 import os
 import datetime
-from app.adapters.date_time_fonctions import display_day_name_n_day_in_the_past
 from app.core.models.ab_module import ABModule
 from app.core.models.b_module import BModule
 
@@ -18,30 +16,39 @@ BOT_KEY = os.getenv("BOT_KEY")
 if BOT_KEY is None:
     raise ValueError("BOT_KEY not found")
 
-intents = discord.Intents.all()
-bot = commands.Bot(command_prefix="!", intents=intents)
+
+class MainClient:
+    def __init__(self) -> None:
+        intents = interactions.Intents.ALL
+        self.Client = interactions.Client(BOT_KEY, intents=intents)
+
+    def start(self):
+        self.Client.start()
 
 
-@bot.event
+interactions_client = MainClient()
+
+
+@interactions_client.Client.event(name="on_ready")
 async def on_ready():
     print("Bot command ready")
 
 
-@bot.command("test")
-async def test(context: commands.Context):
+@interactions_client.Client.command(name="test", description="Do nothing, just a test")
+async def test(context: interactions.CommandContext):
     pass
 
 
-@bot.command("connect_test")
-async def connect_test(context: commands.Context):
+@interactions_client.Client.command(name="connect_test", description="se connecte au jeu solgard")
+async def connect_test(context: interactions.CommandContext):
     user = ConnectUser()
     user.connect_and_get_new_session_id()
 
     return await context.send(f"```Connexion reussie :\nuser_id : {user.user_id}\nSession_id : {user.session_id}\n```")
 
 
-@bot.command("get_play_2")
-async def get_play_2(context: commands.Context):
+@interactions_client.Client.command(name="get_play_2", description="Recupere les données de player_2")
+async def get_play_2(context: interactions.CommandContext):
     user = ConnectUser()
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
@@ -60,8 +67,19 @@ async def get_play_2(context: commands.Context):
     return await context.send(response)
 
 
-@bot.command("ab")
-async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4] = 0):
+@interactions_client.Client.command(
+    name="ab",
+    description="Renseigne les attaques et bombes restantes du jour, ou des jours précédents",
+    options=[
+        interactions.Option(
+            type=interactions.OptionType.INTEGER,
+            name="nb_day",
+            description="Nombres de jours en arriere du recapitulatif",
+            required=False,
+        )
+    ],
+)
+async def ab(context: interactions.CommandContext, nb_day: Literal[0, 1, 2, 3, 4] = 0):
     user = ConnectUser()
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
@@ -70,18 +88,17 @@ async def ab(context: commands.Context, nb_day: Literal[0, 1, 2, 3, 4] = 0):
     title = ab_module.title()
     description = ab_module.description()
     now = datetime.datetime.now()
-    colour = discord.Colour.dark_blue()
-    embed = discord.Embed(title=title, description=description, timestamp=now, colour=colour)
+    embed = interactions.Embed(title=title, description=description, timestamp=now, color=3)
 
     fields_data = ab_module.embed_fields()
     for field in fields_data:
         embed.add_field(name=field[0], value=field[1], inline=False)
 
-    return await context.send(embed=embed)
+    return await context.send(embeds=embed)
 
 
-@bot.command("b")
-async def b(context: commands.Context):
+@interactions_client.Client.command(name="b", description="Donne le nombre de bombes restantes")
+async def b(context: interactions.CommandContext):
     user = ConnectUser()
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
@@ -90,10 +107,9 @@ async def b(context: commands.Context):
     title = b_module.title()
     description = b_module.description()
     now = datetime.datetime.now()
-    colour = discord.Colour.yellow()
-    embed = discord.Embed(title=title, description=description, timestamp=now, colour=colour)
+    embed = interactions.Embed(title=title, description=description, color=5, timestamp=now)
 
-    return await context.send(embed=embed)
+    return await context.send(embeds=embed)
 
 
-bot.run(BOT_KEY)
+interactions_client.start()

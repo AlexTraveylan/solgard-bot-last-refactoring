@@ -77,7 +77,11 @@ class Player_2_data:
 
         for activity in guildActivities:
             member_concerned_id: str = activity["userId"]
-            member_concerned: MemberBombAttacks = self.bombs_attacks.find_member_by_member_id(member_concerned_id)
+            try:
+                member_concerned: MemberBombAttacks = self.bombs_attacks.find_member_by_member_id(member_concerned_id)
+            except ValueError:
+                member_concerned: MemberBombAttacks = MemberBombAttacks(member_id="Unknown")
+
             activity_timestamp: int = activity["createdOn"]
             isBomb: bool = activity["type"] == "GUILD_BOSS_BOMB"
 

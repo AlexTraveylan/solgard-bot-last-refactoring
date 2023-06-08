@@ -37,7 +37,10 @@ class BModule:
         description_io = io.StringIO()
         description_io.write(f"Il reste {total_bombs_missing} bombes non utilisées.\n")
         for member in self._members_missing_bomb:
-            member_name = self.play_2.guild_members[member.member_id]
+            try:
+                member_name = self.play_2.guild_members[member.member_id]
+            except KeyError:
+                member_name = "Unknown"
             description_io.write(f":bomb:  {member_name}\n")
 
         return description_io.getvalue()

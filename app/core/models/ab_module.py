@@ -63,7 +63,10 @@ class ABModule:
 
     def _member_field_data(self, member: MemberBombAttacks) -> tuple[str, str]:
         """return tuple name=member_name and value=bomb_atcks for embed.add_field()"""
-        member_name = self.play_2.guild_members[member.member_id]
+        try:
+            member_name = self.play_2.guild_members[member.member_id]
+        except KeyError:
+            member_name = "Unknown"
 
         member_nb_atck = member.nb_attacks_used_by_day[self.nb_day]
         is_attack_done = member_nb_atck == 2
