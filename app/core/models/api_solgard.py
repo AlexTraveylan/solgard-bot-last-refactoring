@@ -1,8 +1,9 @@
+from typing import Any
 import requests
 from requests import RequestException
 
 
-def connect_and_set_session_id(user_id: str, connect_json: dict[str, any]) -> str:
+def connect_and_set_session_id(user_id: str, connect_json: dict[str, Any]) -> str:
     """Request solgard api for connect set, self.session_id"""
 
     url = f"https://api-live.thor.snowprintstudios.com/player/player2/userId/{user_id}"
@@ -21,7 +22,7 @@ class ApiSolgard:
         self.user_id = user_id
         self.session_id = session_id
 
-    def api_endpoint(self, json: dict[str, any]) -> dict[str, any]:
+    def api_endpoint(self, json: dict[str, Any]) -> dict[str, Any]:
         if self.session_id is None:
             raise ValueError("You cant do that without session_id, connect first")
 
@@ -33,7 +34,7 @@ class ApiSolgard:
         except RequestException as e:
             raise ValueError("Request failed") from e
 
-    def api_channel(self, json: dict[str, any]) -> dict[str, any]:
+    def api_channel(self, json: dict[str, Any]) -> dict[str, Any]:
         if self.session_id is None:
             raise ValueError("You cant do that without session_id, connect first")
 

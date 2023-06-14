@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from app.adapters.date_time_fonctions import debutJourneeByTimecode, is_on_day
-
+import re
 from app.core.entrypoint.json_api import JsonAPI
 from app.core.models.api_solgard import ApiSolgard
 
@@ -27,6 +27,14 @@ class BombsAttacks:
 
 
 @dataclass
+class ClashInfo:
+    saison: int
+    id_clash: str
+    opponent_guild_id: str
+    team_id: int
+
+
+@dataclass
 class Player_2_data:
     user_id: str
     session_id: str
@@ -36,6 +44,7 @@ class Player_2_data:
     guild_name: str = None
     guild_members: dict[str, str] = field(default_factory=dict)
     bombs_attacks: BombsAttacks = field(default_factory=lambda: BombsAttacks())
+    clash_info: ClashInfo = None
     # dependancies
     json_api = JsonAPI()
 
@@ -44,6 +53,7 @@ class Player_2_data:
         self._set_play_2_content()
         self._set_guild_infos()
         self._set_bombs_info()
+        self._set_clash_info()
 
     def _set_play_2_content(self) -> None:
         """get the player_2_content from solgard_api and set it"""
@@ -114,3 +124,14 @@ class Player_2_data:
                     member_concerned.nb_bomb_used_by_day[4] += 1
                 else:
                     member_concerned.nb_attacks_used_by_day[4] += 1
+
+    def _set_clash_info(self):
+        """set clash info"""
+        events = self.play_2_content["eventResult"]["eventResponseData"]["player"]["guild"]["sharedEvents"]["sharedEvents"]
+        event = events[-1]
+        saison = int(re.sub("[a-zA-Z]+_", "", event["tournamentId"]))
+        id_clash = event["guildChallengeId"]
+        opponent_guild_id = event["guildChallenge"]["opponentGuildId"]
+        team_id = int(event["guildChallenge"]["teamId"])
+
+        self.clash_info = ClashInfo(saison, id_clash, opponent_guild_id, team_id)

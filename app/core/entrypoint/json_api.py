@@ -1,4 +1,5 @@
 import time
+from typing import Any
 
 from app.core.models.version import Versions
 
@@ -7,7 +8,7 @@ class JsonAPI:
     def __init__(self, version: Versions = Versions()) -> None:
         self.version = version
 
-    def json_player_2(self):
+    def json_player_2(self) -> dict[str, Any]:
         return {
             "builtInMultiConfigVersion": self.version.builtInMultiConfigVersion,
             "installId": self.version.installId,
@@ -52,16 +53,16 @@ class JsonAPI:
     #         },
     #     }
 
-    # def json_get_guild(guildId):
-    #     return {
-    #         "builtInMultiConfigVersion": Versions.builtInMultiConfigVersion,
-    #         "installId": Versions.installId,
-    #         "playerEvent": {
-    #             "createdOn": str(int(time.time() * 1000)),
-    #             "gameConfigVersion": Versions.gameConfigVersion,
-    #             "multiConfigVersion": Versions.multiConfigVersion,
-    #             "playerEventData": {"guildId": guildId},
-    #             "playerEventType": "VIEW_GUILD_2",
-    #             "universeVersion": Versions.universeVersion,
-    #         },
-    #     }
+    def json_get_guild(guildId: str) -> dict[str, Any]:
+        return {
+            "builtInMultiConfigVersion": Versions.builtInMultiConfigVersion,
+            "installId": Versions.installId,
+            "playerEvent": {
+                "createdOn": str(int(time.time() * 1000)),
+                "gameConfigVersion": Versions.gameConfigVersion,
+                "multiConfigVersion": Versions.multiConfigVersion,
+                "playerEventData": {"guildId": guildId},
+                "playerEventType": "VIEW_GUILD_2",
+                "universeVersion": Versions.universeVersion,
+            },
+        }

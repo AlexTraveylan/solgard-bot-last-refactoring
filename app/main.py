@@ -9,6 +9,8 @@ from app.core.models.ab_module import ABModule
 from app.core.models.b_module import BModule
 
 from app.core.models.connect_user import ConnectUser
+from app.core.models.get_guild import SetGuild
+from app.core.models.info_clash_module import InfoClashModule, is_clash_on
 from app.core.models.player_2 import Player_2_data
 
 load_dotenv()
@@ -36,7 +38,7 @@ async def on_ready():
 
 @interactions_client.Client.command(name="test", description="Do nothing, just a test")
 async def test(context: interactions.CommandContext):
-    pass
+    return await context.send(f"`test reussi`")
 
 
 @interactions_client.Client.command(name="connect_test", description="se connecte au jeu solgard")
@@ -108,6 +110,41 @@ async def b(context: interactions.CommandContext):
     description = b_module.description()
     now = datetime.datetime.now()
     embed = interactions.Embed(title=title, description=description, color=5, timestamp=now)
+
+    return await context.send(embeds=embed)
+
+
+@interactions_client.Client.command(
+    name="info_clash",
+    description="Donne des infos sur le clash",
+    options=[
+        interactions.Option(
+            type=interactions.OptionType.NUMBER,
+            name="team_number",
+            description="1 pour avoir les infos de l'équipe ennemie, par default : 0, notre équipe",
+            required=False,
+        )
+    ],
+)
+async def infoClash(context: interactions.CommandContext, team_number: int = 0):
+    now = datetime.datetime.utcnow()
+    if is_clash_on(now):
+        return await context.send("`Pas de clash actif`")
+
+    user = ConnectUser()
+    user.connect_and_get_new_session_id()
+    play_2 = Player_2_data(*user.get_user_id_session_id())
+    ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
+    info_clash = InfoClashModule(team_number, play_2, ennemi_guild_info)
+
+    title = info_clash.title()
+    description = info_clash.description()
+    now = datetime.datetime.now()
+    embed = interactions.Embed(title=title, description=description, color=5, timestamp=now)
+
+    fields_data = info_clash.embed_fields()
+    for field in fields_data:
+        embed.add_field(name=field[0], value=field[1], inline=False)
 
     return await context.send(embeds=embed)
 
