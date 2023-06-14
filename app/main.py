@@ -128,7 +128,7 @@ async def b(context: interactions.CommandContext):
 )
 async def infoClash(context: interactions.CommandContext, team_number: int = 0):
     now = datetime.datetime.utcnow()
-    if is_clash_on(now):
+    if not is_clash_on(now):
         return await context.send("`Pas de clash actif`")
 
     user = ConnectUser()

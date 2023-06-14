@@ -132,6 +132,6 @@ class Player_2_data:
         saison = int(re.sub("[a-zA-Z]+_", "", event["tournamentId"]))
         id_clash = event["guildChallengeId"]
         opponent_guild_id = event["guildChallenge"]["opponentGuildId"]
-        team_id = int(event["guildChallenge"]["teamId"])
+        team_id = int((event["guildChallenge"]["teamId"])[-1])
 
         self.clash_info = ClashInfo(saison, id_clash, opponent_guild_id, team_id)
