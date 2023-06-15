@@ -2,9 +2,10 @@ import datetime
 from typing import Literal
 from app.adapters.date_time_fonctions import display_day_name_n_day_in_the_past
 from app.core.models.player_2 import MemberBombAttacks, Player_2_data
+from app.ports.embed_port import EmbedPort
 
 
-class ABModule:
+class ABModule(EmbedPort):
     def __init__(self, play_2: Player_2_data, nb_day: Literal[0, 1, 2, 3, 4]) -> None:
         self.play_2 = play_2
         self.members = self.play_2.bombs_attacks.members_bomb_attacks

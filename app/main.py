@@ -5,6 +5,7 @@ import interactions
 from dotenv import load_dotenv
 import os
 import datetime
+from app.adapters.interpolate_powers.extract_data import InterpolatePowers
 from app.core.models.ab_module import ABModule
 from app.core.models.b_module import BModule
 
@@ -21,7 +22,7 @@ if BOT_KEY is None:
 
 class MainClient:
     def __init__(self) -> None:
-        intents = interactions.Intents.ALL
+        intents = interactions.Intents.DEFAULT
         self.Client = interactions.Client(BOT_KEY, intents=intents)
 
     def start(self):
@@ -29,44 +30,6 @@ class MainClient:
 
 
 interactions_client = MainClient()
-
-
-@interactions_client.Client.event(name="on_ready")
-async def on_ready():
-    print("Bot command ready")
-
-
-@interactions_client.Client.command(name="test", description="Do nothing, just a test")
-async def test(context: interactions.CommandContext):
-    return await context.send(f"`test reussi`")
-
-
-@interactions_client.Client.command(name="connect_test", description="se connecte au jeu solgard")
-async def connect_test(context: interactions.CommandContext):
-    user = ConnectUser()
-    user.connect_and_get_new_session_id()
-
-    return await context.send(f"```Connexion reussie :\nuser_id : {user.user_id}\nSession_id : {user.session_id}\n```")
-
-
-@interactions_client.Client.command(name="get_play_2", description="Recupere les données de player_2")
-async def get_play_2(context: interactions.CommandContext):
-    user = ConnectUser()
-    user.connect_and_get_new_session_id()
-    play_2 = Player_2_data(*user.get_user_id_session_id())
-
-    message = io.StringIO()
-    message.write("```Recupération de données :\n")
-    message.write(f"Guild_id : {play_2.guild_id}\n")
-    message.write(f"Guild_name : {play_2.guild_name}\n")
-    message.write(f"Liste des {len(play_2.guild_members)} membres :\n")
-    for member_id, member_name in play_2.guild_members.items():
-        message.write(f"- {member_name} ({member_id})\n")
-    message.write("```")
-
-    response = message.getvalue()
-
-    return await context.send(response)
 
 
 @interactions_client.Client.command(
@@ -145,6 +108,45 @@ async def infoClash(context: interactions.CommandContext, team_number: int = 0):
     fields_data = info_clash.embed_fields()
     for field in fields_data:
         embed.add_field(name=field[0], value=field[1], inline=False)
+
+    return await context.send(embeds=embed)
+
+
+@interactions_client.Client.command(
+    name="power_interpolate",
+    description="Utilise un modèle entrainé sur les données recoltées pour prédire les puissances suivantes.",
+    options=[
+        interactions.Option(
+            type=interactions.OptionType.INTEGER,
+            name="power_1",
+            description="Puissance de l'équipe 1, la plus puissante",
+            required=True,
+        ),
+        interactions.Option(
+            type=interactions.OptionType.INTEGER,
+            name="power_2",
+            description="Puissance de l'équipe 2, la 2ème plus puissante",
+            required=True,
+        ),
+        interactions.Option(
+            type=interactions.OptionType.INTEGER,
+            name="power_3",
+            description="Puissance de l'équipe 3, la 3ème plus puissante",
+            required=True,
+        ),
+    ],
+)
+async def power_interpolate(context: interactions.CommandContext, power_1: int, power_2: int, power_3: int):
+    file_path = "app/adapters/interpolate_powers/data_set.csv"
+    interpolate = InterpolatePowers(file_path)
+    interpolate.run()
+    base = [power_1, power_2, power_3]
+    result = interpolate.predicate(*base)
+
+    title = "Prédiction des puissances"
+    description = f"Puissance données :\n{base}\n\nPuissance prédites : \n{result[0]}"
+    now = datetime.datetime.now()
+    embed = interactions.Embed(title=title, description=description, color=5, timestamp=now)
 
     return await context.send(embeds=embed)
 

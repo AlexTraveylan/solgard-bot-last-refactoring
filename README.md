@@ -1,11 +1,13 @@
 # Solgard Discord Bot
 
-Welcome to the Solgard Discord Bot repository. This bot is designed to bring a range of useful features to Discord servers for the game [Solgard](https://www.solskardgame.com).
+Welcome to the Solgard Discord Bot repository. This bot is designed to bring a range of useful features to Discord servers for the game [Solgard](https://www.solgardgame.com).
 
 ## Features
 
 - **Connect:** Connect yourself to the game with python 
 - **Attacks/Bombs remining:** The bot can say in discord remining bombs and attacks
+- **Clash infos:** The bot can say in discord remining attacks and actual score
+
 
 ## Installation
 

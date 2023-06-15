@@ -5,6 +5,7 @@ from typing import Any
 from app.core.models.get_guild import SetGuild
 
 from app.core.models.player_2 import Player_2_data
+from app.ports.embed_port import EmbedPort
 
 
 def is_clash_on(now: datetime.datetime):
@@ -35,7 +36,7 @@ class ClashStatut:
     #             return f"{self.userID} // Score final : {self.accumulatedScore}"
 
 
-class InfoClashModule:
+class InfoClashModule(EmbedPort):
     def __init__(self, team_number: int, play_2: Player_2_data, ennemi_guild_info: SetGuild) -> None:
         # attrib init
         self.team_number = team_number

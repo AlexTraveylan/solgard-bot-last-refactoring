@@ -1,8 +1,9 @@
 import io
 from app.core.models.player_2 import MemberBombAttacks, Player_2_data
+from app.ports.embed_port import EmbedPort
 
 
-class BModule:
+class BModule(EmbedPort):
     def __init__(self, play_2: Player_2_data) -> None:
         self.play_2 = play_2
         self.members = self.play_2.bombs_attacks.members_bomb_attacks
