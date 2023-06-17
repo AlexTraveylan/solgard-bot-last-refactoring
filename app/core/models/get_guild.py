@@ -31,7 +31,8 @@ class SetGuild:
     def _set_infos_guild(self):
         """call api endpoint for ask guild infos"""
         json_guild = JsonAPI.json_get_guild(self.guild_id)
-        self.infos_guild = ApiSolgard.api_endpoint(json_guild)
+        api = ApiSolgard(user_id=self.user_id, session_id=self.session_id)
+        self.infos_guild = api.api_endpoint(json_guild)
 
     def _read_for_set_infos_guild(self):
         """extract infos from recupered json"""

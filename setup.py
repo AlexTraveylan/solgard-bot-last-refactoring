@@ -7,7 +7,7 @@ setup(
     install_requires=[],
     entry_points={
         "console_scripts": [
-            "solgard-bot = solgard-bot-last-refactoring.app:main",
+            "solgard-bot = app.main:main",
         ]
     },
     author="Alex Traveylan",
