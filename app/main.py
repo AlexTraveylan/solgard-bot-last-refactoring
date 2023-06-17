@@ -5,7 +5,7 @@ import interactions
 from dotenv import load_dotenv
 import os
 import datetime
-from app.adapters.interpolate_powers.extract_data import InterpolatePowers
+from app.adapters.interpolate_powers.linear_regretion import InterpolatePowers
 from app.core.models.ab_module import ABModule
 from app.core.models.b_module import BModule
 

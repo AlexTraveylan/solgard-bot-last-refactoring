@@ -1,14 +1,16 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 
+from app.ports.interpolated_port import InterpolatePort
 
-class InterpolatePowers:
+
+class LinearInterpolatePowers(InterpolatePort):
     def __init__(self, file_path: str) -> None:
         self.file_path = file_path
         self.model = LinearRegression()
         self._is_ready = False
 
-    def run(self):
+    def train(self):
         """after this command, the model is trained then he can predicate"""
         data = self._extract_data()
         self._train_model(data)
@@ -26,7 +28,7 @@ class InterpolatePowers:
         self.model.fit(X_train, y_train)
 
     def predicate(self, power_1: float, power_2: float, power_3: float) -> np.ndarray:
-        """run model before predicate"""
+        """train model before predicate"""
         if not self._is_ready:
             raise RuntimeError("Model not ready. Please run the training process first.")
         actual_player = np.array([[power_1, power_2, power_3]])
