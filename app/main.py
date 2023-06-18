@@ -16,6 +16,12 @@ from app.core.models.player_2 import Player_2_data
 
 load_dotenv()
 BOT_KEY = os.getenv("BOT_KEY")
+KEY = os.getenv("KEY")
+CONFIG_ENCRYPTED = os.getenv("CONFIG_ENCRYPTED")
+if KEY is None:
+    raise ValueError("KEY not found")
+if CONFIG_ENCRYPTED is None:
+    raise ValueError("CONFIG_ENCRYPTED not found")
 if BOT_KEY is None:
     raise ValueError("BOT_KEY not found")
 
@@ -45,7 +51,7 @@ interactions_client = MainClient()
     ],
 )
 async def ab(context: interactions.CommandContext, nb_day: Literal[0, 1, 2, 3, 4] = 0):
-    user = ConnectUser()
+    user = ConnectUser(CONFIG_ENCRYPTED, KEY)
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
     ab_module = ABModule(play_2, nb_day)
@@ -64,7 +70,7 @@ async def ab(context: interactions.CommandContext, nb_day: Literal[0, 1, 2, 3, 4
 
 @interactions_client.Client.command(name="b", description="Donne le nombre de bombes restantes")
 async def b(context: interactions.CommandContext):
-    user = ConnectUser()
+    user = ConnectUser(CONFIG_ENCRYPTED, KEY)
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
     b_module = BModule(play_2)
@@ -94,7 +100,7 @@ async def infoClash(context: interactions.CommandContext, team_number: int = 0):
     if not is_clash_on(now):
         return await context.send("`Pas de clash actif`")
 
-    user = ConnectUser()
+    user = ConnectUser(CONFIG_ENCRYPTED, KEY)
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
     ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)

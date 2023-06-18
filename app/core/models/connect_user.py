@@ -9,17 +9,11 @@ from app.core.models.api_solgard import connect_and_set_session_id
 from app.core.models.version import Versions
 from cryptography.fernet import Fernet
 
-load_dotenv()
-KEY = os.getenv("KEY")
-CONFIG_ENCRYPTED = os.getenv("CONFIG_ENCRYPTED")
-if KEY is None:
-    raise ValueError("KEY not found")
-if CONFIG_ENCRYPTED is None:
-    raise ValueError("CONFIG_ENCRYPTED not found")
-
 
 @dataclass
 class ConnectUser:
+    config_encrypted: str
+    key: str
     user_id: str = None
     session_id: str = None
     display_name: str = None
@@ -32,8 +26,8 @@ class ConnectUser:
         self.user_id = self._connect_json["playerEvent"]["playerEventData"]["userId"]
 
     def _decrypt_connect_json(self):
-        cipher_text = CONFIG_ENCRYPTED
-        cipher_suite = Fernet(KEY)
+        cipher_text = self.config_encrypted
+        cipher_suite = Fernet(self.key)
         plain_text = cipher_suite.decrypt(cipher_text)
         self._connect_json = json.loads(plain_text.decode())
 

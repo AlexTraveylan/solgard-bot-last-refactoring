@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 import pytest
 from app.adapters.jsonreader import read_json
 from app.core.models.connect_user import ConnectUser
@@ -12,11 +13,11 @@ class FakeVersions(Versions):
     universeVersion = "klm"
 
 
+@dataclass
 class FakeConnectUser(ConnectUser):
-    def __init__(self):
-        super().__init__()
-        self.version = FakeVersions
+    def __post_init__(self):
         super().__post_init__()
+        self.version = FakeVersions
 
     def _decrypt_connect_json(self):
         FAKE_CONNECT_JSON = read_json("tests/data/connect.json")
@@ -24,7 +25,7 @@ class FakeConnectUser(ConnectUser):
 
 
 def test_set_connexion_json():
-    connexion = FakeConnectUser()
+    connexion = FakeConnectUser("no_config", "no_key")
     connexion._set_connexion_json()
     assert connexion._connect_json["builtInMultiConfigVersion"] == "aze"
     assert connexion._connect_json["installId"] == "qsd"
@@ -36,13 +37,13 @@ def test_set_connexion_json():
 
 
 def test_set_user_id():
-    connexion = FakeConnectUser()
+    connexion = FakeConnectUser("no_config", "no_key")
 
     assert connexion.user_id == "fakeUser"
 
 
 def test_get_user_id_session_id_raise_without_nothing():
-    connexion = FakeConnectUser()
+    connexion = FakeConnectUser("no_config", "no_key")
 
     with pytest.raises(ValueError) as exc_info:
         connexion.get_user_id_session_id()
