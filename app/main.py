@@ -150,7 +150,7 @@ async def power_interpolate(context: interactions.CommandContext, power_1: int, 
     result = interpolate.predicate(*base)
 
     title = "Prédiction des puissances"
-    description = f"Puissances données :\n{base}\n\nPuissances prédites : \n{result[0]}"
+    description = f"Puissances données :\n{base}\n\nPuissances prédites : \n{result}"
     now = datetime.datetime.now()
     embed = interactions.Embed(title=title, description=description, color=5, timestamp=now)
 
