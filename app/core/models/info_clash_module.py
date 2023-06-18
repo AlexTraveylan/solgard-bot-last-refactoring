@@ -26,15 +26,6 @@ class ClashStatut:
     fortification: int
     is_spectator: bool = False
 
-    # def __repr__(self):
-    #     if self.spectator:
-    #         return f"{self.userID} est spectateur"
-    #     else:
-    #         if self.numAttempts != 7:
-    #             return f"{7 - self.numAttempts} attaques restantes // {self.userID} // Score actuel : {self.accumulatedScore}"
-    #         else:
-    #             return f"{self.userID} // Score final : {self.accumulatedScore}"
-
 
 class InfoClashModule(EmbedPort):
     def __init__(self, team_number: int, play_2: Player_2_data, ennemi_guild_info: SetGuild) -> None:
@@ -53,7 +44,8 @@ class InfoClashModule(EmbedPort):
         return "Affichage de l'état actuel du clash"
 
     def description(self) -> str:
-        remining_atck = reduce(lambda acc, curr: acc + 7 - curr.num_attempts, self.clash_members_statuts, 0)
+        filtered_memners_statuts = [member for member in self.clash_members_statuts if not member.is_spectator]
+        remining_atck = reduce(lambda acc, curr: acc + 7 - curr.num_attempts, filtered_memners_statuts, 0)
         accumulate_score = reduce(lambda acc, curr: acc + curr.accumulated_score, self.clash_members_statuts, 0)
 
         return f"Nombre total d'attaques restantes : {remining_atck}\nScore cumulé : {accumulate_score}\n"
