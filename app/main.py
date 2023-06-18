@@ -5,7 +5,7 @@ import interactions
 from dotenv import load_dotenv
 import os
 import datetime
-from app.adapters.interpolate_powers.linear_regretion import InterpolatePowers
+from app.adapters.interpolate_powers.polynomial import PolynomialInterpolatePowers
 from app.core.models.ab_module import ABModule
 from app.core.models.b_module import BModule
 
@@ -138,7 +138,7 @@ async def infoClash(context: interactions.CommandContext, team_number: int = 0):
 )
 async def power_interpolate(context: interactions.CommandContext, power_1: int, power_2: int, power_3: int):
     file_path = "app/adapters/interpolate_powers/data_set.csv"
-    interpolate = InterpolatePowers(file_path)
+    interpolate = PolynomialInterpolatePowers(file_path)
     interpolate.run()
     base = [power_1, power_2, power_3]
     result = interpolate.predicate(*base)
