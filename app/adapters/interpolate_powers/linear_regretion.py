@@ -36,5 +36,5 @@ class LinearInterpolatePowers(InterpolatePort):
 
         rounded_prediction = np.round(prediction).astype(int)
 
-        # type [[int, int, int, int]]
-        return rounded_prediction
+        # type [int, int, int, int]
+        return rounded_prediction[0]

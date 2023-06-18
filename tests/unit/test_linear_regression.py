@@ -33,4 +33,4 @@ def test_can_predict(test_data):
     interpolate.train()
     prediction = interpolate.predicate(1.0, 2.0, 3.0)
     assert isinstance(prediction, np.ndarray)
-    assert prediction.shape == (1, 4)  # Assuming your model predicts 4 outputs
+    assert prediction.shape == (4,)  # Assuming your model predicts 4 outputs

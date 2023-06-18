@@ -15,10 +15,12 @@ class FakeVersions(Versions):
 class FakeConnectUser(ConnectUser):
     def __init__(self):
         super().__init__()
-        FAKE_CONNECT_JSON = read_json("tests/data/connect.json")
-        self._connect_json = FAKE_CONNECT_JSON
         self.version = FakeVersions
         super().__post_init__()
+
+    def _decrypt_connect_json(self):
+        FAKE_CONNECT_JSON = read_json("tests/data/connect.json")
+        self._connect_json = FAKE_CONNECT_JSON
 
 
 def test_set_connexion_json():

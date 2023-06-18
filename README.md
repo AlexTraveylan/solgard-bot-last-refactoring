@@ -7,6 +7,7 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
 - **Connect:** Connect yourself to the game with python 
 - **Attacks/Bombs remining:** The bot can say in discord remining bombs and attacks
 - **Clash infos:** The bot can say in discord remining attacks and actual score
+- **Interpolate powers:** Bot use machine learning for predicate powers for clash
 
 
 ## Installation
