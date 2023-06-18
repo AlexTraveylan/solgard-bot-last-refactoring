@@ -38,3 +38,10 @@ class LinearInterpolatePowers(InterpolatePort):
 
         # type [int, int, int, int]
         return rounded_prediction[0]
+
+
+if __name__ == "__main__":
+    interpolate = LinearInterpolatePowers("app/adapters/interpolate_powers/data_set.csv")
+    interpolate.train()
+    rep = interpolate.predicate(46521, 45308, 44142)
+    print(rep)

@@ -44,5 +44,5 @@ class PolynomialInterpolatePowers(InterpolatePort):
 if __name__ == "__main__":
     interpolate = PolynomialInterpolatePowers("app/adapters/interpolate_powers/data_set.csv")
     interpolate.train()
-    rep = interpolate.predicate(49859, 47492, 45760)
+    rep = interpolate.predicate(50325, 48659, 47576)
     print(rep)
