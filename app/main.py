@@ -164,6 +164,9 @@ async def power_interpolate(context: interactions.CommandContext, power_1: int, 
 
 @interactions_client.Client.command(name="assign_clash_target", description="Création des tableaux d'assignation pour le clash")
 async def build_clash(context: interactions.CommandContext):
+    now = datetime.datetime.utcnow()
+    if not is_clash_on(now):
+        return await context.send("`Pas de clash actif`")
     user = ConnectUser(CONFIG_ENCRYPTED, KEY)
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
