@@ -1,17 +1,22 @@
-import io
+import tempfile
 from typing import Literal
 import interactions
 
 from dotenv import load_dotenv
 import os
 import datetime
+from app.adapters.date_time_fonctions import is_clash_on
 from app.adapters.interpolate_powers.linear_regretion import LinearInterpolatePowers
+from app.adapters.kuhn_munkres import AssignClash, KuhnMunkres
+from app.adapters.print_assign_clash import PrintAssignClash
+from app.adapters.string_assign_clash import AssignClashString
 from app.core.models.ab_module import ABModule
 from app.core.models.b_module import BModule
+from app.core.models.bc_module import BCModule
 
 from app.core.models.connect_user import ConnectUser
 from app.core.models.get_guild import SetGuild
-from app.core.models.info_clash_module import InfoClashModule, is_clash_on
+from app.core.models.info_clash_module import InfoClashModule
 from app.core.models.player_2 import Player_2_data
 
 load_dotenv()
@@ -153,6 +158,30 @@ async def power_interpolate(context: interactions.CommandContext, power_1: int, 
     description = f"Puissances données :\n{base}\n\nPuissances prédites : \n{result}"
     now = datetime.datetime.now()
     embed = interactions.Embed(title=title, description=description, color=5, timestamp=now)
+
+    return await context.send(embeds=embed)
+
+
+@interactions_client.Client.command(name="assign_clash_target", description="Création des tableaux d'assignation pour le clash")
+async def build_clash(context: interactions.CommandContext):
+    user = ConnectUser(CONFIG_ENCRYPTED, KEY)
+    user.connect_and_get_new_session_id()
+    play_2 = Player_2_data(*user.get_user_id_session_id())
+    ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
+    trained_interpolate_module = LinearInterpolatePowers().train()
+    bc_module = BCModule(play_2, ennemi_guild_info, trained_interpolate_module)
+    kuhn_munkres = KuhnMunkres(*bc_module.get_tuple_for_kuhn_munkres())
+    result_assign_list = kuhn_munkres.get_results()
+    print_module = AssignClashString(result_assign_list)
+    targets_in_tuple_list = print_module.generate_clash_strings()
+    title = bc_module.title()
+    description = bc_module.description()
+    now = datetime.datetime.now()
+    embed = interactions.Embed(title=title, description=description, color=5, timestamp=now)
+    fields_data = bc_module.embed_fields()
+    avantage = bc_module.get_avantage()
+    for field in [*fields_data, avantage, *targets_in_tuple_list]:
+        embed.add_field(name=field[0], value=field[1], inline=False)
 
     return await context.send(embeds=embed)
 

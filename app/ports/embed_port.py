@@ -11,4 +11,4 @@ class EmbedPort(ABC):
         raise NotImplementedError
 
     def embed_fields(self) -> list[tuple[str, str]]:
-        raise NotImplementedError
+        return []

@@ -1,21 +1,10 @@
 from dataclasses import dataclass
-import datetime
 from functools import reduce
 from typing import Any
 from app.core.models.get_guild import SetGuild
 
 from app.core.models.player_2 import Player_2_data
 from app.ports.embed_port import EmbedPort
-
-
-def is_clash_on(now: datetime.datetime):
-    if now.weekday() == 4 and now.hour >= 14:
-        return True
-    if now.weekday() == 5:
-        return True
-    if now.weekday() == 6 and now.hour < 14:
-        return True
-    return False
 
 
 @dataclass
@@ -57,7 +46,7 @@ class InfoClashModule(EmbedPort):
         for member_statut in sorted_clash_members_statuts:
             member_name = member_statut.user_name
             if member_statut.num_attempts != 7:
-                value = f"Attaques restantes :\n {':crossed_swords:' * (7 - member_statut.num_attempts)}\n"
+                value = f"{':crossed_swords:' * (7 - member_statut.num_attempts)}\n"
                 value += f"Score actuel : {member_statut.accumulated_score}\n"
             else:
                 value = f"Score final : {member_statut.accumulated_score}\n"

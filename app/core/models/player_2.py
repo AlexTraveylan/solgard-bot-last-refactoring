@@ -1,5 +1,7 @@
 from dataclasses import dataclass, field
-from app.adapters.date_time_fonctions import debutJourneeByTimecode, is_on_day
+import datetime
+from typing import Any, Literal
+from app.adapters.date_time_fonctions import debutJourneeByTimecode, is_clash_on, is_on_day
 import re
 from app.core.entrypoint.json_api import JsonAPI
 from app.core.models.api_solgard import ApiSolgard
@@ -35,6 +37,20 @@ class ClashInfo:
 
 
 @dataclass
+class ClashTeam:
+    power: int
+    scores: tuple[int, int]
+    is_killed: bool
+
+
+@dataclass
+class PowerClash:
+    member_id: str
+    end_bonus: int
+    teams: list[ClashTeam] = field(default_factory=dict)
+
+
+@dataclass
 class Player_2_data:
     user_id: str
     session_id: str
@@ -45,6 +61,9 @@ class Player_2_data:
     guild_members: dict[str, str] = field(default_factory=dict)
     bombs_attacks: BombsAttacks = field(default_factory=lambda: BombsAttacks())
     clash_info: ClashInfo = None
+    clash_event: list[dict[str, Any]] = field(default_factory=list)
+    ennemies_powersclash: list[PowerClash] = field(default_factory=list)
+    allies_powersclash: list[PowerClash] = field(default_factory=list)
     # dependancies
     json_api = JsonAPI()
 
@@ -53,7 +72,13 @@ class Player_2_data:
         self._set_play_2_content()
         self._set_guild_infos()
         self._set_bombs_info()
-        self._set_clash_info()
+        # clash infos
+        now = datetime.datetime.utcnow()
+        if is_clash_on(now):
+            self._set_clash_info()
+            self._set_clash_event()
+            self.ennemies_powersclash = self._get_clash_power("ennemy")
+            self.allies_powersclash = self._get_clash_power("ally")
 
     def _set_play_2_content(self) -> None:
         """get the player_2_content from solgard_api and set it"""
@@ -135,3 +160,53 @@ class Player_2_data:
         team_id = int((event["guildChallenge"]["teamId"])[-1])
 
         self.clash_info = ClashInfo(saison, id_clash, opponent_guild_id, team_id)
+
+    def _get_team(self, concerned_team: Literal["ally", "ennemy"]) -> str:
+        if concerned_team == "ally":
+            return f"team{self.clash_info.team_id}"
+        else:
+            return f"team{self.clash_info.team_id % 2 + 1}"
+
+    def _set_clash_event(self):
+        """set ennemies powers"""
+        if self.clash_info is None:
+            raise ValueError("use _set_clash_info first")
+
+        liveEvents = self.play_2_content["eventResult"]["eventResponseData"]["player"]["hero"]["liveEvents"]["liveEvents"]
+        i = 0
+        for event in liveEvents:
+            try:
+                if event["type"] == "GuildChallenge":
+                    break
+            except:
+                pass
+            i += 1
+        self.clash_event = liveEvents[i]["config"]["liveEventGameModes"]["guildChallenge"]
+
+    def _get_clash_power(self, concerned_team: Literal["ally", "ennemy"]) -> list[PowerClash]:
+        if len(self.clash_event) == 0:
+            raise ValueError("use _get_clash_event first")
+
+        bouts = self.clash_event[self._get_team(concerned_team)]["bouts"]
+
+        ennemies_powersclash: list[PowerClash] = []
+
+        for bout in bouts:
+            member_id = bout["opponent"]["userId"]
+            bonus = bout["boutBonus"]
+            encounters = bout["encounters"]
+
+            clash_teams: list[ClashTeam] = []
+            for encounter in encounters:
+                power = encounter["duelPower"]
+                scores = (encounter["duelBonus"], encounter["duelDamageScore"])
+                try:
+                    encounter["mostDamageEntry"]["userId"]
+                    is_killed = True
+                except:
+                    is_killed = False
+                clash_teams.append(ClashTeam(power=power, scores=scores, is_killed=is_killed))
+
+            ennemies_powersclash.append(PowerClash(member_id=member_id, end_bonus=bonus, teams=clash_teams))
+
+        return ennemies_powersclash

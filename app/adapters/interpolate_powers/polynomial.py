@@ -6,7 +6,7 @@ from app.ports.interpolated_port import InterpolatePort
 
 
 class PolynomialInterpolatePowers(InterpolatePort):
-    def __init__(self, file_path: str) -> None:
+    def __init__(self, file_path: str = "app/adapters/interpolate_powers/data_set_brut.csv") -> None:
         self.file_path = file_path
         self.model = LinearRegression()
         self.transformer = PolynomialFeatures(degree=2, include_bias=False)
@@ -42,7 +42,7 @@ class PolynomialInterpolatePowers(InterpolatePort):
 
 
 if __name__ == "__main__":
-    interpolate = PolynomialInterpolatePowers("app/adapters/interpolate_powers/data_set.csv")
+    interpolate = PolynomialInterpolatePowers("app/adapters/interpolate_powers/data_set_brut.csv")
     interpolate.train()
-    rep = interpolate.predicate(50325, 48659, 47576)
+    rep = interpolate.predicate(42244, 42165, 42148)
     print(rep)

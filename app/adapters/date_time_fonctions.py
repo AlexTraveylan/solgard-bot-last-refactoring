@@ -33,3 +33,13 @@ def display_day_name_n_day_in_the_past(now: datetime.datetime, nb_day_in_past: L
     day_name = format_date(one_day_before, "EEEE", locale="fr")
 
     return day_name
+
+
+def is_clash_on(now: datetime.datetime):
+    if now.weekday() == 4 and now.hour >= 14:
+        return True
+    if now.weekday() == 5:
+        return True
+    if now.weekday() == 6 and now.hour < 14:
+        return True
+    return False

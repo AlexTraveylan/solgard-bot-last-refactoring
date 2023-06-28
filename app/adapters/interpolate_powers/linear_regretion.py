@@ -5,7 +5,7 @@ from app.ports.interpolated_port import InterpolatePort
 
 
 class LinearInterpolatePowers(InterpolatePort):
-    def __init__(self, file_path: str) -> None:
+    def __init__(self, file_path: str = "app/adapters/interpolate_powers/data_set_brut.csv") -> None:
         self.file_path = file_path
         self.model = LinearRegression()
         self._is_ready = False
