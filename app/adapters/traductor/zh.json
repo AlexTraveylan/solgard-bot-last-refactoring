@@ -1,0 +1,43 @@
+{
+    "ab_module": {
+        "title_today": "当前总结",
+        "title_past": "{display_name_day}的回顾",
+        "desc_rest_day": "休息日没有攻击和炸弹",
+        "desc_all_attacks_bombs_used": "所有的攻击和炸弹都已使用，大家做得好。",
+        "desc_total_attacks_bombs_missed": "遗漏的攻击和炸弹总计：\n- {total_attacks_missing} 攻击\n- {total_bombs_missing} 炸弹",
+        "desc_remaining_attacks_bombs_today": "今天剩余的攻击和炸弹。\n总计剩余：\n- {total_attacks_missing} 攻击\n- {total_bombs_missing} 炸弹\n",
+        "member_unknown": "未知"
+    },
+    "b_module": {
+        "title": "今天剩余的炸弹。",
+        "desc_rest_day": "休息日",
+        "desc_all_bombs_used": "所有的炸弹都已使用。\n",
+        "desc_remaining_bombs": "还有 {total_bombs_missing} 个未使用的炸弹。\n",
+        "member_unknown": "未知"
+    },
+    "info_clash_module": {
+        "title": "当前冲突的状态显示",
+        "desc_total_remaining_attacks": "剩余攻击总数：{remining_atck}",
+        "desc_cumulative_score": "累计得分：{accumulate_score}",
+        "desc_current_score": "当前得分：{current_score}",
+        "desc_final_score": "最终得分：{final_score}"
+    },
+    "bc_module": {
+        "title": "冲突表",
+        "description": "为冲突指定目标。\n策略描述 ：\n",
+        "step_1_title": "获得的力量",
+        "step_1_desc": "游戏中每个队伍可见的3个防御队伍。",
+        "step_2_title": "另外四个队伍",
+        "step_2_desc": "它们通过线性回归和机器学习在您过去3年中收集的147个数据集进行插值",
+        "step_3_title": "分配方法",
+        "step_3_desc": "使用库恩-蒙克雷斯组合优化算法，以最小化功率差异的平均值。",
+        "avantage_title": "功率比较"
+    },
+    "commands": {
+        "set_langage_command": {
+            "impossible_choice": "选择不可能",
+            "successful_change": "成功更改语言",
+            "selected_language": "选定的语言：{lang}"
+        }
+    }
+}

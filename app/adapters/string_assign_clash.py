@@ -1,4 +1,3 @@
-from functools import reduce
 from app.adapters.kuhn_munkres import AssignClash
 
 

@@ -27,10 +27,12 @@ def is_on_day(nb_day_passed: Literal[0, 1, 2, 3, 4, 5], begin_day: int, actual_t
         return begin_day - one_day_timestamp * nb_day_passed < actual_timestamp < begin_day - one_day_timestamp * (nb_day_passed - 1)
 
 
-def display_day_name_n_day_in_the_past(now: datetime.datetime, nb_day_in_past: Literal[0, 1, 2, 3, 4, 5]):
+def display_day_name_n_day_in_the_past(
+    now: datetime.datetime, nb_day_in_past: Literal[0, 1, 2, 3, 4, 5], lang=Literal["fr", "en", "it", "es", "zh", "ru"]
+):
     now -= datetime.timedelta(hours=5)
     one_day_before = now - datetime.timedelta(days=nb_day_in_past)
-    day_name = format_date(one_day_before, "EEEE", locale="fr")
+    day_name = format_date(one_day_before, "EEEE", locale=lang)
 
     return day_name
 

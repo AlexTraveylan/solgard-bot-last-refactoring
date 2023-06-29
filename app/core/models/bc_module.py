@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from functools import reduce
+from app.adapters.traductor.translation import Translate
 from app.core.models.get_guild import SetGuild
 from app.core.models.player_2 import Player_2_data, PowerClash
 from app.ports.embed_port import EmbedPort
@@ -20,13 +21,17 @@ def reducer(acc: int, curr: PowerClash):
 
 
 class BCModule(EmbedPort):
-    def __init__(self, play_2: Player_2_data, ennemi_guild_info: SetGuild, trained_interpolate_module: InterpolatePort) -> None:
+    def __init__(
+        self, play_2: Player_2_data, ennemi_guild_info: SetGuild, trained_interpolate_module: InterpolatePort, translation_module: Translate
+    ) -> None:
         if trained_interpolate_module._is_ready:
             raise ValueError("Train first the interpolate model.")
         # given attributes
         self._play_2 = play_2
         self._ennemi_guild_info = ennemi_guild_info
         self._trained_interpolate_module = trained_interpolate_module
+        # translations
+        self.translations = translation_module.translations["bc_module"]
         # attributes set later
         self._ennemies_powers_list = self._set_ennemies_powers_list()
         self._allies_powers_list = self._set_allies_powers_list()
@@ -47,24 +52,18 @@ class BCModule(EmbedPort):
 
         difference_relative = (self._total_allies_powers - self._total_ennemies_powers) / self._total_ennemies_powers
 
-        return f"Comparaison des puissances", f"{difference_relative * 100:.2f}%"
+        return self.translations["avantage_title"], f"{difference_relative * 100:.2f}%"
 
     def description(self) -> str:
-        return "Assignation des cibles pour le clash.\nDescription de la stratégie :\n"
+        return self.translations["description"]
 
     def title(self) -> str:
-        return "Tableau des clash"
+        return self.translations["title"]
 
     def embed_fields(self) -> list[tuple[str, str]]:
-        step_1 = ("Puissances récupérées", "Les 3 équipes de défense visible dans le jeu, pour chacune des équipes.")
-        step_2 = (
-            "Quatre autres équipes",
-            "Elles sont interpolées par une regression linéaire et du machine learning sur un data_set de 147 de vos puissances récupérés depuis 3 ans",
-        )
-        step_3 = (
-            "Méthode d'assignation",
-            "Utilisation de l'algorithme d'optimisation combinatoire de Kuhn Munkres pour minimiser la moyenne des ecarts de puissance.",
-        )
+        step_1 = (self.translations["step_1_title"], self.translations["step_1_desc"])
+        step_2 = (self.translations["step_2_title"], self.translations["step_2_desc"])
+        step_3 = (self.translations["step_3_title"], self.translations["step_3_desc"])
 
         return [step_1, step_2, step_3]
 

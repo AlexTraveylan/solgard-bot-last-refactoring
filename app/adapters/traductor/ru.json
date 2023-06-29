@@ -1,0 +1,43 @@
+{
+    "ab_module": {
+        "title_today": "Текущий отчет",
+        "title_past": "Сводка за {display_name_day}",
+        "desc_rest_day": "Нет атак и бомб в выходные",
+        "desc_all_attacks_bombs_used": "Все атаки и бомбы были использованы, все молодцы.",
+        "desc_total_attacks_bombs_missed": "Общее число пропущенных атак и бомб: \n- {total_attacks_missing} атаки\n- {total_bombs_missing} бомбы",
+        "desc_remaining_attacks_bombs_today": "Оставшиеся сегодня атаки и бомбы.\nВсего осталось:\n- {total_attacks_missing} атаки\n- {total_bombs_missing} бомбы\n",
+        "member_unknown": "Неизвестно"
+    },
+    "b_module": {
+        "title": "Оставшиеся сегодня бомбы.",
+        "desc_rest_day": "Выходной",
+        "desc_all_bombs_used": "Все бомбы были использованы.\n",
+        "desc_remaining_bombs": "Осталось {total_bombs_missing} не использованных бомб.\n",
+        "member_unknown": "Неизвестно"
+    },
+    "info_clash_module": {
+        "title": "Текущее состояние столкновения",
+        "desc_total_remaining_attacks": "Общее число оставшихся атак: {remining_atck}",
+        "desc_cumulative_score": "Суммарный счет: {accumulate_score}",
+        "desc_current_score": "Текущий счет: {current_score}",
+        "desc_final_score": "Итоговый счет: {final_score}"
+    },
+    "bc_module": {
+        "title": "Доска столкновения",
+        "description": "Назначение целей для столкновения.\nОписание стратегии:\n",
+        "step_1_title": "Силы восстановлены",
+        "step_1_desc": "3 оборонительные команды, видимые в игре, для каждой из команд.",
+        "step_2_title": "Четыре другие команды",
+        "step_2_desc": "Они интерполированы линейной регрессией и машинным обучением на data_set из 147 ваших сил, восстановленных за последние 3 года",
+        "step_3_title": "Метод назначения",
+        "step_3_desc": "Использование комбинаторного оптимизационного алгоритма Куна-Мункреса для минимизации среднего разброса мощности.",
+        "avantage_title": "Сравнение мощностей"
+    },
+    "commands": {
+        "set_langage_command": {
+            "impossible_choice": "Невозможный выбор",
+            "successful_change": "Язык успешно изменен",
+            "selected_language": "Выбранный язык: {lang}"
+        }
+    }
+}

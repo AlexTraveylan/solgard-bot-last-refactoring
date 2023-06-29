@@ -2,7 +2,7 @@ import pytest
 from unittest.mock import MagicMock, patch
 
 from app.adapters.interpolate_powers.linear_regretion import LinearInterpolatePowers
-from app.core.models.bc_module import BCModule, PowerTeam
+from app.core.models.bc_module import BCModule
 from app.core.models.get_guild import SetGuild
 from app.core.models.player_2 import ClashTeam, Player_2_data, PowerClash
 
@@ -47,7 +47,7 @@ def trained_interpolate_module():
 
 def test_BCModule__set_ennemies_powers_list(mocked_play_2, mocked_ennemi_guild_info, trained_interpolate_module):
     with patch.object(BCModule, "__init__", return_value=None):
-        bc_module = BCModule(mocked_play_2, mocked_ennemi_guild_info, trained_interpolate_module)
+        bc_module = BCModule()
 
     bc_module._play_2 = mocked_play_2
     bc_module._ennemi_guild_info = mocked_ennemi_guild_info
@@ -64,7 +64,7 @@ def test_BCModule__set_ennemies_powers_list(mocked_play_2, mocked_ennemi_guild_i
 
 def test_BCModule__set_allies_powers_list(mocked_play_2, mocked_ennemi_guild_info, trained_interpolate_module):
     with patch.object(BCModule, "__init__", return_value=None):
-        bc_module = BCModule(mocked_play_2, mocked_ennemi_guild_info, trained_interpolate_module)
+        bc_module = BCModule()
 
     bc_module._play_2 = mocked_play_2
     bc_module._ennemi_guild_info = mocked_ennemi_guild_info
@@ -78,14 +78,11 @@ def test_BCModule__set_allies_powers_list(mocked_play_2, mocked_ennemi_guild_inf
     assert tested_allies_powers_list[-1].member_name == "fake_ally_2"
 
 
-def test_bc_module__set_total_powers(mocked_play_2, mocked_ennemi_guild_info, trained_interpolate_module):
+def test_bc_module__set_total_powers(mocked_play_2):
     with patch.object(BCModule, "__init__", return_value=None):
-        bc_module = BCModule(mocked_play_2, mocked_ennemi_guild_info, trained_interpolate_module)
+        bc_module = BCModule()
 
     bc_module._play_2 = mocked_play_2
-
-    bc_module._ennemies_powers_list = [PowerTeam("", 0, 1000), PowerTeam("", 0, 2000)]
-    bc_module._allies_powers_list = [PowerTeam("", 0, 3000), PowerTeam("", 0, 4000)]
 
     ennemy_power_max, ally_power_max = bc_module._set_total_powers()
 

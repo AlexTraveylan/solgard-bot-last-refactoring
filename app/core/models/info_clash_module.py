@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from functools import reduce
 from typing import Any
+from app.adapters.traductor.translation import Translate
 from app.core.models.get_guild import SetGuild
 
 from app.core.models.player_2 import Player_2_data
@@ -17,11 +18,12 @@ class ClashStatut:
 
 
 class InfoClashModule(EmbedPort):
-    def __init__(self, team_number: int, play_2: Player_2_data, ennemi_guild_info: SetGuild) -> None:
+    def __init__(self, team_number: int, play_2: Player_2_data, ennemi_guild_info: SetGuild, translation_module: Translate) -> None:
         # attrib init
         self.team_number = team_number
         self.play_2 = play_2
         self.ennemi_guild_info = ennemi_guild_info
+        self.translations = translation_module.translations["info_clash_module"]
         # attrib calculate
         self.total_dict = {**self.play_2.guild_members, **self.ennemi_guild_info.dict_members_id_name}
         self.team = self._define_team()
@@ -30,14 +32,14 @@ class InfoClashModule(EmbedPort):
         self.clash_members_statuts = self._define_clash_members_statuts()
 
     def title(self) -> str:
-        return "Affichage de l'état actuel du clash"
+        return self.translations["title"]
 
     def description(self) -> str:
-        filtered_memners_statuts = [member for member in self.clash_members_statuts if not member.is_spectator]
-        remining_atck = reduce(lambda acc, curr: acc + 7 - curr.num_attempts, filtered_memners_statuts, 0)
+        filtered_members_statuts = [member for member in self.clash_members_statuts if not member.is_spectator]
+        remining_atck = reduce(lambda acc, curr: acc + 7 - curr.num_attempts, filtered_members_statuts, 0)
         accumulate_score = reduce(lambda acc, curr: acc + curr.accumulated_score, self.clash_members_statuts, 0)
 
-        return f"Nombre total d'attaques restantes : {remining_atck}\nScore cumulé : {accumulate_score}\n"
+        return f"{self.translations['desc_total_remaining_attacks'].format(remining_atck=remining_atck)}\n{self.translations['desc_cumulative_score'].format(accumulate_score=accumulate_score)}\n"
 
     def embed_fields(self) -> list[tuple[str, str]]:
         filter_clash_members_statuts = [member for member in self.clash_members_statuts if not member.is_spectator]
@@ -47,9 +49,9 @@ class InfoClashModule(EmbedPort):
             member_name = member_statut.user_name
             if member_statut.num_attempts != 7:
                 value = f"{':crossed_swords:' * (7 - member_statut.num_attempts)}\n"
-                value += f"Score actuel : {member_statut.accumulated_score}\n"
+                value += f"{self.translations['desc_current_score'].format(current_score=member_statut.accumulated_score)}\n"
             else:
-                value = f"Score final : {member_statut.accumulated_score}\n"
+                value = f"{self.translations['desc_final_score'].format(final_score=member_statut.accumulated_score)}\n"
             embed_data.append((member_name, value))
 
         return embed_data

@@ -1,9 +1,19 @@
 from dataclasses import dataclass
+
+import pytest
 from app.adapters.jsonreader import read_json
+from app.adapters.traductor.translation import Translate
 
 from app.core.models.get_guild import SetGuild
 from app.core.models.info_clash_module import ClashStatut, InfoClashModule
 from app.core.models.player_2 import ClashInfo, Player_2_data
+
+
+@pytest.fixture(scope="module")
+def translation_module():
+    translation_module = Translate("fr")
+
+    return translation_module
 
 
 @dataclass
@@ -22,11 +32,11 @@ class FakePlayer_2_data(Player_2_data):
         self.clash_info = ClashInfo(saison=1, id_clash="osef", opponent_guild_id="687c2b09-1889-47a9-836a-4fcd79373054", team_id=1)
 
 
-def test_info_clash_module():
+def test_info_clash_module(translation_module):
     play_2 = FakePlayer_2_data("user_id", "session_id")
     ennemi_guild_info = FakeSetGuild("user_id", "session_id", play_2.clash_info.opponent_guild_id)
 
-    info_clash = InfoClashModule(1, play_2, ennemi_guild_info)
+    info_clash = InfoClashModule(1, play_2, ennemi_guild_info, translation_module)
 
     assert len(info_clash.title()) > 10
     assert len(info_clash.total_dict) > 20
