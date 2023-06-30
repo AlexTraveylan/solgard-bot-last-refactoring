@@ -1,13 +1,15 @@
 # Solgard Discord Bot
 
-Welcome to the Solgard Discord Bot repository. This bot is designed to bring a range of useful features to Discord servers for the game [Solgard](https://www.solgardgame.com).
+Welcome to the Solgard Discord Bot repository. This bot is designed to bring a range of useful features to Discord servers for the game [Solgard](https://snowprintstudios.com/solgard/).
 
 ## Features
 
-- **Connect:** Connect yourself to the game with python 
-- **Attacks/Bombs remining:** The bot can say in discord remining bombs and attacks
-- **Clash infos:** The bot can say in discord remining attacks and actual score
-- **Interpolate powers:** Bot use machine learning for predicate powers for clash, linear or polynomial implemented.
+- **Connect:** Connect to the game using Python.
+- **Attacks/Bombs remining:** The bot can display the remaining bombs and attacks on Discord.
+- **Clash infos:** The bot can provide information about the remaining attacks and the current score on Discord.
+- **Interpolate powers:** The bot utilizes machine learning to predict powers for clashes, with linear or polynomial implementation.
+- **Assign target clash** Use the Kuhn Munkres algorithm to minimize power differences and assign targets for clashes.
+- **Traduction** The bot can communicate in French, English, Italian, Spanish, Chinese, and Russian.
 
 
 ## Installation
