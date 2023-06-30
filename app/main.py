@@ -176,7 +176,8 @@ async def build_clash(context: interactions.CommandContext):
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
     ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
-    trained_interpolate_module = LinearInterpolatePowers().train()
+    trained_interpolate_module = LinearInterpolatePowers()
+    trained_interpolate_module.train()
     bc_module = BCModule(play_2, ennemi_guild_info, trained_interpolate_module, interactions_client.translate_module)
 
     title = bc_module.title()

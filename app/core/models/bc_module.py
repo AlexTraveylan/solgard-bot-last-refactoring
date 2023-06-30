@@ -24,7 +24,7 @@ class BCModule(EmbedPort):
     def __init__(
         self, play_2: Player_2_data, ennemi_guild_info: SetGuild, trained_interpolate_module: InterpolatePort, translation_module: Translate
     ) -> None:
-        if trained_interpolate_module._is_ready:
+        if not trained_interpolate_module._is_ready:
             raise ValueError("Train first the interpolate model.")
         # given attributes
         self._play_2 = play_2

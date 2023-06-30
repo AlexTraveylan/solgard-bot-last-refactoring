@@ -10,7 +10,7 @@ class AssignClashString:
 
         for ennemy_name in set(clash.ennemy_name for clash in self.assign_clash):
             clashes_for_ennemy = [
-                f"{clash.ally_name} T{clash.ally_team_number} ({clash.ally_power - clash.ennemy_power})"
+                f"{clash.ally_name} T{clash.ally_team_number} ( {'+' if (clash.ally_power - clash.ennemy_power) > 0 else '' } {clash.ally_power - clash.ennemy_power} )"
                 for clash in self.assign_clash
                 if clash.ennemy_name == ennemy_name
             ]
