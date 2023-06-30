@@ -221,7 +221,7 @@ async def set_langage(context: interactions.CommandContext, langage: Literal[1, 
         interactions_client.change_langage("it")
         new_langage = "italiano"
     elif langage == 4:
-        interactions_client.change_langage("en")
+        interactions_client.change_langage("es")
         new_langage = "spanish"
     elif langage == 5:
         interactions_client.change_langage("zh")
