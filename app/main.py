@@ -113,7 +113,7 @@ async def infoClash(context: interactions.CommandContext, team_number: int = 0):
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
     ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
-    info_clash = InfoClashModule(team_number, play_2, ennemi_guild_info)
+    info_clash = InfoClashModule(team_number, play_2, ennemi_guild_info, interactions_client.translate_module)
 
     title = info_clash.title()
     description = info_clash.description()
