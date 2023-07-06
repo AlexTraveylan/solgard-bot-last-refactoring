@@ -1,6 +1,7 @@
 # Python cache files
 __pycache__/
 /.pytest*
+/solgard_bot.egg-info
 
 # Logs
 *.log

@@ -166,8 +166,19 @@ async def power_interpolate(context: interactions.CommandContext, power_1: int, 
     return await context.send(embeds=embed)
 
 
-@interactions_client.Client.command(name="assign_clash_target", description="Cree les tableaux d'attribution pour le clash")
-async def build_clash(context: interactions.CommandContext):
+@interactions_client.Client.command(
+    name="assign_clash_target",
+    description="Cree les tableaux d'attribution pour le clash",
+    options=[
+        interactions.Option(
+            type=interactions.OptionType.BOOLEAN,
+            name="is_allies_side",
+            description="(False, ennemies_side) (True, allies_side) default=True",
+            required=False,
+        )
+    ],
+)
+async def build_clash(context: interactions.CommandContext, is_allies_side: bool = True):
     now = datetime.datetime.utcnow()
     if not is_clash_on(now):
         return await context.send("`Pas de clash actif`")
@@ -191,8 +202,10 @@ async def build_clash(context: interactions.CommandContext):
 
     fields_data = bc_module.embed_fields()
     avantage = bc_module.get_avantage()
-    targets_in_tuple_list = print_module.generate_clash_strings()
-
+    if is_allies_side:
+        targets_in_tuple_list = print_module.generate_allies_side_clash_strings()
+    else:
+        targets_in_tuple_list = print_module.generate_clash_strings()
     for field in [*fields_data, avantage, *targets_in_tuple_list]:
         embed.add_field(name=field[0], value=field[1], inline=False)
 
@@ -239,6 +252,51 @@ async def set_langage(context: interactions.CommandContext, langage: Literal[1, 
     embed = interactions.Embed(title=title, description=description, color=5, timestamp=now)
 
     return await context.send(embeds=embed)
+
+
+# @interactions_client.Client.command(name="test4", description="test button")
+# async def test4(context: interactions.CommandContext):
+#     choix = interactions.Button(
+#         style=interactions.ButtonStyle.DANGER,
+#         label="ping",
+#         custom_id="send_ping",
+#     )
+
+#     choix2 = interactions.Button(
+#         style=interactions.ButtonStyle.SUCCESS,
+#         label="pong",
+#         custom_id="send_pong",
+#     )
+
+#     action_row = interactions.ActionRow(components=[choix, choix2])
+
+#     return await context.send("Cliquez sur le bouton pour envoyer un ping", components=action_row, ephemeral=True)
+
+
+# @interactions_client.Client.command(name="test3", description="Cree les tableaux d'attribution pour le clash")
+# async def test3(context: interactions.CommandContext):
+#     select_menu = interactions.SelectMenu(
+#         type=interactions.ComponentType.SELECT,
+#         custom_id="select_menu",
+#         options=[interactions.SelectOption(label="Option 1", value="Option_1"), interactions.SelectOption(label="Option 2", value="Option_2")],
+#         placeholder="test de placeholder",
+#         min_values=1,
+#         max_values=2,
+#     )
+
+#     return await context.send("Cliquez sur le bouton pour envoyer un ping", components=select_menu, ephemeral=True)
+
+
+# @interactions_client.Client.component("send_ping")
+# @interactions_client.Client.component("send_pong")
+# async def danger_component(context: interactions.CommandContext):
+#     return await context.send(context.data.custom_id)
+
+
+# @interactions_client.Client.component("select_menu")
+# async def select_menu_component(context: interactions.CommandContext):
+#     # print(str(context.data.values))
+#     return await context.send("ok")
 
 
 interactions_client.start()

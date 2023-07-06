@@ -38,3 +38,11 @@ def test_assign_clash_string(assign_clash):
 
     assert len(result_list_tuple) == 2
     assert all([isinstance(result, tuple) for result in result_list_tuple])
+
+
+def test_assign_clash_string_allies_side(assign_clash):
+    print_module = AssignClashString(assign_clash)
+
+    result_list_tuple = print_module.generate_allies_side_clash_strings()
+
+    assert all([isinstance(result, tuple) for result in result_list_tuple])

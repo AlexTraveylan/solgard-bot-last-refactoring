@@ -50,9 +50,10 @@ class BCModule(EmbedPort):
         if self._total_allies_powers is None or self._total_ennemies_powers is None:
             raise ValueError("max powers not set yet.")
 
-        difference_relative = (self._total_allies_powers - self._total_ennemies_powers) / self._total_ennemies_powers
+        difference_relative = (self._total_allies_powers - self._total_ennemies_powers) / self._total_allies_powers
+        sign = "+" if difference_relative > 0 else "-"
 
-        return self.translations["avantage_title"], f"{difference_relative * 100:.2f}%"
+        return self.translations["avantage_title"], f"{sign} {abs(difference_relative) * 100:.2f}%"
 
     def description(self) -> str:
         return self.translations["description"]
@@ -94,7 +95,7 @@ class BCModule(EmbedPort):
             except KeyError:
                 member_name = "Unknown_ally"
 
-            three_first_powers = sorted([team.power for team in ally.teams])
+            three_first_powers = sorted([team.power for team in ally.teams], reverse=True)
             four_next_powers = self._trained_interpolate_module.predicate(*three_first_powers)
             seven_powers = [*three_first_powers, *four_next_powers]
 

@@ -1,13 +1,13 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="solgard-bot",
+    name="solgard_bot",
     version="0.1",
     packages=find_packages(),
     install_requires=[],
     entry_points={
         "console_scripts": [
-            "solgard-bot = app.main:main",
+            "bot_run = app.main:main",
         ]
     },
     author="Alex Traveylan",
