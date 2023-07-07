@@ -9,7 +9,7 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
 - **Clash infos:** The bot can provide information about the remaining attacks and the current score on Discord.
 - **Interpolate powers:** The bot utilizes machine learning to predict powers for clashes, with linear or polynomial implementation.
 - **Assign target clash** Use the Kuhn Munkres algorithm to minimize power differences and assign targets for clashes.
-- **Traduction** The bot can communicate in French, English, Italian, Spanish, Chinese, and Russian.
+- **Traduction** The bot can communicate in French, English, Italian, Spanish, Chinese, and Russian. 
 
 
 ## Installation
