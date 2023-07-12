@@ -1,14 +1,14 @@
+import os
 from matplotlib import pyplot as plt
 import pandas as pd
 from app.adapters.kuhn_munkres import AssignClash
 
 
 class PrintAssignClash:
-    def __init__(self, assign_clash: list[AssignClash], output_directory_path: str) -> None:
+    def __init__(self, assign_clash: list[AssignClash]) -> None:
         self.assign_clash = assign_clash
-        self.output_directory_path = output_directory_path
 
-    def generate_table_image(self, file_name: str):
+    def generate_table_image(self, output_file_path: str):
         # Initialiser un dictionnaire pour organiser les données
         data = {"duel 1": [], "duel 2": [], "duel 3": []}
 
@@ -34,7 +34,7 @@ class PrintAssignClash:
         ax.axis("off")
         the_table = ax.table(cellText=df.values, colLabels=df.columns, rowLabels=df.index, cellLoc="center", loc="center", bbox=[0, 0, 1, 1])
 
-        plt.savefig(f"{self.output_directory_path}/{file_name}.png")
+        plt.savefig(f"{output_file_path}.png")
 
 
 if __name__ == "__main__":
@@ -52,5 +52,7 @@ if __name__ == "__main__":
 
     assign_clash = [target_1, target_2, target_3, target_4, target_5, target_6]
 
-    print_module = PrintAssignClash(assign_clash, "app/adapters")
-    print_module.generate_table_image("tableau")
+    file_to_send = "app/adapters/tableau.png"
+    file_path, ext = os.path.splitext(file_to_send)
+    print_module = PrintAssignClash(assign_clash)
+    print_module.generate_table_image(file_path)
