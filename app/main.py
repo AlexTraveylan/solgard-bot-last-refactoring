@@ -1,18 +1,16 @@
-import tempfile
 from typing import Literal
-from naff import (
+from interactions import (
     BrandColors,
     Client,
     Color,
     File,
     Intents,
     Button,
-    ButtonStyles,
     ComponentContext,
     Embed,
     Extension,
     InteractionContext,
-    OptionTypes,
+    OptionType,
     component_callback,
     listen,
     slash_command,
@@ -76,7 +74,7 @@ async def on_startup():
     name="nb_day",
     description="Nombre de jours en arriere pour le recapitulatif",
     required=False,
-    opt_type=OptionTypes.INTEGER,
+    opt_type=OptionType.INTEGER,
     choices=[
         SlashCommandChoice(name="Today", value=0),
         SlashCommandChoice(name="Yesterday", value=1),
@@ -123,7 +121,7 @@ async def b(context: InteractionContext):
     name="team_number",
     description="Choix de la team concerné par le report",
     required=False,
-    opt_type=OptionTypes.INTEGER,
+    opt_type=OptionType.INTEGER,
     choices=[SlashCommandChoice(name="Our team", value=0), SlashCommandChoice(name="Their team", value=1)],
 )
 async def infoClash(context: InteractionContext, team_number: int = 0):
@@ -189,7 +187,7 @@ async def infoClash(context: InteractionContext, team_number: int = 0):
 
 
 @slash_command(name="assign_clash_target", description="Cree les tableaux d'attribution pour le clash")
-@slash_option(name="is_allies_side", description="Point de vue allié ?", required=False, opt_type=OptionTypes.BOOLEAN)
+@slash_option(name="is_allies_side", description="Point de vue allié ?", required=False, opt_type=OptionType.BOOLEAN)
 async def build_clash(context: InteractionContext, is_allies_side: bool = True):
     now = datetime.datetime.utcnow()
     if not is_clash_on(now):
@@ -237,7 +235,9 @@ async def build_clash(context: InteractionContext, is_allies_side: bool = True):
     print_module = PrintAssignClash(result_assign_list)
     print_module.generate_table_image(file_path)
 
-    await context.send(embeds=embed, file=file_to_send)
+    file = File(file_to_send)
+
+    await context.send(embeds=embed, file=file)
 
     os.remove(file_to_send)
 
@@ -247,7 +247,7 @@ async def build_clash(context: InteractionContext, is_allies_side: bool = True):
     name="langage",
     description="Nombre de jours en arriere pour le recapitulatif",
     required=True,
-    opt_type=OptionTypes.INTEGER,
+    opt_type=OptionType.INTEGER,
     choices=[
         SlashCommandChoice(name="francais", value=1),
         SlashCommandChoice(name="english", value=2),

@@ -26,8 +26,8 @@ def assign_clash():
 
 def test_generate_table_image(assign_clash):
     with tempfile.TemporaryDirectory() as temp_dir:
-        print_module = PrintAssignClash(assign_clash, temp_dir)
-        print_module.generate_table_image("test_tab")
+        print_module = PrintAssignClash(assign_clash)
+        print_module.generate_table_image(f"{temp_dir}/test_tab")
         os.path.exists(f"{temp_dir}/test_tab")
 
 
