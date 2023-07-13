@@ -24,10 +24,10 @@ def test_mode_solo():
     Player_2_data.allies_powersclash = []
 
     play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] != "Djoulz"]
-    play_2.ennemies_powersclash = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]))[1:]
+    play_2.ennemies_powersclash = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)[1:]
 
     assert len(play_2.allies_powersclash) == 2
     assert all([ally.member_id != "10" for ally in play_2.allies_powersclash])
 
     assert len(play_2.ennemies_powersclash) == 2
-    assert all([ennemy.member_id != "1" for ennemy in play_2.ennemies_powersclash])
+    assert all([ennemy.member_id != "3" for ennemy in play_2.ennemies_powersclash])

@@ -199,7 +199,7 @@ async def build_clash(context: InteractionContext, is_allies_side: bool = True):
     ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
 
     play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] != "Djoulz"]
-    sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]))
+    sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
     ennemy_stronger = sorted_ennemies[0]
     play_2.ennemies_powersclash = sorted_ennemies[1:]
     try:
