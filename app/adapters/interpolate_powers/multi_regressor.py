@@ -36,8 +36,21 @@ class MultiRegressor(InterpolatePort):
 
         rounded_prediction = np.round(prediction).astype(int)
 
-        # type [int, int, int, int]
-        return rounded_prediction[0]
+        combined_results = [*actual_player[0], *rounded_prediction[0]]
+
+        ajusted_results: list[int] = []
+        for index, power in enumerate(combined_results):
+            if power > combined_results[max(index - 1, 0)]:
+                try:
+                    ajust_power = int((combined_results[index - 1] + combined_results[index + 1]) / 2)
+                    ajusted_results.append(ajust_power)
+                except:
+                    ajust_power = combined_results[index - 1] - 2000
+                    ajusted_results.append(ajust_power)
+            else:
+                ajusted_results.append(power)
+
+        return ajusted_results[3:]
 
 
 if __name__ == "__main__":
