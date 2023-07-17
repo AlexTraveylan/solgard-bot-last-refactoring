@@ -155,10 +155,11 @@ async def power_interpolate(context: InteractionContext, power_1: int, power_2: 
     interpolate = MultiRegressor()
     interpolate.train()
     base = sorted([power_1, power_2, power_3], reverse=True)
-    result = interpolate.predicate(*base)
+    results = interpolate.predicate(*base)
+    sorted_results = sorted(results, reverse=True)
 
     title = "Prédiction des puissances"
-    description = f"Puissances données :\n{base}\n\nPuissances prédites : \n{result}"
+    description = f"Puissances données :\n{base}\n\nPuissances prédites : \n{sorted_results}"
     now = datetime.datetime.now()
     embed = Embed(title=title, description=description, color=BrandColors.GREEN, timestamp=now)
 
