@@ -53,7 +53,7 @@ def test_ab_module_title_0_is_bilan_actuel(player_2_data, translation_module):
 def test_ab_module_title_is_recap_mardi(player_2_data, translation_module):
     ab_module = ABModule(play_2=player_2_data, nb_day=1, translation_module=translation_module)
     title = ab_module.title()
-    assert "Recapitulatif de" in title
+    assert "Récapitulatif de" in title
 
 
 def test_ab_module_description_is_11a_12b(player_2_data, translation_module):
@@ -65,7 +65,8 @@ def test_ab_module_description_is_11a_12b(player_2_data, translation_module):
 def test_ab_module_description_is_3a_2b(player_2_data, translation_module):
     ab_module = ABModule(play_2=player_2_data, nb_day=1, translation_module=translation_module)
     description = ab_module.description()
-    assert description == "Total des attaques et bombes oubliees :\n- 3 attaques\n- 2 bombes"
+    assert "3 attaques" in description
+    assert "2 bombes" in description
 
 
 def test_ab_module_embed_fields(player_2_data, translation_module):

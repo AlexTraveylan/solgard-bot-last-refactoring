@@ -1,43 +1,43 @@
 {
     "ab_module": {
         "title_today": "Bilan actuel",
-        "title_past": "Recapitulatif de {display_name_day}",
+        "title_past": "Récapitulatif de {display_name_day}",
         "desc_rest_day": "Aucune attaque et bombe un jour de repos",
-        "desc_all_attacks_bombs_used": "Toutes les attaques et les bombes ont ete utilisees, bravo a tous.",
-        "desc_total_attacks_bombs_missed": "Total des attaques et bombes oubliees :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes",
+        "desc_all_attacks_bombs_used": "Toutes les attaques et les bombes ont été utilisées, bravo à tous.",
+        "desc_total_attacks_bombs_missed": "Total des attaques et bombes oubliées :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes",
         "desc_remaining_attacks_bombs_today": "Attaques et bombes restantes du jour.\nIl reste au total :\n- {total_attacks_missing} attaques\n- {total_bombs_missing} bombes\n",
         "member_unknown": "Inconnu"
     },
     "b_module": {
         "title": "Bombes restantes aujourd'hui.",
         "desc_rest_day": "Jour de repos",
-        "desc_all_bombs_used": "Toutes les bombes ont ete utilisees.\n",
-        "desc_remaining_bombs": "Il reste {total_bombs_missing} bombes non utilisees.\n",
+        "desc_all_bombs_used": "Toutes les bombes ont été utilisées.\n",
+        "desc_remaining_bombs": "Il reste {total_bombs_missing} bombes non utilisées.\n",
         "member_unknown": "Inconnu"
     },
     "info_clash_module": {
-        "title": "Affichage de l'etat actuel du clash",
+        "title": "Affichage de l'état actuel du clash",
         "desc_total_remaining_attacks": "Nombre total d'attaques restantes : {remining_atck}",
-        "desc_cumulative_score": "Score cumule : {accumulate_score}",
+        "desc_cumulative_score": "Score cumulé : {accumulate_score}",
         "desc_current_score": "Score actuel : {current_score}",
         "desc_final_score": "Score final : {final_score}"
     },
     "bc_module": {
         "title": "Tableau des clash",
-        "description": "Assignation des cibles pour le clash.\nDescription de la strategie :\n",
-        "step_1_title": "Puissances recuperees",
-        "step_1_desc": "Les 3 equipes de defense visible dans le jeu, pour chacune des equipes.",
-        "step_2_title": "Quatre autres equipes",
-        "step_2_desc": "Elles sont interpolees par une regression lineaire et du machine learning sur un data_set de 147 de vos puissances recuperes depuis 3 ans",
-        "step_3_title": "Methode d'assignation",
-        "step_3_desc": "Utilisation de l'algorithme d'optimisation combinatoire de Kuhn Munkres pour minimiser la moyenne des ecarts de puissance.",
+        "description": "Assignation des cibles pour le clash.\nDescription de la stratégie :\n",
+        "step_1_title": "Puissances récupérées",
+        "step_1_desc": "Les 3 équipes de défense visibles dans le jeu, pour chacune des équipes.",
+        "step_2_title": "Quatre autres équipes",
+        "step_2_desc": "Elles sont interpolées par une régression linéaire et du machine learning sur un data_set de 147 de vos puissances récupérées depuis 3 ans",
+        "step_3_title": "Méthode d'assignation",
+        "step_3_desc": "Utilisation de l'algorithme d'optimisation combinatoire de Kuhn Munkres pour minimiser la moyenne des écarts de puissance.",
         "avantage_title": "Comparaison des puissances"
     },
     "commands": {
         "set_langage_command": {
             "impossible_choice": "Choix impossible",
-            "successful_change": "Changement de langue reussi",
-            "selected_language": "Langue selectionnee : {lang}"
+            "successful_change": "Changement de langue réussi",
+            "selected_language": "Langue sélectionnée : {lang}"
         }
     }
 }

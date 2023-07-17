@@ -38,10 +38,10 @@ class PrintAssignClash:
 
 
 if __name__ == "__main__":
-    ally_1 = "Alex", 1, 20000, 2, 25000, 3, 30000
-    ally_2 = "Miaou", 1, 21000, 2, 26000, 4, 31000
+    ally_1 = "ally_1", 1, 20000, 2, 25000, 3, 30000
+    ally_2 = "ally_2", 1, 21000, 2, 26000, 4, 31000
     ennemy_1 = "Soaer", 1, 22000, 2, 27000, 3, 32000
-    ennemy_2 = "Mickel", 1, 23000, 2, 28000, 4, 33000
+    ennemy_2 = "机器学习在您过去3年", 1, 23000, 2, 28000, 4, 33000
 
     target_1 = AssignClash(ally_1[0], ally_1[1], ally_1[2], ennemy_1[0], ennemy_1[1], ennemy_1[2])
     target_2 = AssignClash(ally_2[0], ally_2[1], ally_2[2], ennemy_2[0], ennemy_2[1], ennemy_2[2])

@@ -14,8 +14,9 @@
   "python.testing.pytestEnabled": true,
   "python.formatting.blackArgs": [
     "--line-length",
-    "150"
+    "147"
   ],
-  "editor.rulers": [147],
+  "editor.rulers": [145, 147],
+  "autoDocstring.docstringFormat": "numpy"
 
 }
