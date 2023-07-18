@@ -36,3 +36,6 @@ class Logger:
 
     def get_logger(self):
         return self.logger
+
+
+LOGGER = Logger().get_logger()

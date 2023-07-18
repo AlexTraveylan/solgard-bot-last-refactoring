@@ -286,7 +286,7 @@ async def choises(context: InteractionContext):
             Button(style=ButtonStyle.GREEN, label="Mode classique", custom_id="classique"),
         )
     ]
-    await context.send("Fait un choix", components=components)
+    await context.send("Fait un choix", components=components, ephemeral=True)
 
 
 @component_callback("solo")
@@ -298,7 +298,7 @@ async def solo_callback(context: ComponentContext):
 
     components = StringSelectMenu(*allies, placeholder="Liste des membres", min_values=1, max_values=len(allies), custom_id="solo_with_list")
 
-    await context.send("Selectionne ceux qui seront en solo", components=components)
+    await context.send("Selectionne ceux qui seront en solo", components=components, ephemeral=True)
     await context.delete(context.message_id)
 
 
@@ -319,8 +319,8 @@ async def solo_with_list_callback(context: ComponentContext):
     try:
         play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] not in allies_solo]
         sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
-        ennemy_stronger = sorted_ennemies[:len(allies_solo)]
-        play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo):]
+        ennemy_stronger = sorted_ennemies[: len(allies_solo)]
+        play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo) :]
         try:
             ennemy_name = ennemi_guild_info.dict_members_id_name[ennemy_stronger.member_id]
         except KeyError:
