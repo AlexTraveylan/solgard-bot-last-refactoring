@@ -187,7 +187,7 @@ async def build_clash(context: InteractionContext, is_allies_side: bool = True):
             ennemy_name = ennemi_guild_info.dict_members_id_name[ennemy_stronger.member_id]
         except KeyError:
             ennemy_name = "Trouve toi même l'ennemi manquant, sorry ca a fail"
-        djoulz_target = ["Djoulz (mode solo)", f"{ennemy_name}"]
+        djoulz_target = [("Djoulz (mode solo)", f"{ennemy_name}")]
     except:
         await context.send("Echec du mode solo")
         djoulz_target = []
@@ -325,7 +325,7 @@ async def solo_with_list_callback(context: ComponentContext):
             ennemy_name = ennemi_guild_info.dict_members_id_name[ennemy_stronger.member_id]
         except KeyError:
             ennemy_name = "Trouve toi même l'ennemi manquant, sorry ca a fail"
-        djoulz_target = ["Djoulz (mode solo)", f"{ennemy_name}"]
+        djoulz_target = [("Djoulz (mode solo)", f"{ennemy_name}")]
     except:
         await context.send("Echec du mode solo")
         djoulz_target = []
