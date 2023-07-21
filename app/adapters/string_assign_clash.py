@@ -25,12 +25,17 @@ class AssignClashString:
 
         for ally_name in set(clash.ally_name for clash in self.assign_clash):
             clashes_for_ally = [
-                f"{clash.ennemy_name} T{clash.ennemy_team_number} ( {'+' if (clash.ennemy_power - clash.ally_power) > 0 else '-' } {abs(clash.ennemy_power - clash.ally_power)} )"
+                (
+                    clash,
+                    f"{clash.ennemy_name} T{clash.ennemy_team_number} ( {'+' if (clash.ennemy_power - clash.ally_power) > 0 else '-' } {abs(clash.ennemy_power - clash.ally_power)} )",
+                )
                 for clash in self.assign_clash
                 if clash.ally_name == ally_name
             ]
 
-            clash_string = f"{ally_name}", "\n".join(f"duel {i+1} : {clash}" for i, clash in enumerate(clashes_for_ally))
+            clash_string = f"{ally_name}", "\n".join(
+                f"duel {i+1} (T{ally.ally_team_number}) : {clash}" for i, (ally, clash) in enumerate(clashes_for_ally)
+            )
 
             clash_strings.append(clash_string)
 

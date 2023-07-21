@@ -10,7 +10,7 @@ class PrintAssignClash:
 
     def generate_table_image(self, output_file_path: str):
         # Initialiser un dictionnaire pour organiser les données
-        data = {"duel 1": [], "duel 2": [], "duel 3": []}
+        data = {"Ennemy name": [], "duel 1": [], "duel 2": [], "duel 3": []}
 
         # Organiser les données par duel et par ennemi
         for ennemy_name in set(clash.ennemy_name for clash in self.assign_clash):
@@ -22,17 +22,18 @@ class PrintAssignClash:
             ]
 
             # Ajouter les équipes à la bonne colonne dans les données
+            data["Ennemy name"].append(ennemy_name)
             for i, team in enumerate(teams):
                 data[f"duel {i+1}"].append(team)
 
         # Créer un DataFrame à partir des données
-        df = pd.DataFrame(data, index=list(set(f"{' '*5}{clash.ennemy_name}{' '*5}" for clash in self.assign_clash)))
+        df = pd.DataFrame(data)
 
         # Crée une image à partir du tableau
-        fig, ax = plt.subplots(figsize=(12, 4))
+        fig, ax = plt.subplots(figsize=(12, 14))
         ax.axis("tight")
         ax.axis("off")
-        the_table = ax.table(cellText=df.values, colLabels=df.columns, rowLabels=df.index, cellLoc="center", loc="center", bbox=[0, 0, 1, 1])
+        the_table = ax.table(cellText=df.values, colLabels=df.columns, cellLoc="center", loc="center", bbox=[0, 0, 1, 1])
 
         plt.savefig(f"{output_file_path}.png")
 

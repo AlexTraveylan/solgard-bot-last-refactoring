@@ -177,22 +177,6 @@ async def build_clash(context: InteractionContext, is_allies_side: bool = True):
     play_2 = Player_2_data(*user.get_user_id_session_id())
     ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
 
-    # TODO make this flexible
-    try:
-        play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] != "Djoulz"]
-        sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
-        ennemy_stronger = sorted_ennemies[0]
-        play_2.ennemies_powersclash = sorted_ennemies[1:]
-        try:
-            ennemy_name = ennemi_guild_info.dict_members_id_name[ennemy_stronger.member_id]
-        except KeyError:
-            ennemy_name = "Trouve toi même l'ennemi manquant, sorry ca a fail"
-        djoulz_target = [("Djoulz (mode solo)", f"{ennemy_name}")]
-    except:
-        await context.send("Echec du mode solo")
-        djoulz_target = []
-    # TODO end
-
     trained_interpolate_module = MultiRegressor()
     trained_interpolate_module.train()
     bc_module = BCModule(play_2, ennemi_guild_info, trained_interpolate_module, interactions_client.translate_module)
@@ -212,7 +196,7 @@ async def build_clash(context: InteractionContext, is_allies_side: bool = True):
         targets_in_tuple_list = print_module.generate_allies_side_clash_strings()
     else:
         targets_in_tuple_list = print_module.generate_clash_strings()
-    for field in [*fields_data, avantage, *djoulz_target, *targets_in_tuple_list]:  # TODO djoulz_target to modify
+    for field in [*fields_data, avantage, *targets_in_tuple_list]:
         embed.add_field(name=field[0], value=field[1], inline=False)
 
     try:
@@ -316,19 +300,12 @@ async def solo_with_list_callback(context: ComponentContext):
     play_2 = Player_2_data(*user.get_user_id_session_id())
     ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
 
-    try:
-        play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] not in allies_solo]
-        sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
-        ennemy_stronger = sorted_ennemies[: len(allies_solo)]
-        play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo) :]
-        try:
-            ennemy_name = [ennemi_guild_info.dict_members_id_name[ennemy.member_id] for ennemy in ennemy_stronger]
-        except KeyError:
-            ennemy_name = "Trouve toi même l'ennemi manquant, sorry ca a fail"
-        djoulz_target = [("Djoulz (mode solo)", f"{ennemy_name[0]}")]
-    except:
-        await context.send("Echec du mode solo")
-        djoulz_target = []
+    play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] not in allies_solo]
+    sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
+    ennemies_stronger = sorted_ennemies[: len(allies_solo)]
+    play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo) :]
+    ennemies_name = [ennemi_guild_info.dict_members_id_name[ennemy.member_id] for ennemy in ennemies_stronger]
+    solo_targets = [(ally_solo, ennemy) for ally_solo, ennemy in zip(allies_solo, ennemies_name)]
 
     trained_interpolate_module = MultiRegressor()
     trained_interpolate_module.train()
@@ -346,7 +323,7 @@ async def solo_with_list_callback(context: ComponentContext):
     fields_data = bc_module.embed_fields()
     avantage = bc_module.get_avantage()
     targets_in_tuple_list = print_module.generate_allies_side_clash_strings()
-    for field in [*fields_data, avantage, *djoulz_target, *targets_in_tuple_list]:  # TODO djoulz_target to modify
+    for field in [*fields_data, avantage, *solo_targets, *targets_in_tuple_list]: 
         embed.add_field(name=field[0], value=field[1], inline=False)
 
     try:

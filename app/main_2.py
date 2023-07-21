@@ -32,15 +32,12 @@ def solo_for_t(context):
     play_2 = Player_2_data(*user.get_user_id_session_id())
     ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
 
-    play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] != "Djoulz"]
+    play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] not in allies_solo]
     sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
-    ennemy_stronger = sorted_ennemies[0]
-    play_2.ennemies_powersclash = sorted_ennemies[1:]
-    try:
-        ennemy_name = ennemi_guild_info.dict_members_id_name[ennemy_stronger.member_id]
-    except KeyError:
-        ennemy_name = "Trouve toi même l'ennemi manquant, sorry ca a fail"
-    djoulz_target = [("Djoulz (mode solo)", f"{ennemy_name}")]
+    ennemies_stronger = sorted_ennemies[: len(allies_solo)]
+    play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo) :]
+    ennemies_name = [ennemi_guild_info.dict_members_id_name[ennemy.member_id] for ennemy in ennemies_stronger]
+    solo_targets = [(ally_solo, ennemy) for ally_solo, ennemy in zip(allies_solo, ennemies_name)]
 
     trained_interpolate_module = MultiRegressor()
     trained_interpolate_module.train()
@@ -53,7 +50,7 @@ def solo_for_t(context):
     fields_data = bc_module.embed_fields()
     avantage = bc_module.get_avantage()
     targets_in_tuple_list = print_module.generate_allies_side_clash_strings()
-    for field in [*fields_data, avantage, *djoulz_target, *targets_in_tuple_list]:  # TODO djoulz_target to modify
+    for field in [*fields_data, avantage, *solo_targets, *targets_in_tuple_list]:  # TODO djoulz_target to modify
         print(field)
 
     try:
@@ -65,14 +62,14 @@ def solo_for_t(context):
     except:
         print("Echec de la création du tableau en png")
 
-    os.remove(file_to_send)
+    # os.remove(file_to_send)
 
 
 if __name__ == "__main__":
 
     class Context:
         def __init__(self) -> None:
-            self.values = ["Djoulz"]
+            self.values = ["Djoulz", "Miaou"]
 
     context = Context()
     solo_for_t(context)
