@@ -169,57 +169,6 @@ async def power_interpolate(context: InteractionContext, power_1: int, power_2: 
     return await context.send(embeds=embed)
 
 
-@slash_command(name="assign_clash_target", description="Cree les tableaux d'attribution pour le clash")
-@slash_option(name="is_allies_side", description="Point de vue allié ?", required=False, opt_type=OptionType.BOOLEAN)
-async def build_clash(context: InteractionContext, is_allies_side: bool = True):
-    await context.defer()
-    now = datetime.datetime.utcnow()
-    if not is_clash_on(now):
-        return await context.send("`Pas de clash actif`")
-
-    user = ConnectUser(CONFIG_ENCRYPTED, KEY)
-    user.connect_and_get_new_session_id()
-    play_2 = Player_2_data(*user.get_user_id_session_id())
-    ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
-
-    trained_interpolate_module = MultiRegressor()
-    trained_interpolate_module.train()
-    bc_module = BCModule(play_2, ennemi_guild_info, trained_interpolate_module, interactions_client.translate_module)
-
-    title = bc_module.title()
-    description = bc_module.description()
-    now = datetime.datetime.now()
-    embed = Embed(title=title, description=description, color=BrandColors.GREEN, timestamp=now)
-
-    kuhn_munkres = KuhnMunkres(*bc_module.get_tuple_for_kuhn_munkres())
-    result_assign_list = kuhn_munkres.get_results()
-    print_module = AssignClashString(result_assign_list)
-
-    fields_data = bc_module.embed_fields()
-    avantage = bc_module.get_avantage()
-    if is_allies_side:
-        targets_in_tuple_list = print_module.generate_allies_side_clash_strings()
-    else:
-        targets_in_tuple_list = print_module.generate_clash_strings()
-    for field in [*fields_data, avantage, *targets_in_tuple_list]:
-        embed.add_field(name=field[0], value=field[1], inline=False)
-
-    try:
-        file_to_send = "app/adapters/tableau.png"
-        file_path, ext = os.path.splitext(file_to_send)
-        print_module = PrintAssignClash(result_assign_list)
-        print_module.generate_table_image(file_path)
-
-        file = File(file_to_send)
-
-        await context.send(embeds=embed, file=file)
-    except:
-        await context.send(embeds=embed)
-        await context.send("Echec de la création du tableau en png")
-
-    os.remove(file_to_send)
-
-
 @slash_command(name="set_langage", description="Permet de changer la langue du bot")
 @slash_option(
     name="langage",
@@ -268,28 +217,29 @@ async def set_langage(context: InteractionContext, langage: Literal[1, 2, 3, 4, 
     return await context.send(embeds=embed)
 
 
-@slash_command(name="choises", description="Propose un choix")
-async def choises(context: InteractionContext):
-    components: list[ActionRow] = [
-        ActionRow(
-            Button(style=ButtonStyle.RED, label="Mode solo", custom_id="solo"),
-            Button(style=ButtonStyle.GREEN, label="Mode classique", custom_id="classique"),
-        )
-    ]
-    await context.send("Fait un choix", components=components, ephemeral=True)
+@slash_command(name="assign_clash_target", description="Lance l'assignation des cibles pour le clash")
+async def assign_clash_target(context: ComponentContext):
+    await context.defer()
 
+    now = datetime.datetime.utcnow()
+    if not is_clash_on(now):
+        return await context.send("`Pas de clash actif`")
 
-@component_callback("solo")
-async def solo_callback(context: ComponentContext):
     user = ConnectUser(CONFIG_ENCRYPTED, KEY)
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
-    allies = list(play_2.guild_members.values())
+    allies = sorted(list(play_2.guild_members.values()))
 
-    components = StringSelectMenu(*allies, placeholder="Liste des membres", min_values=1, max_values=len(allies), custom_id="solo_with_list")
+    components = StringSelectMenu(
+        "NO ONE !! WE ARE PLAYING TOGETHER !",
+        *allies,
+        placeholder="Liste des membres",
+        min_values=1,
+        max_values=len(allies),
+        custom_id="solo_with_list",
+    )
 
     await context.send("Selectionne ceux qui seront en solo", components=components, ephemeral=True)
-    await context.delete(context.message_id)
 
 
 @component_callback("solo_with_list")
@@ -297,22 +247,20 @@ async def solo_with_list_callback(context: ComponentContext):
     await context.defer()
     allies_solo = context.values
 
-    now = datetime.datetime.utcnow()
-    if not is_clash_on(now):
-        await context.send("`Pas de clash actif`")
-        return await context.delete(context.message_id)
-
     user = ConnectUser(CONFIG_ENCRYPTED, KEY)
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
     ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
 
-    play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] not in allies_solo]
-    sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
-    ennemies_stronger = sorted_ennemies[: len(allies_solo)]
-    play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo) :]
-    ennemies_name = [ennemi_guild_info.dict_members_id_name[ennemy.member_id] for ennemy in ennemies_stronger]
-    solo_targets = [(f"{ally_solo} (mode solo)", ennemy) for ally_solo, ennemy in zip(allies_solo, ennemies_name)]
+    if "NO ONE !! WE ARE PLAYING TOGETHER !" not in allies_solo:
+        play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] not in allies_solo]
+        sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
+        ennemies_stronger = sorted_ennemies[: len(allies_solo)]
+        play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo) :]
+        ennemies_name = [ennemi_guild_info.dict_members_id_name[ennemy.member_id] for ennemy in ennemies_stronger]
+        solo_targets = [(f"{ally_solo} (mode solo)", ennemy) for ally_solo, ennemy in zip(allies_solo, ennemies_name)]
+    else:
+        solo_targets = []
 
     trained_interpolate_module = MultiRegressor()
     trained_interpolate_module.train()
@@ -345,56 +293,5 @@ async def solo_with_list_callback(context: ComponentContext):
 
     await context.delete(context.message_id)
     os.remove(file_to_send)
-
-
-@component_callback("classique")
-async def classique_callback(context: ComponentContext):
-    await context.defer()
-    now = datetime.datetime.utcnow()
-    if not is_clash_on(now):
-        await context.send("`Pas de clash actif`")
-        return await context.delete(context.message_id)
-
-    user = ConnectUser(CONFIG_ENCRYPTED, KEY)
-    user.connect_and_get_new_session_id()
-    play_2 = Player_2_data(*user.get_user_id_session_id())
-    ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
-
-    trained_interpolate_module = MultiRegressor()
-    trained_interpolate_module.train()
-    bc_module = BCModule(play_2, ennemi_guild_info, trained_interpolate_module, interactions_client.translate_module)
-
-    title = bc_module.title()
-    description = bc_module.description()
-    now = datetime.datetime.now()
-    embed = Embed(title=title, description=description, color=BrandColors.GREEN, timestamp=now)
-
-    kuhn_munkres = KuhnMunkres(*bc_module.get_tuple_for_kuhn_munkres())
-    result_assign_list = kuhn_munkres.get_results()
-    print_module = AssignClashString(result_assign_list)
-
-    fields_data = bc_module.embed_fields()
-    avantage = bc_module.get_avantage()
-    targets_in_tuple_list = print_module.generate_allies_side_clash_strings()
-
-    for field in [*fields_data, avantage, *targets_in_tuple_list]:
-        embed.add_field(name=field[0], value=field[1], inline=False)
-
-    try:
-        file_to_send = "app/adapters/tableau.png"
-        file_path, ext = os.path.splitext(file_to_send)
-        print_module = PrintAssignClash(result_assign_list)
-        print_module.generate_table_image(file_path)
-
-        file = File(file_to_send)
-
-        await context.send(embeds=embed, file=file)
-    except:
-        await context.send(embeds=embed)
-        await context.send("Echec de la création du tableau en png")
-
-    await context.delete(context.message_id)
-    os.remove(file_to_send)
-
 
 interactions_client.start()
