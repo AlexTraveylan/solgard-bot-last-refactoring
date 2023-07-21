@@ -85,6 +85,7 @@ async def on_startup():
     ],
 )
 async def ab(context: InteractionContext, nb_day: Literal[0, 1, 2, 3, 4] = 0):
+    await context.defer()
     user = ConnectUser(CONFIG_ENCRYPTED, KEY)
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
@@ -104,6 +105,7 @@ async def ab(context: InteractionContext, nb_day: Literal[0, 1, 2, 3, 4] = 0):
 
 @slash_command(name="b", description="Fournit le nombre de bombes restantes")
 async def b(context: InteractionContext):
+    await context.defer()
     user = ConnectUser(CONFIG_ENCRYPTED, KEY)
     user.connect_and_get_new_session_id()
     play_2 = Player_2_data(*user.get_user_id_session_id())
@@ -126,6 +128,7 @@ async def b(context: InteractionContext):
     choices=[SlashCommandChoice(name="Our team", value=0), SlashCommandChoice(name="Their team", value=1)],
 )
 async def infoClash(context: InteractionContext, team_number: int = 0):
+    await context.defer()
     now = datetime.datetime.utcnow()
     if not is_clash_on(now):
         return await context.send("`Pas de clash actif`")
@@ -153,6 +156,7 @@ async def infoClash(context: InteractionContext, team_number: int = 0):
 @slash_option(name="power_2", description="Puissance de l'équipe 2, la 2ème plus puissante", required=True, opt_type=OptionType.INTEGER)
 @slash_option(name="power_3", description="Puissance de l'équipe 3, la 3ème plus puissante", required=True, opt_type=OptionType.INTEGER)
 async def power_interpolate(context: InteractionContext, power_1: int, power_2: int, power_3: int):
+    await context.defer()
     interpolate = MultiRegressor()
     interpolate.train()
     base = sorted([power_1, power_2, power_3], reverse=True)
@@ -168,6 +172,7 @@ async def power_interpolate(context: InteractionContext, power_1: int, power_2: 
 @slash_command(name="assign_clash_target", description="Cree les tableaux d'attribution pour le clash")
 @slash_option(name="is_allies_side", description="Point de vue allié ?", required=False, opt_type=OptionType.BOOLEAN)
 async def build_clash(context: InteractionContext, is_allies_side: bool = True):
+    await context.defer()
     now = datetime.datetime.utcnow()
     if not is_clash_on(now):
         return await context.send("`Pas de clash actif`")
@@ -231,6 +236,7 @@ async def build_clash(context: InteractionContext, is_allies_side: bool = True):
     ],
 )
 async def set_langage(context: InteractionContext, langage: Literal[1, 2, 3, 4, 5, 6]):
+    await context.defer()
     if langage == 1:
         interactions_client.change_langage("fr")
         new_langage = "francais"
@@ -288,6 +294,7 @@ async def solo_callback(context: ComponentContext):
 
 @component_callback("solo_with_list")
 async def solo_with_list_callback(context: ComponentContext):
+    await context.defer()
     allies_solo = context.values
 
     now = datetime.datetime.utcnow()
@@ -305,7 +312,7 @@ async def solo_with_list_callback(context: ComponentContext):
     ennemies_stronger = sorted_ennemies[: len(allies_solo)]
     play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo) :]
     ennemies_name = [ennemi_guild_info.dict_members_id_name[ennemy.member_id] for ennemy in ennemies_stronger]
-    solo_targets = [(ally_solo, ennemy) for ally_solo, ennemy in zip(allies_solo, ennemies_name)]
+    solo_targets = [(f"{ally_solo} (mode solo)", ennemy) for ally_solo, ennemy in zip(allies_solo, ennemies_name)]
 
     trained_interpolate_module = MultiRegressor()
     trained_interpolate_module.train()
@@ -323,21 +330,18 @@ async def solo_with_list_callback(context: ComponentContext):
     fields_data = bc_module.embed_fields()
     avantage = bc_module.get_avantage()
     targets_in_tuple_list = print_module.generate_allies_side_clash_strings()
-    for field in [*fields_data, avantage, *solo_targets, *targets_in_tuple_list]: 
+    for field in [*fields_data, avantage, *solo_targets, *targets_in_tuple_list]:
         embed.add_field(name=field[0], value=field[1], inline=False)
 
-    try:
-        file_to_send = "app/adapters/tableau.png"
-        file_path, ext = os.path.splitext(file_to_send)
-        print_module = PrintAssignClash(result_assign_list)
-        print_module.generate_table_image(file_path)
+    file_to_send = "app/adapters/tableau.png"
+    file_path, ext = os.path.splitext(file_to_send)
+    print_module = PrintAssignClash(result_assign_list)
+    print_module.generate_table_image(file_path)
 
-        file = File(file_to_send)
+    await context.send(embeds=embed)
 
-        await context.send(embeds=embed, file=file)
-    except:
-        await context.send(embeds=embed)
-        await context.send("Echec de la création du tableau en png")
+    file = File(file_to_send)
+    await context.send(file=file)
 
     await context.delete(context.message_id)
     os.remove(file_to_send)
@@ -345,6 +349,7 @@ async def solo_with_list_callback(context: ComponentContext):
 
 @component_callback("classique")
 async def classique_callback(context: ComponentContext):
+    await context.defer()
     now = datetime.datetime.utcnow()
     if not is_clash_on(now):
         await context.send("`Pas de clash actif`")

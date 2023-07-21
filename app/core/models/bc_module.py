@@ -61,13 +61,6 @@ class BCModule(EmbedPort):
     def title(self) -> str:
         return self.translations["title"]
 
-    def embed_fields(self) -> list[tuple[str, str]]:
-        step_1 = (self.translations["step_1_title"], self.translations["step_1_desc"])
-        step_2 = (self.translations["step_2_title"], self.translations["step_2_desc"])
-        step_3 = (self.translations["step_3_title"], self.translations["step_3_desc"])
-
-        return [step_1, step_2, step_3]
-
     def _set_ennemies_powers_list(self):
         ennemiesPowers = self._play_2.ennemies_powersclash
         ennemies_powers_list: list[PowerTeam] = []

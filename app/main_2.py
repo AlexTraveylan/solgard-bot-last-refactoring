@@ -37,7 +37,7 @@ def solo_for_t(context):
     ennemies_stronger = sorted_ennemies[: len(allies_solo)]
     play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo) :]
     ennemies_name = [ennemi_guild_info.dict_members_id_name[ennemy.member_id] for ennemy in ennemies_stronger]
-    solo_targets = [(ally_solo, ennemy) for ally_solo, ennemy in zip(allies_solo, ennemies_name)]
+    solo_targets = [(f"{ally_solo} (solo mode)", ennemy) for ally_solo, ennemy in zip(allies_solo, ennemies_name)]
 
     trained_interpolate_module = MultiRegressor()
     trained_interpolate_module.train()
@@ -47,10 +47,9 @@ def solo_for_t(context):
     result_assign_list = kuhn_munkres.get_results()
     print_module = AssignClashString(result_assign_list)
 
-    fields_data = bc_module.embed_fields()
     avantage = bc_module.get_avantage()
     targets_in_tuple_list = print_module.generate_allies_side_clash_strings()
-    for field in [*fields_data, avantage, *solo_targets, *targets_in_tuple_list]:  # TODO djoulz_target to modify
+    for field in [avantage, *solo_targets, *targets_in_tuple_list]:
         print(field)
 
     try:
