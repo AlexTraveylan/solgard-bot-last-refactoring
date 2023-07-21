@@ -322,10 +322,10 @@ async def solo_with_list_callback(context: ComponentContext):
         ennemy_stronger = sorted_ennemies[: len(allies_solo)]
         play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo) :]
         try:
-            ennemy_name = ennemi_guild_info.dict_members_id_name[ennemy_stronger.member_id]
+            ennemy_name = [ennemi_guild_info.dict_members_id_name[ennemy.member_id] for ennemy in ennemy_stronger]
         except KeyError:
             ennemy_name = "Trouve toi même l'ennemi manquant, sorry ca a fail"
-        djoulz_target = [("Djoulz (mode solo)", f"{ennemy_name}")]
+        djoulz_target = [("Djoulz (mode solo)", f"{ennemy_name[0]}")]
     except:
         await context.send("Echec du mode solo")
         djoulz_target = []
