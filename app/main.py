@@ -238,7 +238,6 @@ async def assign_clash_target(context: ComponentContext):
         max_values=len(allies),
         custom_id="solo_with_list",
     )
-
     await context.send("Selectionne ceux qui seront en solo", components=components, ephemeral=True)
 
 
@@ -293,5 +292,6 @@ async def solo_with_list_callback(context: ComponentContext):
 
     await context.delete(context.message_id)
     os.remove(file_to_send)
+
 
 interactions_client.start()
