@@ -1,37 +1,47 @@
 {
     "ab_module": {
-        "title_today": "Bilancio attuale",
+        "title_today": "Riepilogo Attuale",
         "title_past": "Riepilogo di {display_name_day}",
-        "desc_rest_day": "Nessun attacco e bomba in un giorno di riposo",
+        "desc_rest_day": "Nessun attacco e nessuna bomba in un giorno di riposo.",
         "desc_all_attacks_bombs_used": "Tutti gli attacchi e le bombe sono stati utilizzati, complimenti a tutti.",
-        "desc_total_attacks_bombs_missed": "Totale attacchi e bombe mancanti:\n- {total_attacks_missing} attacchi\n- {total_bombs_missing} bombe",
-        "desc_remaining_attacks_bombs_today": "Attacchi e bombe rimanenti del giorno.\nRimangono in totale:\n- {total_attacks_missing} attacchi\n- {total_bombs_missing} bombe\n",
+        "desc_total_attacks_bombs_missed": "Totale attacchi e bombe mancati:\n- {total_attacks_missing} attacchi\n- {total_bombs_missing} bombe",
+        "desc_remaining_attacks_bombs_today": "Attacchi e bombe rimanenti per il giorno.\nTotale rimanente:\n- {total_attacks_missing} attacchi\n- {total_bombs_missing} bombe\n",
         "member_unknown": "Sconosciuto"
     },
     "b_module": {
-        "title": "Bombe rimanenti oggi.",
+        "title": "Bombe Rimaste Oggi",
         "desc_rest_day": "Giorno di riposo",
         "desc_all_bombs_used": "Tutte le bombe sono state utilizzate.\n",
-        "desc_remaining_bombs": "Rimangono {total_bombs_missing} bombe non utilizzate.\n",
+        "desc_remaining_bombs": "Ci sono ancora {total_bombs_missing} bombe non utilizzate.\n",
         "member_unknown": "Sconosciuto"
     },
     "info_clash_module": {
-        "title": "Visualizzazione dello stato attuale del conflitto",
-        "desc_total_remaining_attacks": "Numero totale di attacchi rimanenti: {remining_atck}",
+        "title": "Stato Attuale dello Scontro",
+        "desc_total_remaining_attacks": "Totale attacchi rimanenti: {remining_atck}",
         "desc_cumulative_score": "Punteggio cumulativo: {accumulate_score}",
         "desc_current_score": "Punteggio attuale: {current_score}",
         "desc_final_score": "Punteggio finale: {final_score}"
     },
     "bc_module": {
-        "title": "Tabella dei conflitti",
-        "description": "Assegnazione degli obiettivi per il conflitto.\nDescrizione della strategia:\n",
-        "step_1_title": "Potenze recuperate",
+        "title": "Tabella dello Scontro",
+        "description": "Assegnazione degli obiettivi per lo scontro.",
+        "step_1_title": "Poteri Recuperati",
         "step_1_desc": "Le 3 squadre di difesa visibili nel gioco, per ciascuna delle squadre.",
-        "step_2_title": "Quattro altre squadre",
-        "step_2_desc": "Sono interpolate da una regressione lineare e dal machine learning su un data_set di 147 delle vostre potenze recuperate negli ultimi 3 anni",
-        "step_3_title": "Metodo di assegnazione",
-        "step_3_desc": "Utilizzo dell'algoritmo di ottimizzazione combinatoria di Kuhn Munkres per minimizzare la media degli scarti di potenza.",
-        "avantage_title": "Confronto delle potenze"
+        "step_2_title": "Altre Quattro Squadre",
+        "step_2_desc": "Sono interpolate utilizzando la regressione lineare e l'apprendimento automatico su un data_set di 147 dei tuoi poteri recuperati negli ultimi 3 anni.",
+        "step_3_title": "Metodo di Assegnazione",
+        "step_3_desc": "Utilizzo dell'algoritmo di ottimizzazione combinatoria di Kuhn Munkres per minimizzare le differenze medie di potenza.",
+        "avantage_title": "Confronto di Poteri"
+    },
+    "assign_clash_target": {
+        "clash_inactive": "`Nessuno scontro attivo`",
+        "together": "TUTTI INSIEME, STIAMO GIOCANDO INSIEME!",
+        "member_list": "Elenco dei Membri",
+        "select_message": "Seleziona coloro che giocheranno da soli"
+    },
+    "interpolate_module": {
+        "title": "Predizione di Poteri",
+        "description": "Poteri forniti:\n{base}\n\nPoteri predetti:\n{results}"
     },
     "commands": {
         "set_langage_command": {

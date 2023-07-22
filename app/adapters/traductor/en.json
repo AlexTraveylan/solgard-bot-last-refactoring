@@ -1,43 +1,53 @@
 {
     "ab_module": {
-        "title_today": "Current status",
-        "title_past": "Summary of {display_name_day}",
-        "desc_rest_day": "No attack and bomb, a rest day",
-        "desc_all_attacks_bombs_used": "All attacks and bombs have been used, well done everyone.",
-        "desc_total_attacks_bombs_missed": "Total of missed attacks and bombs :\n- {total_attacks_missing} attacks\n- {total_bombs_missing} bombs",
-        "desc_remaining_attacks_bombs_today": "Remaining attacks and bombs of the day.\nThere remains in total :\n- {total_attacks_missing} attacks\n- {total_bombs_missing} bombs\n",
+        "title_today": "Current Summary",
+        "title_past": "{display_name_day} Recap",
+        "desc_rest_day": "No attacks and bombs on a day of rest.",
+        "desc_all_attacks_bombs_used": "All attacks and bombs have been used, congratulations to all.",
+        "desc_total_attacks_bombs_missed": "Total missed attacks and bombs:\n- {total_attacks_missing} attacks\n- {total_bombs_missing} bombs",
+        "desc_remaining_attacks_bombs_today": "Remaining attacks and bombs for the day.\nTotal remaining:\n- {total_attacks_missing} attacks\n- {total_bombs_missing} bombs\n",
         "member_unknown": "Unknown"
     },
     "b_module": {
-        "title": "Remaining bombs today.",
+        "title": "Remaining Bombs Today",
         "desc_rest_day": "Rest day",
         "desc_all_bombs_used": "All bombs have been used.\n",
-        "desc_remaining_bombs": "{total_bombs_missing} bombs are still unused.\n",
+        "desc_remaining_bombs": "There are {total_bombs_missing} unused bombs remaining.\n",
         "member_unknown": "Unknown"
     },
     "info_clash_module": {
-        "title": "Display of the current clash status",
+        "title": "Current Clash Status",
         "desc_total_remaining_attacks": "Total remaining attacks: {remining_atck}",
-        "desc_cumulative_score": "Cumulative score: {accumulate_score}",
-        "desc_current_score": "Current score: {current_score}",
-        "desc_final_score": "Final score: {final_score}"
+        "desc_cumulative_score": "Cumulative Score: {accumulate_score}",
+        "desc_current_score": "Current Score: {current_score}",
+        "desc_final_score": "Final Score: {final_score}"
     },
     "bc_module": {
-        "title": "Clash boards",
-        "description": "Assignment of targets for the clash.\nStrategy description :\n",
-        "step_1_title": "Powers retrieved",
-        "step_1_desc": "The 3 visible defense teams in the game, for each of the teams.",
-        "step_2_title": "Four other teams",
-        "step_2_desc": "They are interpolated by a linear regression and machine learning on a data set of 147 of your powers retrieved over 3 years",
-        "step_3_title": "Assignment method",
-        "step_3_desc": "Use of the Kuhn Munkres combinatorial optimization algorithm to minimize the average power differences.",
-        "avantage_title": "Power comparison"
+        "title": "Clash Table",
+        "description": "Assignment of targets for the clash.",
+        "step_1_title": "Recovered Powers",
+        "step_1_desc": "The 3 defense teams visible in the game, for each of the teams.",
+        "step_2_title": "Four Other Teams",
+        "step_2_desc": "They are interpolated using linear regression and machine learning on a data_set of 147 of your recovered powers from the past 3 years.",
+        "step_3_title": "Assignment Method",
+        "step_3_desc": "Using the Kuhn Munkres combinatorial optimization algorithm to minimize the average power differences.",
+        "avantage_title": "Power Comparison"
+    },
+    "assign_clash_target": {
+        "clash_inactive": "`No active clash`",
+        "together": "EVERYONE!! WE'RE ALL PLAYING TOGETHER!",
+        "member_list": "Member List",
+        "select_message": "Select those who will be solo"
+    },
+    "interpolate_module": {
+        "title": "Power Prediction",
+        "description": "Given Powers:\n{base}\n\nPredicted Powers:\n{results}"
     },
     "commands": {
         "set_langage_command": {
             "impossible_choice": "Impossible choice",
-            "successful_change": "Successful language change",
-            "selected_language": "Selected language : {lang}"
+            "successful_change": "Language change successful",
+            "selected_language": "Selected Language: {lang}"
         }
     }
 }

@@ -1,37 +1,47 @@
 {
     "ab_module": {
-        "title_today": "Текущий отчет",
+        "title_today": "Текущая сводка",
         "title_past": "Сводка за {display_name_day}",
-        "desc_rest_day": "Нет атак и бомб в выходные",
-        "desc_all_attacks_bombs_used": "Все атаки и бомбы были использованы, все молодцы.",
-        "desc_total_attacks_bombs_missed": "Общее число пропущенных атак и бомб: \n- {total_attacks_missing} атаки\n- {total_bombs_missing} бомбы",
-        "desc_remaining_attacks_bombs_today": "Оставшиеся сегодня атаки и бомбы.\nВсего осталось:\n- {total_attacks_missing} атаки\n- {total_bombs_missing} бомбы\n",
+        "desc_rest_day": "Никаких атак и бомб в день отдыха.",
+        "desc_all_attacks_bombs_used": "Все атаки и бомбы использованы, поздравляю всех.",
+        "desc_total_attacks_bombs_missed": "Всего пропущено атак и бомб:\n- {total_attacks_missing} атак\n- {total_bombs_missing} бомб",
+        "desc_remaining_attacks_bombs_today": "Оставшиеся атаки и бомбы на сегодня.\nВсего осталось:\n- {total_attacks_missing} атак\n- {total_bombs_missing} бомб\n",
         "member_unknown": "Неизвестно"
     },
     "b_module": {
-        "title": "Оставшиеся сегодня бомбы.",
-        "desc_rest_day": "Выходной",
-        "desc_all_bombs_used": "Все бомбы были использованы.\n",
-        "desc_remaining_bombs": "Осталось {total_bombs_missing} не использованных бомб.\n",
+        "title": "Оставшиеся бомбы на сегодня",
+        "desc_rest_day": "День отдыха",
+        "desc_all_bombs_used": "Все бомбы использованы.\n",
+        "desc_remaining_bombs": "Осталось {total_bombs_missing} неиспользованных бомб.\n",
         "member_unknown": "Неизвестно"
     },
     "info_clash_module": {
         "title": "Текущее состояние столкновения",
-        "desc_total_remaining_attacks": "Общее число оставшихся атак: {remining_atck}",
-        "desc_cumulative_score": "Суммарный счет: {accumulate_score}",
+        "desc_total_remaining_attacks": "Всего осталось атак: {remining_atck}",
+        "desc_cumulative_score": "Накопленный счет: {accumulate_score}",
         "desc_current_score": "Текущий счет: {current_score}",
         "desc_final_score": "Итоговый счет: {final_score}"
     },
     "bc_module": {
-        "title": "Доска столкновения",
-        "description": "Назначение целей для столкновения.\nОписание стратегии:\n",
-        "step_1_title": "Силы восстановлены",
-        "step_1_desc": "3 оборонительные команды, видимые в игре, для каждой из команд.",
-        "step_2_title": "Четыре другие команды",
-        "step_2_desc": "Они интерполированы линейной регрессией и машинным обучением на data_set из 147 ваших сил, восстановленных за последние 3 года",
+        "title": "Таблица столкновения",
+        "description": "Назначение целей для столкновения.",
+        "step_1_title": "Восстановленные силы",
+        "step_1_desc": "Три оборонительные команды, видимые в игре, для каждой из команд.",
+        "step_2_title": "Еще четыре команды",
+        "step_2_desc": "Они интерполируются с использованием линейной регрессии и машинного обучения на данных из набора из 147 ваших восстановленных сил за последние 3 года.",
         "step_3_title": "Метод назначения",
-        "step_3_desc": "Использование комбинаторного оптимизационного алгоритма Куна-Мункреса для минимизации среднего разброса мощности.",
-        "avantage_title": "Сравнение мощностей"
+        "step_3_desc": "Использование комбинаторного алгоритма оптимизации Куна Манкреса для минимизации средних различий сил.",
+        "avantage_title": "Сравнение сил"
+    },
+    "assign_clash_target": {
+        "clash_inactive": "`Нет активного столкновения`",
+        "together": "ВСЕ ВМЕСТЕ, МЫ ИГРАЕМ ВМЕСТЕ!",
+        "member_list": "Список участников",
+        "select_message": "Выберите тех, кто будет играть в одиночку"
+    },
+    "interpolate_module": {
+        "title": "Прогнозирование сил",
+        "description": "Данные сил:\n{base}\n\nПрогнозируемые силы:\n{results}"
     },
     "commands": {
         "set_langage_command": {

@@ -70,10 +70,10 @@ async def on_startup():
     print(f"Bot ready")
 
 
-@slash_command(name="ab", description="Fournit les informations sur les attaques et les bombes restantes du jour, ou des jours precedents")
+@slash_command(name="ab", description="Provides information about the attacks and the remaining bombs of the current day or previous days.")
 @slash_option(
     name="nb_day",
-    description="Nombre de jours en arriere pour le recapitulatif",
+    description="Number of days back for the summary.",
     required=False,
     opt_type=OptionType.INTEGER,
     choices=[
@@ -103,7 +103,7 @@ async def ab(context: InteractionContext, nb_day: Literal[0, 1, 2, 3, 4] = 0):
     return await context.send(embeds=embed)
 
 
-@slash_command(name="b", description="Fournit le nombre de bombes restantes")
+@slash_command(name="b", description="Provides the number of remaining bombs.")
 async def b(context: InteractionContext):
     await context.defer()
     user = ConnectUser(CONFIG_ENCRYPTED, KEY)
@@ -119,10 +119,10 @@ async def b(context: InteractionContext):
     return await context.send(embeds=embed)
 
 
-@slash_command(name="info_clash", description="Fournit des informations sur le clash")
+@slash_command(name="info_clash", description="Provides information about the clash.")
 @slash_option(
     name="team_number",
-    description="Choix de la team concerné par le report",
+    description="Select the team for the rapport, default : Our team.",
     required=False,
     opt_type=OptionType.INTEGER,
     choices=[SlashCommandChoice(name="Our team", value=0), SlashCommandChoice(name="Their team", value=1)],
@@ -131,7 +131,7 @@ async def infoClash(context: InteractionContext, team_number: int = 0):
     await context.defer()
     now = datetime.datetime.utcnow()
     if not is_clash_on(now):
-        return await context.send("`Pas de clash actif`")
+        return await context.send(interactions_client.translate_module.translations["assign_clash_target"]["clash_inactive"])
 
     user = ConnectUser(CONFIG_ENCRYPTED, KEY)
     user.connect_and_get_new_session_id()
@@ -151,28 +151,28 @@ async def infoClash(context: InteractionContext, team_number: int = 0):
     return await context.send(embeds=embed)
 
 
-@slash_command(name="power_interpolate", description="Devine les 4 dernieres puissances à partir des 3 premieres")
-@slash_option(name="power_1", description="Puissance de l'équipe 1, la plus puissante", required=True, opt_type=OptionType.INTEGER)
-@slash_option(name="power_2", description="Puissance de l'équipe 2, la 2ème plus puissante", required=True, opt_type=OptionType.INTEGER)
-@slash_option(name="power_3", description="Puissance de l'équipe 3, la 3ème plus puissante", required=True, opt_type=OptionType.INTEGER)
+@slash_command(name="power_interpolate", description="Use machine learning module to show how it predict your powers.")
+@slash_option(name="power_1", description="Your 1st defensive clash team.", required=True, opt_type=OptionType.INTEGER)
+@slash_option(name="power_2", description="Your 2nd defensive clash team.", required=True, opt_type=OptionType.INTEGER)
+@slash_option(name="power_3", description="Your 3rd defensive clash team.", required=True, opt_type=OptionType.INTEGER)
 async def power_interpolate(context: InteractionContext, power_1: int, power_2: int, power_3: int):
     await context.defer()
     interpolate = MultiRegressor()
     interpolate.train()
     base = sorted([power_1, power_2, power_3], reverse=True)
     results = interpolate.predicate(*base)
-    title = "Prédiction des puissances"
-    description = f"Puissances données :\n{base}\n\nPuissances prédites : \n{results}"
+    title = interactions_client.translate_module.translations["interpolate_module"]["title"]
+    description = interactions_client.translate_module.translations["interpolate_module"]["description"].format(base=base, results=results)
     now = datetime.datetime.now()
     embed = Embed(title=title, description=description, color=BrandColors.GREEN, timestamp=now)
 
     return await context.send(embeds=embed)
 
 
-@slash_command(name="set_langage", description="Permet de changer la langue du bot")
+@slash_command(name="set_langage", description="Allow you change the bot langage.")
 @slash_option(
     name="langage",
-    description="Nombre de jours en arriere pour le recapitulatif",
+    description="Select a langage.",
     required=True,
     opt_type=OptionType.INTEGER,
     choices=[
@@ -217,13 +217,13 @@ async def set_langage(context: InteractionContext, langage: Literal[1, 2, 3, 4, 
     return await context.send(embeds=embed)
 
 
-@slash_command(name="assign_clash_target", description="Lance l'assignation des cibles pour le clash")
+@slash_command(name="assign_clash_target", description="Assign target for the clash and publish it")
 async def assign_clash_target(context: ComponentContext):
     await context.defer()
 
     now = datetime.datetime.utcnow()
     if not is_clash_on(now):
-        return await context.send("`Pas de clash actif`")
+        return await context.send(interactions_client.translate_module.translations["assign_clash_target"]["clash_inactive"])
 
     user = ConnectUser(CONFIG_ENCRYPTED, KEY)
     user.connect_and_get_new_session_id()
@@ -231,14 +231,16 @@ async def assign_clash_target(context: ComponentContext):
     allies = sorted(list(play_2.guild_members.values()))
 
     components = StringSelectMenu(
-        "NO ONE !! WE ARE PLAYING TOGETHER !",
+        interactions_client.translate_module.translations["assign_clash_target"]["together"],
         *allies,
-        placeholder="Liste des membres",
+        placeholder=interactions_client.translate_module.translations["assign_clash_target"]["member_list"],
         min_values=1,
         max_values=len(allies),
         custom_id="solo_with_list",
     )
-    await context.send("Selectionne ceux qui seront en solo", components=components, ephemeral=True)
+    await context.send(
+        interactions_client.translate_module.translations["assign_clash_target"]["select_message"], components=components, ephemeral=True
+    )
 
 
 @component_callback("solo_with_list")
@@ -251,13 +253,16 @@ async def solo_with_list_callback(context: ComponentContext):
     play_2 = Player_2_data(*user.get_user_id_session_id())
     ennemi_guild_info = SetGuild(user.user_id, user.session_id, play_2.clash_info.opponent_guild_id)
 
-    if "NO ONE !! WE ARE PLAYING TOGETHER !" not in allies_solo:
-        play_2.allies_powersclash = [ally for ally in play_2.allies_powersclash if play_2.guild_members[ally.member_id] not in allies_solo]
+    if interactions_client.translate_module.translations["assign_clash_target"]["together"] not in allies_solo:
+        sorted_allies = sorted(play_2.allies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
         sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
-        ennemies_stronger = sorted_ennemies[: len(allies_solo)]
-        play_2.ennemies_powersclash = sorted_ennemies[len(allies_solo) :]
-        ennemies_name = [ennemi_guild_info.dict_members_id_name[ennemy.member_id] for ennemy in ennemies_stronger]
-        solo_targets = [(f"{ally_solo} (mode solo)", ennemy) for ally_solo, ennemy in zip(allies_solo, ennemies_name)]
+        solos_players_indexes = [index for index, ally in enumerate(sorted_allies) if play_2.guild_members[ally.member_id] in allies_solo]
+        ennemies_solo_name = [ennemi_guild_info.dict_members_id_name[sorted_ennemies[index].member_id] for index in solos_players_indexes]
+        allies_solo_name = [play_2.guild_members[sorted_allies[index].member_id] for index in solos_players_indexes]
+        play_2.ennemies_powersclash = [ennemy for index, ennemy in enumerate(sorted_ennemies) if index not in solos_players_indexes]
+        play_2.allies_powersclash = [ally for index, ally in enumerate(sorted_allies) if index not in solos_players_indexes]
+
+        solo_targets = [(f"{ally_solo} (mode solo)", ennemy) for ally_solo, ennemy in zip(allies_solo_name, ennemies_solo_name)]
     else:
         solo_targets = []
 
@@ -270,28 +275,34 @@ async def solo_with_list_callback(context: ComponentContext):
     now = datetime.datetime.now()
     embed = Embed(title=title, description=description, color=BrandColors.GREEN, timestamp=now)
 
-    kuhn_munkres = KuhnMunkres(*bc_module.get_tuple_for_kuhn_munkres())
-    result_assign_list = kuhn_munkres.get_results()
-    print_module = AssignClashString(result_assign_list)
+    if len(play_2.allies_powersclash) > 0:
+        kuhn_munkres = KuhnMunkres(*bc_module.get_tuple_for_kuhn_munkres())
+        result_assign_list = kuhn_munkres.get_results()
+        print_module = AssignClashString(result_assign_list)
 
-    fields_data = bc_module.embed_fields()
-    avantage = bc_module.get_avantage()
-    targets_in_tuple_list = print_module.generate_allies_side_clash_strings()
-    for field in [*fields_data, avantage, *solo_targets, *targets_in_tuple_list]:
-        embed.add_field(name=field[0], value=field[1], inline=False)
+        avantage = bc_module.get_avantage()
+        targets_in_tuple_list = print_module.generate_allies_side_clash_strings()
+        for field in [avantage, *solo_targets, *targets_in_tuple_list]:
+            embed.add_field(name=field[0], value=field[1], inline=False)
 
-    file_to_send = "app/adapters/tableau.png"
-    file_path, ext = os.path.splitext(file_to_send)
-    print_module = PrintAssignClash(result_assign_list)
-    print_module.generate_table_image(file_path)
+        file_to_send = "app/adapters/tableau.png"
+        file_path, ext = os.path.splitext(file_to_send)
+        print_module = PrintAssignClash(result_assign_list)
+        print_module.generate_table_image(file_path)
 
-    await context.send(embeds=embed)
+        await context.send(embeds=embed)
 
-    file = File(file_to_send)
-    await context.send(file=file)
+        file = File(file_to_send)
+        await context.send(file=file)
 
-    await context.delete(context.message_id)
-    os.remove(file_to_send)
+        await context.delete(context.message_id)
+        os.remove(file_to_send)
+
+    else:
+        for field in solo_targets:
+            embed.add_field(name=field[0], value=field[1], inline=False)
+
+        await context.send(embeds=embed)
 
 
 interactions_client.start()

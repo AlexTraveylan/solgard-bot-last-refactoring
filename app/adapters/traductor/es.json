@@ -1,37 +1,47 @@
 {
     "ab_module": {
-        "title_today": "Balance actual",
+        "title_today": "Resumen Actual",
         "title_past": "Resumen de {display_name_day}",
-        "desc_rest_day": "Ningún ataque y bomba en un día de descanso",
-        "desc_all_attacks_bombs_used": "Todos los ataques y bombas han sido utilizados, felicidades a todos.",
+        "desc_rest_day": "Ningún ataque ni bomba en un día de descanso.",
+        "desc_all_attacks_bombs_used": "Todos los ataques y bombas han sido utilizados, felicitaciones a todos.",
         "desc_total_attacks_bombs_missed": "Total de ataques y bombas perdidos:\n- {total_attacks_missing} ataques\n- {total_bombs_missing} bombas",
-        "desc_remaining_attacks_bombs_today": "Ataques y bombas restantes del día.\nTotal restante:\n- {total_attacks_missing} ataques\n- {total_bombs_missing} bombas\n",
+        "desc_remaining_attacks_bombs_today": "Ataques y bombas restantes para el día.\nTotal restante:\n- {total_attacks_missing} ataques\n- {total_bombs_missing} bombas\n",
         "member_unknown": "Desconocido"
     },
     "b_module": {
-        "title": "Bombas restantes hoy.",
+        "title": "Bombas Restantes Hoy",
         "desc_rest_day": "Día de descanso",
         "desc_all_bombs_used": "Todas las bombas han sido utilizadas.\n",
         "desc_remaining_bombs": "Quedan {total_bombs_missing} bombas sin usar.\n",
         "member_unknown": "Desconocido"
     },
     "info_clash_module": {
-        "title": "Visualización del estado actual del enfrentamiento",
-        "desc_total_remaining_attacks": "Número total de ataques restantes: {remining_atck}",
+        "title": "Estado Actual del Clash",
+        "desc_total_remaining_attacks": "Total de ataques restantes: {remining_atck}",
         "desc_cumulative_score": "Puntuación acumulada: {accumulate_score}",
         "desc_current_score": "Puntuación actual: {current_score}",
         "desc_final_score": "Puntuación final: {final_score}"
     },
     "bc_module": {
-        "title": "Tabla de enfrentamientos",
-        "description": "Asignación de objetivos para el enfrentamiento.\nDescripción de la estrategia:\n",
-        "step_1_title": "Potencias recuperadas",
+        "title": "Tabla del Clash",
+        "description": "Asignación de objetivos para el clash.",
+        "step_1_title": "Poderes Recuperados",
         "step_1_desc": "Los 3 equipos de defensa visibles en el juego, para cada uno de los equipos.",
-        "step_2_title": "Cuatro otros equipos",
-        "step_2_desc": "Se interpolan mediante una regresión lineal y aprendizaje automático en un data_set de 147 de sus potencias recuperadas en los últimos 3 años",
-        "step_3_title": "Método de asignación",
-        "step_3_desc": "Uso del algoritmo de optimización combinatoria de Kuhn Munkres para minimizar la media de las diferencias de potencia.",
-        "avantage_title": "Comparación de potencias"
+        "step_2_title": "Cuatro Otros Equipos",
+        "step_2_desc": "Se interpolan utilizando regresión lineal y aprendizaje automático en un conjunto de datos de 147 de tus poderes recuperados de los últimos 3 años.",
+        "step_3_title": "Método de Asignación",
+        "step_3_desc": "Uso del algoritmo de optimización combinatoria de Kuhn Munkres para minimizar las diferencias promedio de poder.",
+        "avantage_title": "Comparación de Poderes"
+    },
+    "assign_clash_target": {
+        "clash_inactive": "`No hay clash activo`",
+        "together": "¡¡TODOS JUNTOS, JUGAMOS JUNTOS!!",
+        "member_list": "Lista de Miembros",
+        "select_message": "Selecciona aquellos que estarán en solitario"
+    },
+    "interpolate_module": {
+        "title": "Predicción de Poderes",
+        "description": "Poderes proporcionados:\n{base}\n\nPoderes predichos:\n{results}"
     },
     "commands": {
         "set_langage_command": {

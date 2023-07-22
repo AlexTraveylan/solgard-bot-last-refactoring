@@ -24,7 +24,7 @@
     },
     "bc_module": {
         "title": "Tableau des clash",
-        "description": "Assignation des cibles pour le clash.\nDescription de la stratégie :\n",
+        "description": "Assignation des cibles pour le clash.",
         "step_1_title": "Puissances récupérées",
         "step_1_desc": "Les 3 équipes de défense visibles dans le jeu, pour chacune des équipes.",
         "step_2_title": "Quatre autres équipes",
@@ -32,6 +32,16 @@
         "step_3_title": "Méthode d'assignation",
         "step_3_desc": "Utilisation de l'algorithme d'optimisation combinatoire de Kuhn Munkres pour minimiser la moyenne des écarts de puissance.",
         "avantage_title": "Comparaison des puissances"
+    },
+    "assign_clash_target": {
+        "clash_inactive": "`Pas de clash actif`",
+        "together": "PERSONNE !! ON JOUE TOUS ENSEMBLE !",
+        "member_list": "Liste des membres",
+        "select_message": "Selectionne ceux qui seront en solo"
+    },
+    "interpolate_module": {
+        "title": "Prédiction des puissances",
+        "description": "Puissances données :\n{base}\n\nPuissances prédites : \n{results}"
     },
     "commands": {
         "set_langage_command": {

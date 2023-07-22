@@ -1,43 +1,53 @@
 {
     "ab_module": {
-        "title_today": "当前总结",
-        "title_past": "{display_name_day}的回顾",
-        "desc_rest_day": "休息日没有攻击和炸弹",
-        "desc_all_attacks_bombs_used": "所有的攻击和炸弹都已使用，大家做得好。",
-        "desc_total_attacks_bombs_missed": "遗漏的攻击和炸弹总计：\n- {total_attacks_missing} 攻击\n- {total_bombs_missing} 炸弹",
-        "desc_remaining_attacks_bombs_today": "今天剩余的攻击和炸弹。\n总计剩余：\n- {total_attacks_missing} 攻击\n- {total_bombs_missing} 炸弹\n",
+        "title_today": "当前摘要",
+        "title_past": "{display_name_day} 汇总",
+        "desc_rest_day": "休息日无攻击和炸弹。",
+        "desc_all_attacks_bombs_used": "所有攻击和炸弹已使用，向所有人表示祝贺。",
+        "desc_total_attacks_bombs_missed": "总共错过的攻击和炸弹：\n- {total_attacks_missing} 次攻击\n- {total_bombs_missing} 颗炸弹",
+        "desc_remaining_attacks_bombs_today": "当天剩余的攻击和炸弹。\n总计剩余：\n- {total_attacks_missing} 次攻击\n- {total_bombs_missing} 颗炸弹\n",
         "member_unknown": "未知"
     },
     "b_module": {
-        "title": "今天剩余的炸弹。",
+        "title": "当天剩余炸弹",
         "desc_rest_day": "休息日",
-        "desc_all_bombs_used": "所有的炸弹都已使用。\n",
-        "desc_remaining_bombs": "还有 {total_bombs_missing} 个未使用的炸弹。\n",
+        "desc_all_bombs_used": "所有炸弹已使用。\n",
+        "desc_remaining_bombs": "还有 {total_bombs_missing} 颗未使用的炸弹。\n",
         "member_unknown": "未知"
     },
     "info_clash_module": {
-        "title": "当前冲突的状态显示",
+        "title": "当前冲突状态",
         "desc_total_remaining_attacks": "剩余攻击总数：{remining_atck}",
-        "desc_cumulative_score": "累计得分：{accumulate_score}",
+        "desc_cumulative_score": "累积得分：{accumulate_score}",
         "desc_current_score": "当前得分：{current_score}",
         "desc_final_score": "最终得分：{final_score}"
     },
     "bc_module": {
-        "title": "冲突表",
-        "description": "为冲突指定目标。\n策略描述 ：\n",
-        "step_1_title": "获得的力量",
-        "step_1_desc": "游戏中每个队伍可见的3个防御队伍。",
-        "step_2_title": "另外四个队伍",
-        "step_2_desc": "它们通过线性回归和机器学习在您过去3年中收集的147个数据集进行插值",
-        "step_3_title": "分配方法",
-        "step_3_desc": "使用库恩-蒙克雷斯组合优化算法，以最小化功率差异的平均值。",
-        "avantage_title": "功率比较"
+        "title": "冲突表格",
+        "description": "冲突目标的指派。",
+        "step_1_title": "恢复的力量",
+        "step_1_desc": "游戏中可见的3个防守团队，每个团队一组。",
+        "step_2_title": "另外四个团队",
+        "step_2_desc": "使用线性回归和机器学习对过去3年中147个已恢复力量的数据集进行插值。",
+        "step_3_title": "指派方法",
+        "step_3_desc": "使用Kuhn Munkres组合优化算法，以最小化力量的平均差异。",
+        "avantage_title": "力量比较"
+    },
+    "assign_clash_target": {
+        "clash_inactive": "没有活动的冲突",
+        "together": "大家一起玩！",
+        "member_list": "成员列表",
+        "select_message": "选择那些将独自参与的成员"
+    },
+    "interpolate_module": {
+        "title": "力量预测",
+        "description": "给定力量：\n{base}\n\n预测的力量：\n{results}"
     },
     "commands": {
         "set_langage_command": {
-            "impossible_choice": "选择不可能",
-            "successful_change": "成功更改语言",
-            "selected_language": "选定的语言：{lang}"
+            "impossible_choice": "无法选择",
+            "successful_change": "语言更改成功",
+            "selected_language": "选择的语言：{lang}"
         }
     }
 }

@@ -33,9 +33,7 @@ class AssignClashString:
                 if clash.ally_name == ally_name
             ]
 
-            clash_string = f"{ally_name}", "\n".join(
-                f"duel {i+1} (T{ally.ally_team_number}) : {clash}" for i, (ally, clash) in enumerate(clashes_for_ally)
-            )
+            clash_string = f"{ally_name}", "\n".join(f"duel {ally.ally_team_number} : {clash}" for ally, clash in clashes_for_ally)
 
             clash_strings.append(clash_string)
 

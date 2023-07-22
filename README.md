@@ -42,27 +42,24 @@ Welcome to the Solgard Discord Bot repository. This bot is designed to bring a r
     ```
 
 
-3. **Set up your Discord Bot Token**
+3. **Set entrypoint**
 
-    Create a `.env` file in the root directory and set your Discord bot token like so:
-
-    ```
-    PYTHONPATH=.
-    BOT_TOKEN=your-bot-token-here
-    ```
-    Replace `your-bot-token-here` with your actual bot token.
-
-4. **Set entrypoint**
-
-    - open the file app/entrypoint/connect.exemple.json
+    - open the file app/core/entrypoint/connect.exemple.json
     - rename the file connect.exemple.json in connect.json
     - insert your CONNECT json (use a mitm with a proxy for get it)
+
+4. **Set your .env file**
+
+    - Open the file create_env.py.
+    - Execute it.
+    - You .env is created, you connect.json is now encrypted in the .env, use that for environnement variable for deployement.
+    - Add your bot token : `BOT_TOKEN=your-bot-token-here`
      
-5. **Run the bot**
+4. **Run the bot**
 
     You can now run the bot using the following command:
 
-    ```
+    ```python
     python app/main.py
     ```
 
