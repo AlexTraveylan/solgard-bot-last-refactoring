@@ -305,4 +305,18 @@ async def solo_with_list_callback(context: ComponentContext):
         await context.send(embeds=embed)
 
 
+@slash_command(name="version", description="Versions informations.")
+async def version(context: ComponentContext):
+    await context.defer()
+
+    title = "Solgard bot -- version 1.0.0"
+    description = "Free open source.\nDeveloped by AlexTraveylan.\nClic for see the repository."
+    url = "https://github.com/AlexTraveylan/solgard-bot-last-refactoring"
+    now = datetime.datetime.now()
+
+    embed = Embed(title=title, description=description, url=url, timestamp=now, color=BrandColors.WHITE)
+
+    await context.send(embeds=embed)
+
+
 interactions_client.start()
