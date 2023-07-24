@@ -51,7 +51,7 @@ class BCModule(EmbedPort):
             raise ValueError("max powers not set yet.")
 
         difference_relative = (self._total_allies_powers - self._total_ennemies_powers) / self._total_allies_powers
-        sign = "- +" if difference_relative > 0 else "- -"
+        sign = f"{self.translations['avantage']} " if difference_relative > 0 else f"{self.translations['disavantage']} "
 
         return self.translations["avantage_title"], f"{sign} {abs(difference_relative) * 100:.2f}%"
 

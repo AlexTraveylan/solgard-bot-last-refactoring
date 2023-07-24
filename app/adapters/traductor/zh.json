@@ -31,7 +31,9 @@
         "step_2_desc": "使用线性回归和机器学习对过去3年中147个已恢复力量的数据集进行插值。",
         "step_3_title": "指派方法",
         "step_3_desc": "使用Kuhn Munkres组合优化算法，以最小化力量的平均差异。",
-        "avantage_title": "力量比较"
+        "avantage_title": "力量比较",
+        "avantage": "优势",
+        "disavantage": "劣势"
     },
     "assign_clash_target": {
         "clash_inactive": "没有活动的冲突",

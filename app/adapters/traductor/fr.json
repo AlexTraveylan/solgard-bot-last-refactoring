@@ -31,7 +31,9 @@
         "step_2_desc": "Elles sont interpolées par une régression linéaire et du machine learning sur un data_set de 147 de vos puissances récupérées depuis 3 ans",
         "step_3_title": "Méthode d'assignation",
         "step_3_desc": "Utilisation de l'algorithme d'optimisation combinatoire de Kuhn Munkres pour minimiser la moyenne des écarts de puissance.",
-        "avantage_title": "Comparaison des puissances"
+        "avantage_title": "Comparaison des puissances",
+        "avantage": "Avantage",
+        "disavantage": "Déavantage"
     },
     "assign_clash_target": {
         "clash_inactive": "`Pas de clash actif`",

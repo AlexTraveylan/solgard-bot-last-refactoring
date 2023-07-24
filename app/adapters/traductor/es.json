@@ -31,7 +31,9 @@
         "step_2_desc": "Se interpolan utilizando regresión lineal y aprendizaje automático en un conjunto de datos de 147 de tus poderes recuperados de los últimos 3 años.",
         "step_3_title": "Método de Asignación",
         "step_3_desc": "Uso del algoritmo de optimización combinatoria de Kuhn Munkres para minimizar las diferencias promedio de poder.",
-        "avantage_title": "Comparación de Poderes"
+        "avantage_title": "Comparación de Poderes",
+        "avantage": "Ventaja",
+        "disavantage": "Desventaja"
     },
     "assign_clash_target": {
         "clash_inactive": "`No hay clash activo`",

@@ -31,7 +31,9 @@
         "step_2_desc": "They are interpolated using linear regression and machine learning on a data_set of 147 of your recovered powers from the past 3 years.",
         "step_3_title": "Assignment Method",
         "step_3_desc": "Using the Kuhn Munkres combinatorial optimization algorithm to minimize the average power differences.",
-        "avantage_title": "Power Comparison"
+        "avantage_title": "Power Comparison",
+        "avantage": "Advantage",
+        "disavantage": "Disadvantage"
     },
     "assign_clash_target": {
         "clash_inactive": "`No active clash`",
