@@ -5,10 +5,43 @@ from app.core.models.version import Versions
 
 
 class JsonAPI:
+    """
+    A class for creating JSON payloads for player events in a game.
+
+    Attributes
+    ----------
+    version : Versions
+        An instance of the Versions class storing various version details.
+
+    Methods
+    -------
+    json_player_2() -> dict[str, Any]:
+        Returns a JSON payload for a GET_PLAYER_2 event.
+
+    json_get_guild(guildId: str) -> dict[str, Any]:
+        Returns a JSON payload for a VIEW_GUILD_2 event.
+    """
+
     def __init__(self, version: Versions = Versions()) -> None:
+        """
+        Constructs the necessary attributes for the JsonAPI object.
+
+        Parameters
+        ----------
+        version : Versions, optional
+            An instance of the Versions class storing various version details (default is Versions()).
+        """
         self.version = version
 
     def json_player_2(self) -> dict[str, Any]:
+        """
+        Constructs a JSON payload for a GET_PLAYER_2 event.
+
+        Returns
+        -------
+        dict
+            A JSON payload with the required parameters for a GET_PLAYER_2 event.
+        """
         return {
             "builtInMultiConfigVersion": self.version.builtInMultiConfigVersion,
             "installId": self.version.installId,
@@ -54,6 +87,19 @@ class JsonAPI:
     #     }
 
     def json_get_guild(guildId: str) -> dict[str, Any]:
+        """
+        Constructs a JSON payload for a VIEW_GUILD_2 event.
+
+        Parameters
+        ----------
+        guildId : str
+            The ID of the guild to view.
+
+        Returns
+        -------
+        dict
+            A JSON payload with the required parameters for a VIEW_GUILD_2 event.
+        """
         return {
             "builtInMultiConfigVersion": Versions.builtInMultiConfigVersion,
             "installId": Versions.installId,

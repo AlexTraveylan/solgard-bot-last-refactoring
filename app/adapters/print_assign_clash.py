@@ -5,31 +5,68 @@ from app.adapters.kuhn_munkres import AssignClash
 
 
 class PrintAssignClash:
+    """
+    A class to create a table image of assigned clashes.
+
+    ...
+
+    Attributes
+    ----------
+    assign_clash : list[AssignClash]
+        A list of assigned clashes.
+
+    Methods
+    -------
+    generate_table_image(output_file_path: str)
+        Generate a table image from the assigned clashes and save it to the specified file path.
+    """
+
     def __init__(self, assign_clash: list[AssignClash]) -> None:
+        """
+        Construct all the necessary attributes for the PrintAssignClash object.
+
+        Parameters
+        ----------
+        assign_clash : list[AssignClash]
+            A list of assigned clashes.
+        """
+
         self.assign_clash = assign_clash
 
     def generate_table_image(self, output_file_path: str):
-        # Initialiser un dictionnaire pour organiser les données
-        data = {"Ennemy name": [], "duel 1": [], "duel 2": [], "duel 3": []}
+        """
+        Generate a table image from the assigned clashes and save it to the specified file path.
 
-        # Organiser les données par duel et par ennemi
-        for ennemy_name in set(clash.ennemy_name for clash in self.assign_clash):
-            # Créer une liste de toutes les équipes pour un ennemi donné
+        The table contains information about the enemy, and the allies they are matched with in each duel.
+        Each cell contains the name of the ally, their team number, and the difference in power between
+        the ally and the enemy.
+
+        Parameters
+        ----------
+        output_file_path : str
+            The path (excluding file extension) where the output image will be saved.
+        """
+        # Initialize a dictionary to organize the data
+        data = {"Enemy name": [], "duel 1": [], "duel 2": [], "duel 3": []}
+
+        # Organize the data by duel and by enemy
+        for enemy_name in set(clash.ennemy_name for clash in self.assign_clash):
+            # Create a list of all teams for a given enemy
             teams = [
                 f"{clash.ally_name} T{clash.ally_team_number} ({clash.ally_power - clash.ennemy_power})"
                 for clash in self.assign_clash
-                if clash.ennemy_name == ennemy_name
+                if clash.ennemy_name == enemy_name
             ]
 
-            # Ajouter les équipes à la bonne colonne dans les données
-            data["Ennemy name"].append(ennemy_name)
+            # Add the teams to the correct column in the data
+            data["Enemy name"].append(enemy_name)
             for i, team in enumerate(teams):
                 data[f"duel {i+1}"].append(team)
 
-        # Créer un DataFrame à partir des données
+        # Create a DataFrame from the data
         df = pd.DataFrame(data)
 
-        # Crée une image à partir du tableau
+        # Create an image from the table
         fig, ax = plt.subplots(figsize=(12, 14))
         ax.axis("tight")
         ax.axis("off")

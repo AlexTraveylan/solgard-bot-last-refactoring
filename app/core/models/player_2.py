@@ -12,6 +12,19 @@ DEFAULT_COUNT_DICT = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0}
 
 @dataclass
 class MemberBombAttacks:
+    """
+    Dataclass that encapsulates the information of a guild member's bomb attacks.
+
+    Attributes
+    ----------
+    member_id: str
+        The id of the guild member.
+    nb_bomb_used_by_day: dict[int, int]
+        The number of bombs used by the guild member each day.
+    nb_attacks_used_by_day: dict[int, int]
+        The number of attacks used by the guild member each day.
+    """
+
     member_id: str
     nb_bomb_used_by_day: dict[int, int] = field(default_factory=lambda: DEFAULT_COUNT_DICT.copy())
     nb_attacks_used_by_day: dict[int, int] = field(default_factory=lambda: DEFAULT_COUNT_DICT.copy())
@@ -19,9 +32,36 @@ class MemberBombAttacks:
 
 @dataclass
 class BombsAttacks:
+    """
+    Dataclass that encapsulates the information of bombs attacks of all members.
+
+    Attributes
+    ----------
+    members_bomb_attacks: list[MemberBombAttacks]
+        List of `MemberBombAttacks` instances.
+    """
+
     members_bomb_attacks: list[MemberBombAttacks] = field(default_factory=list)
 
     def find_member_by_member_id(self, user_id: str):
+        """
+        Find and return the `MemberBombAttacks` object for a given user ID.
+
+        Parameters
+        ----------
+        user_id : str
+            The ID of the user.
+
+        Returns
+        -------
+        MemberBombAttacks
+            The `MemberBombAttacks` object of the user.
+
+        Raises
+        ------
+        ValueError
+            If the member was not found.
+        """
         for member in self.members_bomb_attacks:
             if member.member_id == user_id:
                 return member
@@ -30,6 +70,21 @@ class BombsAttacks:
 
 @dataclass
 class ClashInfo:
+    """
+    Dataclass that encapsulates the information of a guild clash.
+
+    Attributes
+    ----------
+    saison: int
+        The season of the clash.
+    id_clash: str
+        The id of the clash.
+    opponent_guild_id: str
+        The id of the opponent guild.
+    team_id: int
+        The team id of the clash.
+    """
+
     saison: int
     id_clash: str
     opponent_guild_id: str
@@ -38,6 +93,19 @@ class ClashInfo:
 
 @dataclass
 class ClashTeam:
+    """
+    Dataclass that encapsulates the information of a clash team.
+
+    Attributes
+    ----------
+    power: int
+        The power of the clash team.
+    scores: tuple[int, int]
+        The scores of the clash team.
+    is_killed: bool
+        Whether the clash team is killed.
+    """
+
     power: int
     scores: tuple[int, int]
     is_killed: bool
@@ -45,6 +113,19 @@ class ClashTeam:
 
 @dataclass
 class PowerClash:
+    """
+    Dataclass that encapsulates the information of a power clash.
+
+    Attributes
+    ----------
+    member_id: str
+        The id of the member in the power clash.
+    end_bonus: int
+        The end bonus of the power clash.
+    teams: list[ClashTeam]
+        List of `ClashTeam` instances.
+    """
+
     member_id: str
     end_bonus: int
     teams: list[ClashTeam] = field(default_factory=dict)
@@ -52,6 +133,37 @@ class PowerClash:
 
 @dataclass
 class Player_2_data:
+    """
+    Dataclass that encapsulates the information of a Player 2.
+
+    Attributes
+    ----------
+    user_id: str
+        The user id of the player 2.
+    session_id: str
+        The session id of the player 2.
+    play_2_content: dict[str, Any]
+        The content of the player 2.
+    guild_id: str
+        The id of the guild of the player 2.
+    guild_name: str
+        The name of the guild of the player 2.
+    guild_members: dict[str, str]
+        Dictionary of guild members of the player 2.
+    bombs_attacks: BombsAttacks
+        `BombsAttacks` instance of the player 2.
+    clash_info: ClashInfo
+        `ClashInfo` instance of the player 2.
+    clash_event: list[dict[str, Any]]
+        List of clash events of the player 2.
+    ennemies_powersclash: list[PowerClash]
+        List of `PowerClash` instances of the enemies of the player 2.
+    allies_powersclash: list[PowerClash]
+        List of `PowerClash` instances of the allies of the player 2.
+    json_api: JsonAPI
+        `JsonAPI` instance for the player 2.
+    """
+
     user_id: str
     session_id: str
     # use methods for set them
@@ -68,6 +180,10 @@ class Player_2_data:
     json_api = JsonAPI()
 
     def __post_init__(self):
+        """
+        Method that is run after the class is instantiated.
+        It initializes various properties based on the player 2's data.
+        """
         self.api_solgard = ApiSolgard(self.user_id, self.session_id)
         self._set_play_2_content()
         self._set_guild_infos()
@@ -81,14 +197,19 @@ class Player_2_data:
             self.allies_powersclash = self._get_clash_power("ally")
 
     def _set_play_2_content(self) -> None:
-        """get the player_2_content from solgard_api and set it"""
+        """
+        Retrieve the player_2_content from the Solgard API and set the corresponding attribute.
+        """
 
         json_play_2 = self.json_api.json_player_2()
         play_2_response = self.api_solgard.api_endpoint(json_play_2)
         self.play_2_content = play_2_response
 
     def _set_guild_infos(self):
-        """set guild infos, guild_id, guild_name and set a dict for convert member_id to member_name"""
+        """
+        Set guild information, including the guild ID, guild name, and a dictionary for converting
+        member IDs to member names.
+        """
 
         guild: dict[str, any] = self.play_2_content["eventResult"]["eventResponseData"]["player"]["guild"]
         self.guild_id: str = guild["guildId"]
@@ -102,7 +223,9 @@ class Player_2_data:
             self.bombs_attacks.members_bomb_attacks.append(MemberBombAttacks(member_user_id))
 
     def _set_bombs_info(self):
-        """set bombs and attacks for eatch members 4 days in the past"""
+        """
+        Set bomb and attack counts for each guild member for the past 4 days.
+        """
 
         player = self.play_2_content["eventResult"]["eventResponseData"]["player"]
         actual_timecode: int = player["timestamp"]
@@ -151,7 +274,9 @@ class Player_2_data:
                     member_concerned.nb_attacks_used_by_day[4] += 1
 
     def _set_clash_info(self):
-        """set clash info"""
+        """
+        Set the clash information from the player's guild events.
+        """
         events = self.play_2_content["eventResult"]["eventResponseData"]["player"]["guild"]["sharedEvents"]["sharedEvents"]
         event = events[-1]
         saison = int(re.sub("[a-zA-Z]+_", "", event["tournamentId"]))
@@ -162,13 +287,28 @@ class Player_2_data:
         self.clash_info = ClashInfo(saison, id_clash, opponent_guild_id, team_id)
 
     def _get_team(self, concerned_team: Literal["ally", "ennemy"]) -> str:
+        """
+        Get the team ("ally" or "enemy") based on the concerned team.
+
+        Parameters
+        ----------
+        concerned_team : Literal["ally", "ennemy"]
+            The team of interest ("ally" or "ennemy").
+
+        Returns
+        -------
+        str
+            The name of the team.
+        """
         if concerned_team == "ally":
             return f"team{self.clash_info.team_id}"
         else:
             return f"team{self.clash_info.team_id % 2 + 1}"
 
     def _set_clash_event(self):
-        """set ennemies powers"""
+        """
+        Set the enemies' powers from the clash events of the player.
+        """
         if self.clash_info is None:
             raise ValueError("use _set_clash_info first")
 
@@ -184,6 +324,24 @@ class Player_2_data:
         self.clash_event = liveEvents[i]["config"]["liveEventGameModes"]["guildChallenge"]
 
     def _get_clash_power(self, concerned_team: Literal["ally", "ennemy"]) -> list[PowerClash]:
+        """
+        Get the clash power for the concerned team ("ally" or "enemy").
+
+        Parameters
+        ----------
+        concerned_team : Literal["ally", "ennemy"]
+            The team of interest ("ally" or "ennemy").
+
+        Returns
+        -------
+        list[PowerClash]
+            A list of `PowerClash` objects representing the clash power of the concerned team.
+
+        Raises
+        ------
+        ValueError
+            If the clash event is not yet set.
+        """
         if len(self.clash_event) == 0:
             raise ValueError("use _get_clash_event first")
 
