@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>app.core.models package &#8212; Solgard Bot  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="app-core-models-package">
+<h1>app.core.models package<a class="headerlink" href="#app-core-models-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-app.core.models.ab_module">
+<span id="app-core-models-ab-module-module"></span><h2>app.core.models.ab_module module<a class="headerlink" href="#module-app.core.models.ab_module" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.ab_module.ABModule">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.ab_module.</span></span><span class="sig-name descname"><span class="pre">ABModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">play_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.core.models.player_2.Player_2_data" title="app.core.models.player_2.Player_2_data"><span class="pre">Player_2_data</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_day</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Literal</span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">0</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">3</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="m"><span class="pre">4</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">translation_module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Translate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.ab_module.ABModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="app.ports.html#app.ports.embed_port.EmbedPort" title="app.ports.embed_port.EmbedPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">EmbedPort</span></code></a></p>
+<p>The ABModule class, which is a subclass of EmbedPort, is responsible for managing the game play and statistics
+of members playing a game involving bombs and attacks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>play_2</strong> (<a class="reference internal" href="#app.core.models.player_2.Player_2_data" title="app.core.models.player_2.Player_2_data"><em>Player_2_data</em></a>) – The Player_2_data instance containing the game play data for the second player.</p></li>
+<li><p><strong>nb_day</strong> (<em>Literal</em><em>[</em><em>0</em><em>, </em><em>1</em><em>, </em><em>2</em><em>, </em><em>3</em><em>, </em><em>4</em><em>]</em>) – The number of days passed since the game started. Must be between 0 and 4 inclusive.</p></li>
+<li><p><strong>translation_module</strong> (<em>Translate</em>) – The Translate instance used to manage translations for different languages.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.ab_module.ABModule.members">
+<span class="sig-name descname"><span class="pre">members</span></span><a class="headerlink" href="#app.core.models.ab_module.ABModule.members" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of MemberBombAttacks instances for each guild member.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#app.core.models.player_2.MemberBombAttacks" title="app.core.models.player_2.MemberBombAttacks">MemberBombAttacks</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.ab_module.ABModule.lang">
+<span class="sig-name descname"><span class="pre">lang</span></span><a class="headerlink" href="#app.core.models.ab_module.ABModule.lang" title="Permalink to this definition">¶</a></dt>
+<dd><p>Language used for translations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.ab_module.ABModule.translations">
+<span class="sig-name descname"><span class="pre">translations</span></span><a class="headerlink" href="#app.core.models.ab_module.ABModule.translations" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary containing translated text for ABModule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[str, Union[str, Dict[str, str]]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.ab_module.ABModule.nb_day">
+<span class="sig-name descname"><span class="pre">nb_day</span></span><a class="headerlink" href="#app.core.models.ab_module.ABModule.nb_day" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of days passed since the game started.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Literal[0, 1, 2, 3, 4]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.ab_module.ABModule._members_missing_something">
+<span class="sig-name descname"><span class="pre">_members_missing_something</span></span><a class="headerlink" href="#app.core.models.ab_module.ABModule._members_missing_something" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of MemberBombAttacks instances for each member who has remaining bombs or attacks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#app.core.models.player_2.MemberBombAttacks" title="app.core.models.player_2.MemberBombAttacks">MemberBombAttacks</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lang</strong></dt><dd></dd>
+<dt><strong>members</strong></dt><dd></dd>
+<dt><strong>nb_day</strong></dt><dd></dd>
+<dt><strong>play_2</strong></dt><dd></dd>
+<dt><strong>translations</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.ab_module.ABModule.description" title="app.core.models.ab_module.ABModule.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span></code></a>()</p></td>
+<td><p>Determines the description of the embed based on the current game state.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#app.core.models.ab_module.ABModule.embed_fields" title="app.core.models.ab_module.ABModule.embed_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embed_fields</span></code></a>()</p></td>
+<td><p>Generates a list of tuples to be used for adding fields to the embed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.ab_module.ABModule.title" title="app.core.models.ab_module.ABModule.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">title</span></code></a>()</p></td>
+<td><p>Determines the title of the embed based on the number of days passed since the game started.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.ab_module.ABModule.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.core.models.ab_module.ABModule.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the description of the embed based on the current game state.
+The description varies based on whether it’s a rest day, all attacks and bombs are used,
+or there are still remaining attacks and bombs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The description of the embed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.ab_module.ABModule.embed_fields">
+<span class="sig-name descname"><span class="pre">embed_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#app.core.models.ab_module.ABModule.embed_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a list of tuples to be used for adding fields to the embed.
+Each tuple consists of the member’s name and their game play status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of tuples for adding fields to the embed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">lang</span></span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">members</span></span><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">nb_day</span></span><a class="headerlink" href="#id2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.ab_module.ABModule.play_2">
+<span class="sig-name descname"><span class="pre">play_2</span></span><a class="headerlink" href="#app.core.models.ab_module.ABModule.play_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.ab_module.ABModule.title">
+<span class="sig-name descname"><span class="pre">title</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.core.models.ab_module.ABModule.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines the title of the embed based on the number of days passed since the game started.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The title of the embed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">translations</span></span><a class="headerlink" href="#id3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.core.models.api_solgard">
+<span id="app-core-models-api-solgard-module"></span><h2>app.core.models.api_solgard module<a class="headerlink" href="#module-app.core.models.api_solgard" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.api_solgard.ApiSolgard">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.api_solgard.</span></span><span class="sig-name descname"><span class="pre">ApiSolgard</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.api_solgard.ApiSolgard" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to handle interactions with the Solgard API.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.api_solgard.ApiSolgard.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#app.core.models.api_solgard.ApiSolgard.user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The ID of the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.api_solgard.ApiSolgard.session_id">
+<span class="sig-name descname"><span class="pre">session_id</span></span><a class="headerlink" href="#app.core.models.api_solgard.ApiSolgard.session_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The session ID of the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If no session_id is provided.</p>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>session_id</strong></dt><dd></dd>
+<dt><strong>user_id</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.api_solgard.ApiSolgard.api_channel" title="app.core.models.api_solgard.ApiSolgard.api_channel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api_channel</span></code></a>(json)</p></td>
+<td><p>Sends a POST request to the Solgard API channel.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#app.core.models.api_solgard.ApiSolgard.api_endpoint" title="app.core.models.api_solgard.ApiSolgard.api_endpoint"><code class="xref py py-obj docutils literal notranslate"><span class="pre">api_endpoint</span></code></a>(json)</p></td>
+<td><p>Sends a POST request to the Solgard API endpoint.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.api_solgard.ApiSolgard.api_channel">
+<span class="sig-name descname"><span class="pre">api_channel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#app.core.models.api_solgard.ApiSolgard.api_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a POST request to the Solgard API channel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – JSON data to be sent in the POST request.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The JSON response from the API.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Any]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the request failed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.api_solgard.ApiSolgard.api_endpoint">
+<span class="sig-name descname"><span class="pre">api_endpoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#app.core.models.api_solgard.ApiSolgard.api_endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a POST request to the Solgard API endpoint.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – JSON data to be sent in the POST request.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The JSON response from the API.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Any]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the request failed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">session_id</span></span><a class="headerlink" href="#id4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#id5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.core.models.api_solgard.connect_and_set_session_id">
+<span class="sig-prename descclassname"><span class="pre">app.core.models.api_solgard.</span></span><span class="sig-name descname"><span class="pre">connect_and_set_session_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connect_json</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.core.models.api_solgard.connect_and_set_session_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a POST request to the Solgard API to connect and set the session_id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> (<em>str</em>) – The ID of the user.</p></li>
+<li><p><strong>connect_json</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – JSON data to be sent in the POST request.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The session ID extracted from the response.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the connection failed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-app.core.models.b_module">
+<span id="app-core-models-b-module-module"></span><h2>app.core.models.b_module module<a class="headerlink" href="#module-app.core.models.b_module" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.b_module.BModule">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.b_module.</span></span><span class="sig-name descname"><span class="pre">BModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">play_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.core.models.player_2.Player_2_data" title="app.core.models.player_2.Player_2_data"><span class="pre">Player_2_data</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">translation_module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Translate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.b_module.BModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="app.ports.html#app.ports.embed_port.EmbedPort" title="app.ports.embed_port.EmbedPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">EmbedPort</span></code></a></p>
+<p>BModule is an implementation of the abstract EmbedPort base class.
+It generates embed data for members with remaining bombs in a game.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.b_module.BModule.play_2">
+<span class="sig-name descname"><span class="pre">play_2</span></span><a class="headerlink" href="#app.core.models.b_module.BModule.play_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Player_2_data instance containing the game play data for the second player.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.core.models.player_2.Player_2_data" title="app.core.models.player_2.Player_2_data">Player_2_data</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.b_module.BModule.members">
+<span class="sig-name descname"><span class="pre">members</span></span><a class="headerlink" href="#app.core.models.b_module.BModule.members" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of MemberBombAttacks instances representing each member’s bombs attacks status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#app.core.models.player_2.MemberBombAttacks" title="app.core.models.player_2.MemberBombAttacks">MemberBombAttacks</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.b_module.BModule._members_missing_bomb">
+<span class="sig-name descname"><span class="pre">_members_missing_bomb</span></span><a class="headerlink" href="#app.core.models.b_module.BModule._members_missing_bomb" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of MemberBombAttacks instances for each member who has remaining bombs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#app.core.models.player_2.MemberBombAttacks" title="app.core.models.player_2.MemberBombAttacks">MemberBombAttacks</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.b_module.BModule.translations">
+<span class="sig-name descname"><span class="pre">translations</span></span><a class="headerlink" href="#app.core.models.b_module.BModule.translations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The translations dictionary for “b_module” from the provided translation module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>members</strong></dt><dd></dd>
+<dt><strong>play_2</strong></dt><dd></dd>
+<dt><strong>translations</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.b_module.BModule.description" title="app.core.models.b_module.BModule.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span></code></a>()</p></td>
+<td><p>Defines the description of the embed.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">embed_fields</span></code>()</p></td>
+<td><p>Returns a list of tuples for the Embed object's fields.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.b_module.BModule.title" title="app.core.models.b_module.BModule.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">title</span></code></a>()</p></td>
+<td><p>Defines the title of the embed based on the translations provided.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.b_module.BModule.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.core.models.b_module.BModule.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the description of the embed. The description contains information about remaining bombs and the names
+of the members who haven’t used their bombs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The description of the embed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">members</span></span><a class="headerlink" href="#id6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">play_2</span></span><a class="headerlink" href="#id7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.b_module.BModule.title">
+<span class="sig-name descname"><span class="pre">title</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.core.models.b_module.BModule.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the title of the embed based on the translations provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The title of the embed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">translations</span></span><a class="headerlink" href="#id8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.core.models.bc_module">
+<span id="app-core-models-bc-module-module"></span><h2>app.core.models.bc_module module<a class="headerlink" href="#module-app.core.models.bc_module" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.bc_module.</span></span><span class="sig-name descname"><span class="pre">BCModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">play_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.core.models.player_2.Player_2_data" title="app.core.models.player_2.Player_2_data"><span class="pre">Player_2_data</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ennemi_guild_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.core.models.get_guild.SetGuild" title="app.core.models.get_guild.SetGuild"><span class="pre">SetGuild</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">trained_interpolate_module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="app.ports.html#app.ports.interpolated_port.InterpolatePort" title="app.ports.interpolated_port.InterpolatePort"><span class="pre">InterpolatePort</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">translation_module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Translate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.bc_module.BCModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="app.ports.html#app.ports.embed_port.EmbedPort" title="app.ports.embed_port.EmbedPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">EmbedPort</span></code></a></p>
+<p>The BCModule class is used for calculating and maintaining information about
+the powers of the allies and enemies in a clash.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule._play_2">
+<span class="sig-name descname"><span class="pre">_play_2</span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule._play_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>The player’s game data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.core.models.player_2.Player_2_data" title="app.core.models.player_2.Player_2_data">Player_2_data</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule._ennemi_guild_info">
+<span class="sig-name descname"><span class="pre">_ennemi_guild_info</span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule._ennemi_guild_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Information about the enemy’s guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.core.models.get_guild.SetGuild" title="app.core.models.get_guild.SetGuild">SetGuild</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule._trained_interpolate_module">
+<span class="sig-name descname"><span class="pre">_trained_interpolate_module</span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule._trained_interpolate_module" title="Permalink to this definition">¶</a></dt>
+<dd><p>The trained model for interpolation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="app.ports.html#app.ports.interpolated_port.InterpolatePort" title="app.ports.interpolated_port.InterpolatePort">InterpolatePort</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule.translations">
+<span class="sig-name descname"><span class="pre">translations</span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule.translations" title="Permalink to this definition">¶</a></dt>
+<dd><p>The dictionary of translations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule._ennemies_powers_list">
+<span class="sig-name descname"><span class="pre">_ennemies_powers_list</span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule._ennemies_powers_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>The list of enemy powers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule._allies_powers_list">
+<span class="sig-name descname"><span class="pre">_allies_powers_list</span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule._allies_powers_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>The list of ally powers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule._total_allies_powers">
+<span class="sig-name descname"><span class="pre">_total_allies_powers</span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule._total_allies_powers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total power of the allies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule._total_ennemies_powers">
+<span class="sig-name descname"><span class="pre">_total_ennemies_powers</span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule._total_ennemies_powers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total power of the enemies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.bc_module.BCModule.description" title="app.core.models.bc_module.BCModule.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span></code></a>()</p></td>
+<td><p>Returns the embed description.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">embed_fields</span></code>()</p></td>
+<td><p>Returns a list of tuples for the Embed object's fields.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.bc_module.BCModule.get_avantage" title="app.core.models.bc_module.BCModule.get_avantage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_avantage</span></code></a>()</p></td>
+<td><p>Computes and returns the advantage or disadvantage of the player's team.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#app.core.models.bc_module.BCModule.get_tuple_for_kuhn_munkres" title="app.core.models.bc_module.BCModule.get_tuple_for_kuhn_munkres"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tuple_for_kuhn_munkres</span></code></a>()</p></td>
+<td><p>Returns the list of ally and enemy powers for the Kuhn-Munkres algorithm.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.bc_module.BCModule.title" title="app.core.models.bc_module.BCModule.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">title</span></code></a>()</p></td>
+<td><p>Returns the embed title.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the embed description.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The description.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule.get_avantage">
+<span class="sig-name descname"><span class="pre">get_avantage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule.get_avantage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes and returns the advantage or disadvantage of the player’s team.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple containing the title and the percentage of advantage or disadvantage.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule.get_tuple_for_kuhn_munkres">
+<span class="sig-name descname"><span class="pre">get_tuple_for_kuhn_munkres</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#app.core.models.bc_module.PowerTeam" title="app.core.models.bc_module.PowerTeam"><span class="pre">app.core.models.bc_module.PowerTeam</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#app.core.models.bc_module.PowerTeam" title="app.core.models.bc_module.PowerTeam"><span class="pre">app.core.models.bc_module.PowerTeam</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule.get_tuple_for_kuhn_munkres" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the list of ally and enemy powers for the Kuhn-Munkres algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of ally powers and the list of enemy powers.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple[list[<a class="reference internal" href="#app.core.models.bc_module.PowerTeam" title="app.core.models.bc_module.PowerTeam">PowerTeam</a>], list[<a class="reference internal" href="#app.core.models.bc_module.PowerTeam" title="app.core.models.bc_module.PowerTeam">PowerTeam</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.bc_module.BCModule.title">
+<span class="sig-name descname"><span class="pre">title</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.core.models.bc_module.BCModule.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the embed title.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The title.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.bc_module.PowerTeam">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.bc_module.</span></span><span class="sig-name descname"><span class="pre">PowerTeam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">team_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.bc_module.PowerTeam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to store information about a team’s power in a clash.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.PowerTeam.member_name">
+<span class="sig-name descname"><span class="pre">member_name</span></span><a class="headerlink" href="#app.core.models.bc_module.PowerTeam.member_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the member.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.PowerTeam.team_number">
+<span class="sig-name descname"><span class="pre">team_number</span></span><a class="headerlink" href="#app.core.models.bc_module.PowerTeam.team_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of the team.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.bc_module.PowerTeam.power">
+<span class="sig-name descname"><span class="pre">power</span></span><a class="headerlink" href="#app.core.models.bc_module.PowerTeam.power" title="Permalink to this definition">¶</a></dt>
+<dd><p>The power of the team.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">member_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">power</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">team_number</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="app.core.models.bc_module.reducer">
+<span class="sig-prename descclassname"><span class="pre">app.core.models.bc_module.</span></span><span class="sig-name descname"><span class="pre">reducer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">curr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.core.models.player_2.PowerClash" title="app.core.models.player_2.PowerClash"><span class="pre">PowerClash</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.bc_module.reducer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to compute the total power across all clashes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>acc</strong> (<em>int</em>) – The accumulator that stores the running total.</p></li>
+<li><p><strong>curr</strong> (<a class="reference internal" href="#app.core.models.player_2.PowerClash" title="app.core.models.player_2.PowerClash"><em>PowerClash</em></a>) – The current clash.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated total power across all clashes.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-app.core.models.connect_user">
+<span id="app-core-models-connect-user-module"></span><h2>app.core.models.connect_user module<a class="headerlink" href="#module-app.core.models.connect_user" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.connect_user.ConnectUser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.connect_user.</span></span><span class="sig-name descname"><span class="pre">ConnectUser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config_encrypted</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.connect_user.ConnectUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A dataclass that handles user connection and session management.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.connect_user.ConnectUser.config_encrypted">
+<span class="sig-name descname"><span class="pre">config_encrypted</span></span><a class="headerlink" href="#app.core.models.connect_user.ConnectUser.config_encrypted" title="Permalink to this definition">¶</a></dt>
+<dd><p>The encrypted user configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.connect_user.ConnectUser.key">
+<span class="sig-name descname"><span class="pre">key</span></span><a class="headerlink" href="#app.core.models.connect_user.ConnectUser.key" title="Permalink to this definition">¶</a></dt>
+<dd><p>The key used to decrypt the user configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.connect_user.ConnectUser.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#app.core.models.connect_user.ConnectUser.user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user’s unique identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.connect_user.ConnectUser.session_id">
+<span class="sig-name descname"><span class="pre">session_id</span></span><a class="headerlink" href="#app.core.models.connect_user.ConnectUser.session_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The session’s unique identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.connect_user.ConnectUser.display_name">
+<span class="sig-name descname"><span class="pre">display_name</span></span><a class="headerlink" href="#app.core.models.connect_user.ConnectUser.display_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The display name of the user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str, optional</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.connect_user.ConnectUser.version">
+<span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#app.core.models.connect_user.ConnectUser.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>The version information of the game.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.core.models.version.Versions" title="app.core.models.version.Versions">Versions</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>display_name</strong></dt><dd></dd>
+<dt><strong>session_id</strong></dt><dd></dd>
+<dt><strong>user_id</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.connect_user.ConnectUser.connect_and_get_new_session_id" title="app.core.models.connect_user.ConnectUser.connect_and_get_new_session_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">connect_and_get_new_session_id</span></code></a>()</p></td>
+<td><p>Establishes a new connection and updates the <cite>session_id</cite> attribute.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#app.core.models.connect_user.ConnectUser.get_user_id_session_id" title="app.core.models.connect_user.ConnectUser.get_user_id_session_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_id_session_id</span></code></a>()</p></td>
+<td><p>Returns a tuple of user_id and session_id.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#id17" title="app.core.models.connect_user.ConnectUser.version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">version</span></code></a></p></td>
+<td><p>alias of <a class="reference internal" href="#app.core.models.version.Versions" title="app.core.models.version.Versions"><code class="xref py py-class docutils literal notranslate"><span class="pre">Versions</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">config_encrypted</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.connect_user.ConnectUser.connect_and_get_new_session_id">
+<span class="sig-name descname"><span class="pre">connect_and_get_new_session_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.connect_user.ConnectUser.connect_and_get_new_session_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Establishes a new connection and updates the <cite>session_id</cite> attribute.
+This method should be called before making any future requests.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">display_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id13" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.connect_user.ConnectUser.get_user_id_session_id">
+<span class="sig-name descname"><span class="pre">get_user_id_session_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#app.core.models.connect_user.ConnectUser.get_user_id_session_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple of user_id and session_id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple of the form (user_id, session_id).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the user_id or session_id attribute is not set (i.e., is None), this method raises a ValueError.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">key</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id14" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">session_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id15" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id16">
+<span class="sig-name descname"><span class="pre">user_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id17">
+<span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#id17" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="#app.core.models.version.Versions" title="app.core.models.version.Versions"><code class="xref py py-class docutils literal notranslate"><span class="pre">Versions</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.core.models.get_guild">
+<span id="app-core-models-get-guild-module"></span><h2>app.core.models.get_guild module<a class="headerlink" href="#module-app.core.models.get_guild" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.get_guild.Member">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.get_guild.</span></span><span class="sig-name descname"><span class="pre">Member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">member_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_clash_on</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.get_guild.Member" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class used to represent and manipulate a guild member.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.get_guild.Member.member_id">
+<span class="sig-name descname"><span class="pre">member_id</span></span><a class="headerlink" href="#app.core.models.get_guild.Member.member_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The unique identifier of the member.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.get_guild.Member.member_name">
+<span class="sig-name descname"><span class="pre">member_name</span></span><a class="headerlink" href="#app.core.models.get_guild.Member.member_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the member.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.get_guild.Member.is_clash_on">
+<span class="sig-name descname"><span class="pre">is_clash_on</span></span><a class="headerlink" href="#app.core.models.get_guild.Member.is_clash_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>A flag indicating whether the clash is on for the member.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id18">
+<span class="sig-name descname"><span class="pre">is_clash_on</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#id18" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id19">
+<span class="sig-name descname"><span class="pre">member_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id19" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id20">
+<span class="sig-name descname"><span class="pre">member_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id20" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.get_guild.SetGuild">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.get_guild.</span></span><span class="sig-name descname"><span class="pre">SetGuild</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guild_id:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">infos_guild:</span> <span class="pre">dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typing.Any]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guild_name:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">members:</span> <span class="pre">list[app.core.models.get_guild.Member]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict_members_id_name:</span> <span class="pre">dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.get_guild.SetGuild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class used to represent and manipulate a guild.
+Use it for get information of an ennemy guild for clash.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.get_guild.SetGuild.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#app.core.models.get_guild.SetGuild.user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.get_guild.SetGuild.session_id">
+<span class="sig-name descname"><span class="pre">session_id</span></span><a class="headerlink" href="#app.core.models.get_guild.SetGuild.session_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The session ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.get_guild.SetGuild.guild_id">
+<span class="sig-name descname"><span class="pre">guild_id</span></span><a class="headerlink" href="#app.core.models.get_guild.SetGuild.guild_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The guild ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.get_guild.SetGuild.infos_guild">
+<span class="sig-name descname"><span class="pre">infos_guild</span></span><a class="headerlink" href="#app.core.models.get_guild.SetGuild.infos_guild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Information about the guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.get_guild.SetGuild.guild_name">
+<span class="sig-name descname"><span class="pre">guild_name</span></span><a class="headerlink" href="#app.core.models.get_guild.SetGuild.guild_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.get_guild.SetGuild.members">
+<span class="sig-name descname"><span class="pre">members</span></span><a class="headerlink" href="#app.core.models.get_guild.SetGuild.members" title="Permalink to this definition">¶</a></dt>
+<dd><p>The members of the guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.get_guild.SetGuild.dict_members_id_name">
+<span class="sig-name descname"><span class="pre">dict_members_id_name</span></span><a class="headerlink" href="#app.core.models.get_guild.SetGuild.dict_members_id_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary mapping member IDs to member names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>guild_name</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id21">
+<span class="sig-name descname"><span class="pre">dict_members_id_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id21" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id22">
+<span class="sig-name descname"><span class="pre">guild_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id22" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id23">
+<span class="sig-name descname"><span class="pre">guild_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id23" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id24">
+<span class="sig-name descname"><span class="pre">infos_guild</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id24" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id25">
+<span class="sig-name descname"><span class="pre">members</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#app.core.models.get_guild.Member" title="app.core.models.get_guild.Member"><span class="pre">app.core.models.get_guild.Member</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id25" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id26">
+<span class="sig-name descname"><span class="pre">session_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id26" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id27">
+<span class="sig-name descname"><span class="pre">user_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id27" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.core.models.info_clash_module">
+<span id="app-core-models-info-clash-module-module"></span><h2>app.core.models.info_clash_module module<a class="headerlink" href="#module-app.core.models.info_clash_module" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.ClashStatut">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.info_clash_module.</span></span><span class="sig-name descname"><span class="pre">ClashStatut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_attempts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accumulated_score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fortification</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_spectator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.info_clash_module.ClashStatut" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.ClashStatut.accumulated_score">
+<span class="sig-name descname"><span class="pre">accumulated_score</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#app.core.models.info_clash_module.ClashStatut.accumulated_score" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.ClashStatut.fortification">
+<span class="sig-name descname"><span class="pre">fortification</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#app.core.models.info_clash_module.ClashStatut.fortification" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.ClashStatut.is_spectator">
+<span class="sig-name descname"><span class="pre">is_spectator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#app.core.models.info_clash_module.ClashStatut.is_spectator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.ClashStatut.num_attempts">
+<span class="sig-name descname"><span class="pre">num_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#app.core.models.info_clash_module.ClashStatut.num_attempts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.ClashStatut.user_name">
+<span class="sig-name descname"><span class="pre">user_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#app.core.models.info_clash_module.ClashStatut.user_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.info_clash_module.</span></span><span class="sig-name descname"><span class="pre">InfoClashModule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">team_number</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">play_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.core.models.player_2.Player_2_data" title="app.core.models.player_2.Player_2_data"><span class="pre">Player_2_data</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ennemi_guild_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#app.core.models.get_guild.SetGuild" title="app.core.models.get_guild.SetGuild"><span class="pre">SetGuild</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">translation_module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Translate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="app.ports.html#app.ports.embed_port.EmbedPort" title="app.ports.embed_port.EmbedPort"><code class="xref py py-class docutils literal notranslate"><span class="pre">EmbedPort</span></code></a></p>
+<p>A class used to manage and manipulate Clash Module Information.</p>
+<p>…</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.team_number">
+<span class="sig-name descname"><span class="pre">team_number</span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.team_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of the team for the Clash Module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.play_2">
+<span class="sig-name descname"><span class="pre">play_2</span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.play_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data from solgard api.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.core.models.player_2.Player_2_data" title="app.core.models.player_2.Player_2_data">Player_2_data</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.ennemi_guild_info">
+<span class="sig-name descname"><span class="pre">ennemi_guild_info</span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.ennemi_guild_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Information about the enemy guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.core.models.get_guild.SetGuild" title="app.core.models.get_guild.SetGuild">SetGuild</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.translations">
+<span class="sig-name descname"><span class="pre">translations</span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.translations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary holding translations for the Clash Module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.total_dict">
+<span class="sig-name descname"><span class="pre">total_dict</span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.total_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary combining player and enemy guild members.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.team">
+<span class="sig-name descname"><span class="pre">team</span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.team" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the team for the Clash Module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.live_event_index">
+<span class="sig-name descname"><span class="pre">live_event_index</span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.live_event_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Index of the live event in the Clash Module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.clash_data">
+<span class="sig-name descname"><span class="pre">clash_data</span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.clash_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data related to the clash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.clash_members_statuts">
+<span class="sig-name descname"><span class="pre">clash_members_statuts</span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.clash_members_statuts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary holding the status of members during a clash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>clash_data</strong></dt><dd></dd>
+<dt><strong>clash_members_statuts</strong></dt><dd></dd>
+<dt><strong>ennemi_guild_info</strong></dt><dd></dd>
+<dt><strong>live_event_index</strong></dt><dd></dd>
+<dt><strong>play_2</strong></dt><dd></dd>
+<dt><strong>team</strong></dt><dd></dd>
+<dt><strong>team_number</strong></dt><dd></dd>
+<dt><strong>total_dict</strong></dt><dd></dd>
+<dt><strong>translations</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.info_clash_module.InfoClashModule.description" title="app.core.models.info_clash_module.InfoClashModule.description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">description</span></code></a>()</p></td>
+<td><p>Generate the description of the embed.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#app.core.models.info_clash_module.InfoClashModule.embed_fields" title="app.core.models.info_clash_module.InfoClashModule.embed_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">embed_fields</span></code></a>()</p></td>
+<td><p>Generate the embed fields for the embed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.info_clash_module.InfoClashModule.title" title="app.core.models.info_clash_module.InfoClashModule.title"><code class="xref py py-obj docutils literal notranslate"><span class="pre">title</span></code></a>()</p></td>
+<td><p>Retrieve the title of the embed.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id28">
+<span class="sig-name descname"><span class="pre">clash_data</span></span><a class="headerlink" href="#id28" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id29">
+<span class="sig-name descname"><span class="pre">clash_members_statuts</span></span><a class="headerlink" href="#id29" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.description">
+<span class="sig-name descname"><span class="pre">description</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.description" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the description of the embed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The description of the embed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.embed_fields">
+<span class="sig-name descname"><span class="pre">embed_fields</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.embed_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the embed fields for the embed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of tuples where each tuple consists of member name and associated value.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[tuple[str, str]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id30">
+<span class="sig-name descname"><span class="pre">ennemi_guild_info</span></span><a class="headerlink" href="#id30" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id31">
+<span class="sig-name descname"><span class="pre">live_event_index</span></span><a class="headerlink" href="#id31" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id32">
+<span class="sig-name descname"><span class="pre">play_2</span></span><a class="headerlink" href="#id32" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id33">
+<span class="sig-name descname"><span class="pre">team</span></span><a class="headerlink" href="#id33" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id34">
+<span class="sig-name descname"><span class="pre">team_number</span></span><a class="headerlink" href="#id34" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.info_clash_module.InfoClashModule.title">
+<span class="sig-name descname"><span class="pre">title</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#app.core.models.info_clash_module.InfoClashModule.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the title of the embed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The title of the embed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id35">
+<span class="sig-name descname"><span class="pre">total_dict</span></span><a class="headerlink" href="#id35" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id36">
+<span class="sig-name descname"><span class="pre">translations</span></span><a class="headerlink" href="#id36" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.core.models.player_2">
+<span id="app-core-models-player-2-module"></span><h2>app.core.models.player_2 module<a class="headerlink" href="#module-app.core.models.player_2" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.player_2.BombsAttacks">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.player_2.</span></span><span class="sig-name descname"><span class="pre">BombsAttacks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">members_bomb_attacks:</span> <span class="pre">list[app.core.models.player_2.MemberBombAttacks]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.player_2.BombsAttacks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass that encapsulates the information of bombs attacks of all members.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.BombsAttacks.members_bomb_attacks">
+<span class="sig-name descname"><span class="pre">members_bomb_attacks</span></span><a class="headerlink" href="#app.core.models.player_2.BombsAttacks.members_bomb_attacks" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of <cite>MemberBombAttacks</cite> instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#app.core.models.player_2.MemberBombAttacks" title="app.core.models.player_2.MemberBombAttacks">MemberBombAttacks</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.core.models.player_2.BombsAttacks.find_member_by_member_id" title="app.core.models.player_2.BombsAttacks.find_member_by_member_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_member_by_member_id</span></code></a>(user_id)</p></td>
+<td><p>Find and return the <cite>MemberBombAttacks</cite> object for a given user ID.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.core.models.player_2.BombsAttacks.find_member_by_member_id">
+<span class="sig-name descname"><span class="pre">find_member_by_member_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.player_2.BombsAttacks.find_member_by_member_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find and return the <cite>MemberBombAttacks</cite> object for a given user ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>user_id</strong> (<em>str</em>) – The ID of the user.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <cite>MemberBombAttacks</cite> object of the user.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.core.models.player_2.MemberBombAttacks" title="app.core.models.player_2.MemberBombAttacks">MemberBombAttacks</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If the member was not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id37">
+<span class="sig-name descname"><span class="pre">members_bomb_attacks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#app.core.models.player_2.MemberBombAttacks" title="app.core.models.player_2.MemberBombAttacks"><span class="pre">app.core.models.player_2.MemberBombAttacks</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id37" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.player_2.ClashInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.player_2.</span></span><span class="sig-name descname"><span class="pre">ClashInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">saison</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id_clash</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opponent_guild_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">team_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.player_2.ClashInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass that encapsulates the information of a guild clash.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.ClashInfo.saison">
+<span class="sig-name descname"><span class="pre">saison</span></span><a class="headerlink" href="#app.core.models.player_2.ClashInfo.saison" title="Permalink to this definition">¶</a></dt>
+<dd><p>The season of the clash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.ClashInfo.id_clash">
+<span class="sig-name descname"><span class="pre">id_clash</span></span><a class="headerlink" href="#app.core.models.player_2.ClashInfo.id_clash" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id of the clash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.ClashInfo.opponent_guild_id">
+<span class="sig-name descname"><span class="pre">opponent_guild_id</span></span><a class="headerlink" href="#app.core.models.player_2.ClashInfo.opponent_guild_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id of the opponent guild.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.ClashInfo.team_id">
+<span class="sig-name descname"><span class="pre">team_id</span></span><a class="headerlink" href="#app.core.models.player_2.ClashInfo.team_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The team id of the clash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id38">
+<span class="sig-name descname"><span class="pre">id_clash</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id38" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id39">
+<span class="sig-name descname"><span class="pre">opponent_guild_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id39" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id40">
+<span class="sig-name descname"><span class="pre">saison</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id40" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id41">
+<span class="sig-name descname"><span class="pre">team_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id41" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.player_2.ClashTeam">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.player_2.</span></span><span class="sig-name descname"><span class="pre">ClashTeam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scores</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_killed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.player_2.ClashTeam" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass that encapsulates the information of a clash team.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.ClashTeam.power">
+<span class="sig-name descname"><span class="pre">power</span></span><a class="headerlink" href="#app.core.models.player_2.ClashTeam.power" title="Permalink to this definition">¶</a></dt>
+<dd><p>The power of the clash team.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.ClashTeam.scores">
+<span class="sig-name descname"><span class="pre">scores</span></span><a class="headerlink" href="#app.core.models.player_2.ClashTeam.scores" title="Permalink to this definition">¶</a></dt>
+<dd><p>The scores of the clash team.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple[int, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.ClashTeam.is_killed">
+<span class="sig-name descname"><span class="pre">is_killed</span></span><a class="headerlink" href="#app.core.models.player_2.ClashTeam.is_killed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the clash team is killed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id42">
+<span class="sig-name descname"><span class="pre">is_killed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#id42" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id43">
+<span class="sig-name descname"><span class="pre">power</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id43" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id44">
+<span class="sig-name descname"><span class="pre">scores</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id44" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.player_2.MemberBombAttacks">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.player_2.</span></span><span class="sig-name descname"><span class="pre">MemberBombAttacks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member_id:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_bomb_used_by_day:</span> <span class="pre">dict[int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nb_attacks_used_by_day:</span> <span class="pre">dict[int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.player_2.MemberBombAttacks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass that encapsulates the information of a guild member’s bomb attacks.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.MemberBombAttacks.member_id">
+<span class="sig-name descname"><span class="pre">member_id</span></span><a class="headerlink" href="#app.core.models.player_2.MemberBombAttacks.member_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id of the guild member.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.MemberBombAttacks.nb_bomb_used_by_day">
+<span class="sig-name descname"><span class="pre">nb_bomb_used_by_day</span></span><a class="headerlink" href="#app.core.models.player_2.MemberBombAttacks.nb_bomb_used_by_day" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of bombs used by the guild member each day.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[int, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.MemberBombAttacks.nb_attacks_used_by_day">
+<span class="sig-name descname"><span class="pre">nb_attacks_used_by_day</span></span><a class="headerlink" href="#app.core.models.player_2.MemberBombAttacks.nb_attacks_used_by_day" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of attacks used by the guild member each day.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[int, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id45">
+<span class="sig-name descname"><span class="pre">member_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id45" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id46">
+<span class="sig-name descname"><span class="pre">nb_attacks_used_by_day</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id46" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id47">
+<span class="sig-name descname"><span class="pre">nb_bomb_used_by_day</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id47" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.player_2.</span></span><span class="sig-name descname"><span class="pre">Player_2_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">play_2_content:</span> <span class="pre">dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">any]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guild_id:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guild_name:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guild_members:</span> <span class="pre">dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">str]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bombs_attacks:</span> <span class="pre">~app.core.models.player_2.BombsAttacks</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clash_info:</span> <span class="pre">~app.core.models.player_2.ClashInfo</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clash_event:</span> <span class="pre">list[dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">typing.Any]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ennemies_powersclash:</span> <span class="pre">list[app.core.models.player_2.PowerClash]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allies_powersclash:</span> <span class="pre">list[app.core.models.player_2.PowerClash]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.player_2.Player_2_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass that encapsulates the information of a Player 2.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.user_id">
+<span class="sig-name descname"><span class="pre">user_id</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.user_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The user id of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.session_id">
+<span class="sig-name descname"><span class="pre">session_id</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.session_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The session id of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.play_2_content">
+<span class="sig-name descname"><span class="pre">play_2_content</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.play_2_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>The content of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, Any]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.guild_id">
+<span class="sig-name descname"><span class="pre">guild_id</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.guild_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id of the guild of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.guild_name">
+<span class="sig-name descname"><span class="pre">guild_name</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.guild_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the guild of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.guild_members">
+<span class="sig-name descname"><span class="pre">guild_members</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.guild_members" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dictionary of guild members of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict[str, str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.bombs_attacks">
+<span class="sig-name descname"><span class="pre">bombs_attacks</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.bombs_attacks" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>BombsAttacks</cite> instance of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.core.models.player_2.BombsAttacks" title="app.core.models.player_2.BombsAttacks">BombsAttacks</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.clash_info">
+<span class="sig-name descname"><span class="pre">clash_info</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.clash_info" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>ClashInfo</cite> instance of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#app.core.models.player_2.ClashInfo" title="app.core.models.player_2.ClashInfo">ClashInfo</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.clash_event">
+<span class="sig-name descname"><span class="pre">clash_event</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.clash_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of clash events of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[dict[str, Any]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.ennemies_powersclash">
+<span class="sig-name descname"><span class="pre">ennemies_powersclash</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.ennemies_powersclash" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of <cite>PowerClash</cite> instances of the enemies of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#app.core.models.player_2.PowerClash" title="app.core.models.player_2.PowerClash">PowerClash</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.allies_powersclash">
+<span class="sig-name descname"><span class="pre">allies_powersclash</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.allies_powersclash" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of <cite>PowerClash</cite> instances of the allies of the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#app.core.models.player_2.PowerClash" title="app.core.models.player_2.PowerClash">PowerClash</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.Player_2_data.json_api">
+<span class="sig-name descname"><span class="pre">json_api</span></span><a class="headerlink" href="#app.core.models.player_2.Player_2_data.json_api" title="Permalink to this definition">¶</a></dt>
+<dd><p><cite>JsonAPI</cite> instance for the player 2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="app.core.entrypoint.html#app.core.entrypoint.json_api.JsonAPI" title="app.core.entrypoint.json_api.JsonAPI">JsonAPI</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>clash_info</strong></dt><dd></dd>
+<dt><strong>guild_id</strong></dt><dd></dd>
+<dt><strong>guild_name</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id48">
+<span class="sig-name descname"><span class="pre">allies_powersclash</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#app.core.models.player_2.PowerClash" title="app.core.models.player_2.PowerClash"><span class="pre">app.core.models.player_2.PowerClash</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id48" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id49">
+<span class="sig-name descname"><span class="pre">bombs_attacks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#app.core.models.player_2.BombsAttacks" title="app.core.models.player_2.BombsAttacks"><span class="pre">BombsAttacks</span></a></em><a class="headerlink" href="#id49" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id50">
+<span class="sig-name descname"><span class="pre">clash_event</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id50" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id51">
+<span class="sig-name descname"><span class="pre">clash_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#app.core.models.player_2.ClashInfo" title="app.core.models.player_2.ClashInfo"><span class="pre">ClashInfo</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id51" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id52">
+<span class="sig-name descname"><span class="pre">ennemies_powersclash</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#app.core.models.player_2.PowerClash" title="app.core.models.player_2.PowerClash"><span class="pre">app.core.models.player_2.PowerClash</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id52" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id53">
+<span class="sig-name descname"><span class="pre">guild_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id53" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id54">
+<span class="sig-name descname"><span class="pre">guild_members</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id54" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id55">
+<span class="sig-name descname"><span class="pre">guild_name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id55" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id56">
+<span class="sig-name descname"><span class="pre">json_api</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;app.core.entrypoint.json_api.JsonAPI</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#id56" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id57">
+<span class="sig-name descname"><span class="pre">play_2_content</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id57" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id58">
+<span class="sig-name descname"><span class="pre">session_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id58" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id59">
+<span class="sig-name descname"><span class="pre">user_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id59" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.player_2.PowerClash">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.player_2.</span></span><span class="sig-name descname"><span class="pre">PowerClash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member_id:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_bonus:</span> <span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">teams:</span> <span class="pre">list[app.core.models.player_2.ClashTeam]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.core.models.player_2.PowerClash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass that encapsulates the information of a power clash.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.PowerClash.member_id">
+<span class="sig-name descname"><span class="pre">member_id</span></span><a class="headerlink" href="#app.core.models.player_2.PowerClash.member_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The id of the member in the power clash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.PowerClash.end_bonus">
+<span class="sig-name descname"><span class="pre">end_bonus</span></span><a class="headerlink" href="#app.core.models.player_2.PowerClash.end_bonus" title="Permalink to this definition">¶</a></dt>
+<dd><p>The end bonus of the power clash.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.player_2.PowerClash.teams">
+<span class="sig-name descname"><span class="pre">teams</span></span><a class="headerlink" href="#app.core.models.player_2.PowerClash.teams" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of <cite>ClashTeam</cite> instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="#app.core.models.player_2.ClashTeam" title="app.core.models.player_2.ClashTeam">ClashTeam</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id60">
+<span class="sig-name descname"><span class="pre">end_bonus</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#id60" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id61">
+<span class="sig-name descname"><span class="pre">member_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#id61" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id62">
+<span class="sig-name descname"><span class="pre">teams</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#app.core.models.player_2.ClashTeam" title="app.core.models.player_2.ClashTeam"><span class="pre">app.core.models.player_2.ClashTeam</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#id62" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.core.models.version">
+<span id="app-core-models-version-module"></span><h2>app.core.models.version module<a class="headerlink" href="#module-app.core.models.version" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.core.models.version.Versions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.core.models.version.</span></span><span class="sig-name descname"><span class="pre">Versions</span></span><a class="headerlink" href="#app.core.models.version.Versions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A dataclass representing different versions of the game.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.version.Versions.builtInMultiConfigVersion">
+<span class="sig-name descname"><span class="pre">builtInMultiConfigVersion</span></span><a class="headerlink" href="#app.core.models.version.Versions.builtInMultiConfigVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>The built-in multi configuration version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.version.Versions.installId">
+<span class="sig-name descname"><span class="pre">installId</span></span><a class="headerlink" href="#app.core.models.version.Versions.installId" title="Permalink to this definition">¶</a></dt>
+<dd><p>The installation ID of the game.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.version.Versions.gameConfigVersion">
+<span class="sig-name descname"><span class="pre">gameConfigVersion</span></span><a class="headerlink" href="#app.core.models.version.Versions.gameConfigVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>The game configuration version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.version.Versions.multiConfigVersion">
+<span class="sig-name descname"><span class="pre">multiConfigVersion</span></span><a class="headerlink" href="#app.core.models.version.Versions.multiConfigVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>The multi configuration version.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.core.models.version.Versions.universeVersion">
+<span class="sig-name descname"><span class="pre">universeVersion</span></span><a class="headerlink" href="#app.core.models.version.Versions.universeVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>The universe version of the game.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id63">
+<span class="sig-name descname"><span class="pre">builtInMultiConfigVersion</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'54fd9362992aa47894ee93f719be78b1'</span></em><a class="headerlink" href="#id63" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id64">
+<span class="sig-name descname"><span class="pre">gameConfigVersion</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'FC79E8B283D49540120556BE823BDC35'</span></em><a class="headerlink" href="#id64" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id65">
+<span class="sig-name descname"><span class="pre">installId</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'63da37e2-940e-4fc1-b379-d072078c4e22'</span></em><a class="headerlink" href="#id65" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id66">
+<span class="sig-name descname"><span class="pre">multiConfigVersion</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'54fd9362992aa47894ee93f719be78b1'</span></em><a class="headerlink" href="#id66" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id67">
+<span class="sig-name descname"><span class="pre">universeVersion</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'52AB1265BA18205FFD9D57B2274317D8'</span></em><a class="headerlink" href="#id67" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.core.models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-app.core.models" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Solgard Bot</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, AlexTraveylan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/app.core.models.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

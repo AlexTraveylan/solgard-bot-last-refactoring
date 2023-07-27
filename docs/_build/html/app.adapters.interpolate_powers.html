@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>app.adapters.interpolate_powers package &#8212; Solgard Bot  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b3523f8e" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="app-adapters-interpolate-powers-package">
+<h1>app.adapters.interpolate_powers package<a class="headerlink" href="#app-adapters-interpolate-powers-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-app.adapters.interpolate_powers.linear_regretion">
+<span id="app-adapters-interpolate-powers-linear-regretion-module"></span><h2>app.adapters.interpolate_powers.linear_regretion module<a class="headerlink" href="#module-app.adapters.interpolate_powers.linear_regretion" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.adapters.interpolate_powers.linear_regretion.</span></span><span class="sig-name descname"><span class="pre">LinearInterpolatePowers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'app/adapters/interpolate_powers/data_set_brut.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="app.ports.html#app.ports.interpolated_port.InterpolatePort" title="app.ports.interpolated_port.InterpolatePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">InterpolatePort</span></code></a></p>
+<p>Class that trains a linear regression model to interpolate powers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Path to the csv file containing the data to train the model.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.file_path">
+<span class="sig-name descname"><span class="pre">file_path</span></span><a class="headerlink" href="#app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to the csv file containing the data to train the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear Regression model object from sklearn.linear_model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers._is_ready">
+<span class="sig-name descname"><span class="pre">_is_ready</span></span><a class="headerlink" href="#app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers._is_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal flag to check if the model is trained and ready for predictions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.predicate" title="app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.predicate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predicate</span></code></a>(power_1, power_2, power_3)</p></td>
+<td><p>Predicts the result based on the given powers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.train" title="app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.train"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code></a>()</p></td>
+<td><p>Trains the model using the data from the file_path.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.predicate">
+<span class="sig-name descname"><span class="pre">predicate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.predicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts the result based on the given powers. The model must be trained before this method is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>power_1</strong> (<em>float</em>) – The first power.</p></li>
+<li><p><strong>power_2</strong> (<em>float</em>) – The second power.</p></li>
+<li><p><strong>power_3</strong> (<em>float</em>) – The third power.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The predicted result from the trained model as a 1D numpy array.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If the model is not trained before this method is called.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.adapters.interpolate_powers.linear_regretion.LinearInterpolatePowers.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model using the data from the file_path. Sets _is_ready to True after training.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.adapters.interpolate_powers.multi_regressor">
+<span id="app-adapters-interpolate-powers-multi-regressor-module"></span><h2>app.adapters.interpolate_powers.multi_regressor module<a class="headerlink" href="#module-app.adapters.interpolate_powers.multi_regressor" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.multi_regressor.MultiRegressor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.adapters.interpolate_powers.multi_regressor.</span></span><span class="sig-name descname"><span class="pre">MultiRegressor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'app/adapters/interpolate_powers/data_set_brut.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.adapters.interpolate_powers.multi_regressor.MultiRegressor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="app.ports.html#app.ports.interpolated_port.InterpolatePort" title="app.ports.interpolated_port.InterpolatePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">InterpolatePort</span></code></a></p>
+<p>Class that trains a multi-output random forest regression model to interpolate powers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Path to the csv file containing the data to train the model.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.multi_regressor.MultiRegressor.file_path">
+<span class="sig-name descname"><span class="pre">file_path</span></span><a class="headerlink" href="#app.adapters.interpolate_powers.multi_regressor.MultiRegressor.file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to the csv file containing the data to train the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.multi_regressor.MultiRegressor.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#app.adapters.interpolate_powers.multi_regressor.MultiRegressor.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>MultiOutputRegressor model object from sklearn.multioutput with RandomForestRegressor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.multi_regressor.MultiRegressor._is_ready">
+<span class="sig-name descname"><span class="pre">_is_ready</span></span><a class="headerlink" href="#app.adapters.interpolate_powers.multi_regressor.MultiRegressor._is_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal flag to check if the model is trained and ready for predictions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.adapters.interpolate_powers.multi_regressor.MultiRegressor.predicate" title="app.adapters.interpolate_powers.multi_regressor.MultiRegressor.predicate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predicate</span></code></a>(power_1, power_2, power_3)</p></td>
+<td><p>Predicts the result based on the given powers and adjusts the power levels.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#app.adapters.interpolate_powers.multi_regressor.MultiRegressor.train" title="app.adapters.interpolate_powers.multi_regressor.MultiRegressor.train"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code></a>()</p></td>
+<td><p>Trains the model using the data from the file_path.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.multi_regressor.MultiRegressor.predicate">
+<span class="sig-name descname"><span class="pre">predicate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#app.adapters.interpolate_powers.multi_regressor.MultiRegressor.predicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts the result based on the given powers and adjusts the power levels.
+The model must be trained before this method is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>power_1</strong> (<em>float</em>) – The first power.</p></li>
+<li><p><strong>power_2</strong> (<em>float</em>) – The second power.</p></li>
+<li><p><strong>power_3</strong> (<em>float</em>) – The third power.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The adjusted predicted power levels as a list of integers.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[int]</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If the model is not trained before this method is called.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.multi_regressor.MultiRegressor.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.adapters.interpolate_powers.multi_regressor.MultiRegressor.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model using the data from the file_path. Sets _is_ready to True after training.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.adapters.interpolate_powers.polynomial">
+<span id="app-adapters-interpolate-powers-polynomial-module"></span><h2>app.adapters.interpolate_powers.polynomial module<a class="headerlink" href="#module-app.adapters.interpolate_powers.polynomial" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.adapters.interpolate_powers.polynomial.</span></span><span class="sig-name descname"><span class="pre">PolynomialInterpolatePowers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'app/adapters/interpolate_powers/data_set_brut.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="app.ports.html#app.ports.interpolated_port.InterpolatePort" title="app.ports.interpolated_port.InterpolatePort"><code class="xref py py-class docutils literal notranslate"><span class="pre">InterpolatePort</span></code></a></p>
+<p>Class that trains a polynomial regression model to interpolate powers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Path to the csv file containing the data to train the model.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.file_path">
+<span class="sig-name descname"><span class="pre">file_path</span></span><a class="headerlink" href="#app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Path to the csv file containing the data to train the model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Linear Regression model object from sklearn.linear_model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.transformer">
+<span class="sig-name descname"><span class="pre">transformer</span></span><a class="headerlink" href="#app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.transformer" title="Permalink to this definition">¶</a></dt>
+<dd><p>PolynomialFeatures object from sklearn.preprocessing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers._is_ready">
+<span class="sig-name descname"><span class="pre">_is_ready</span></span><a class="headerlink" href="#app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers._is_ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal flag to check if the model is trained and ready for predictions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.predicate" title="app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.predicate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predicate</span></code></a>(power_1, power_2, power_3)</p></td>
+<td><p>Predicts the result based on the given powers.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.train" title="app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.train"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code></a>()</p></td>
+<td><p>Trains the model using the data from the file_path.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.predicate">
+<span class="sig-name descname"><span class="pre">predicate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_2</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_3</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.predicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Predicts the result based on the given powers. The model must be trained before this method is called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>power_1</strong> (<em>float</em>) – The first power.</p></li>
+<li><p><strong>power_2</strong> (<em>float</em>) – The second power.</p></li>
+<li><p><strong>power_3</strong> (<em>float</em>) – The third power.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sorted, predicted result from the trained model as a 1D numpy array in descending order.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>np.ndarray</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If the model is not trained before this method is called.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.train">
+<span class="sig-name descname"><span class="pre">train</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.adapters.interpolate_powers.polynomial.PolynomialInterpolatePowers.train" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trains the model using the data from the file_path. Sets _is_ready to True after training.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.adapters.interpolate_powers">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-app.adapters.interpolate_powers" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Solgard Bot</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, AlexTraveylan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/app.adapters.interpolate_powers.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
