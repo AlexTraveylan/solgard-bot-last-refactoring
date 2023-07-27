@@ -15,7 +15,7 @@ setup(
     description="A bot for legend of solgard",
     url="https://github.com/AlexTraveylan/solgard-bot-last-refactoring",
     classifiers=[
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: >3.10",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
