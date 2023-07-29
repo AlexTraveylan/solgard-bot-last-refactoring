@@ -70,7 +70,7 @@ class AssignClashString:
             clashes_for_ally = [
                 (
                     clash,
-                    f"{clash.ennemy_name} T{clash.ennemy_team_number} ( {'+' if (clash.ennemy_power - clash.ally_power) > 0 else '-' } {abs(clash.ennemy_power - clash.ally_power)} )",
+                    f"{clash.ennemy_name} T{clash.ennemy_team_number} ( {'-' if (clash.ennemy_power - clash.ally_power) > 0 else '+' } {abs(clash.ennemy_power - clash.ally_power)} )",
                 )
                 for clash in self.assign_clash
                 if clash.ally_name == ally_name

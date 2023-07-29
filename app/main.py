@@ -331,14 +331,18 @@ async def solo_with_list_callback(context: ComponentContext):
 
     # maybe i should do that in a function but its assign solo players with basic ranked for powers.
     if interactions_client.translate_module.translations["assign_clash_target"]["together"] not in allies_solo:
+        # Sort players powers
         sorted_allies = sorted(play_2.allies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
         sorted_ennemies = sorted(play_2.ennemies_powersclash, key=lambda duels: sum([duel.power for duel in duels.teams]), reverse=True)
+        # index of solo players
         solos_players_indexes = [index for index, ally in enumerate(sorted_allies) if play_2.guild_members[ally.member_id] in allies_solo]
+        # get ennemies and allies names
         ennemies_solo_name = [ennemi_guild_info.dict_members_id_name[sorted_ennemies[index].member_id] for index in solos_players_indexes]
         allies_solo_name = [play_2.guild_members[sorted_allies[index].member_id] for index in solos_players_indexes]
+        # delete them for compute without them
         play_2.ennemies_powersclash = [ennemy for index, ennemy in enumerate(sorted_ennemies) if index not in solos_players_indexes]
         play_2.allies_powersclash = [ally for index, ally in enumerate(sorted_allies) if index not in solos_players_indexes]
-
+        # tuples with theirs names for embed
         solo_targets = [(f"{ally_solo} (mode solo)", ennemy) for ally_solo, ennemy in zip(allies_solo_name, ennemies_solo_name)]
     else:
         # Hope this case append all the time.
