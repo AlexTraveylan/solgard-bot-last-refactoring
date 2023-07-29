@@ -73,13 +73,13 @@ class MainClient:
         """
         self.bot.start(BOT_KEY)
 
-    def change_langage(self, new_lang: Literal["fr", "en", "it", "es", "zh", "ru"]):
+    def change_langage(self, new_lang: Literal["fr", "en", "it", "es", "zh", "ru", "de"]):
         """
         Changes the language of the bot's responses to the specified language.
 
         Parameters
         ----------
-        new_lang : Literal["fr", "en", "it", "es", "zh", "ru"]
+        new_lang : Literal["fr", "en", "it", "es", "zh", "ru", "de"]
             The new language to set for the bot's responses. The available languages are French ("fr"), English ("en"), Italian ("it"),
             Spanish ("es"), Chinese ("zh"), and Russian ("ru").
         """
@@ -243,9 +243,10 @@ async def power_interpolate(context: InteractionContext, power_1: int, power_2: 
         SlashCommandChoice(name="spanish", value=4),
         SlashCommandChoice(name="中文", value=5),
         SlashCommandChoice(name="русский", value=6),
+        SlashCommandChoice(name="deutsch", value=7),
     ],
 )
-async def set_langage(context: InteractionContext, langage: Literal[1, 2, 3, 4, 5, 6]):
+async def set_langage(context: InteractionContext, langage: Literal[1, 2, 3, 4, 5, 6, 7]):
     # defer the response for have time to compute
     await context.defer()
 
@@ -268,6 +269,9 @@ async def set_langage(context: InteractionContext, langage: Literal[1, 2, 3, 4, 
     elif langage == 6:
         interactions_client.change_langage("ru")
         new_langage = "русский"
+    elif langage == 7:
+        interactions_client.change_langage("de")
+        new_langage = "deutsch"
     else:
         return await context.send(f"`{interactions_client.translate_module.translations['commands']['set_langage_command']['impossible_choice']}`")
 
@@ -389,7 +393,7 @@ async def solo_with_list_callback(context: ComponentContext):
 
         # Delete the last interaction with the solo list.
         await context.delete(context.message_id)
-        # Delete the file created, he is send anyway.
+        # Delete the file created, it is send anyway.
         os.remove(file_to_send)
 
     else:

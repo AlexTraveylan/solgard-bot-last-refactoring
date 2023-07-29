@@ -57,7 +57,7 @@ def is_on_day(nb_day_passed: Literal[0, 1, 2, 3, 4, 5], begin_day: int, actual_t
 
 
 def display_day_name_n_day_in_the_past(
-    now: datetime.datetime, nb_day_in_past: Literal[0, 1, 2, 3, 4, 5], lang=Literal["fr", "en", "it", "es", "zh", "ru"]
+    now: datetime.datetime, nb_day_in_past: Literal[0, 1, 2, 3, 4, 5], lang=Literal["fr", "en", "it", "es", "zh", "ru", "de"]
 ):
     """Returns the name of the day that occurred a specific number of days in the past from the given date.
 
@@ -67,7 +67,7 @@ def display_day_name_n_day_in_the_past(
         The current date and time.
     nb_day_in_past : Literal[0, 1, 2, 3, 4, 5]
         The number of days in the past for which to retrieve the day name. Valid values are 0, 1, 2, 3, 4, or 5.
-    lang : Literal["fr", "en", "it", "es", "zh", "ru"], optional
+    lang : Literal["fr", "en", "it", "es", "zh", "ru", "de"], optional
         The language code for the desired day name. Default is "en".
 
     Returns

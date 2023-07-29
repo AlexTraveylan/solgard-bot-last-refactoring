@@ -9,28 +9,28 @@ class Translate:
 
     Parameters
     ----------
-    lang : Literal["fr", "en", "it", "es", "zh", "ru"]
+    lang : Literal["fr", "en", "it", "es", "zh", "ru", "de"]
         The language to be used for translation.
 
     Attributes
     ----------
-    lang : Literal["fr", "en", "it", "es", "zh", "ru"]
+    lang : Literal["fr", "en", "it", "es", "zh", "ru", "de"]
         The language to be used for translation.
     translations : dict[str, str]
         A dictionary that maps a word from one language to another.
     """
 
-    def __init__(self, lang: Literal["fr", "en", "it", "es", "zh", "ru"]) -> None:
+    def __init__(self, lang: Literal["fr", "en", "it", "es", "zh", "ru", "de"]) -> None:
         self.lang = lang
         self.translations = self.load_translation(lang)
 
-    def load_translation(self, lang: Literal["fr", "en", "it", "es", "zh", "ru"]) -> dict[str, str]:
+    def load_translation(self, lang: Literal["fr", "en", "it", "es", "zh", "ru", "de"]) -> dict[str, str]:
         """
         Load translations from a specified language file.
 
         Parameters
         ----------
-        lang : Literal["fr", "en", "it", "es", "zh", "ru"]
+        lang : Literal["fr", "en", "it", "es", "zh", "ru", "de"]
             The language of the file to load.
 
         Returns
@@ -52,13 +52,13 @@ class Translate:
         except json.JSONDecodeError:
             raise ValueError(f"Failed to decode {lang}.json")
 
-    def set_translation(self, lang: Literal["fr", "en", "it", "es", "zh", "ru"]):
+    def set_translation(self, lang: Literal["fr", "en", "it", "es", "zh", "ru", "de"]):
         """
         Set the translations to a different language.
 
         Parameters
         ----------
-        lang : Literal["fr", "en", "it", "es", "zh", "ru"]
+        lang : Literal["fr", "en", "it", "es", "zh", "ru", "de"]
             The language to switch the translations to.
         """
         self.translations = self.load_translation(lang)

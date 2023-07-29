@@ -1,0 +1,55 @@
+{
+    "ab_module": {
+        "title_today": "Aktuelle Bilanz",
+        "title_past": "Zusammenfassung von {display_name_day}",
+        "desc_rest_day": "Keine Angriffe und Bomben an einem Ruhetag",
+        "desc_all_attacks_bombs_used": "Alle Angriffe und Bomben wurden verwendet, herzlichen Glückwunsch an alle.",
+        "desc_total_attacks_bombs_missed": "Gesamtzahl der verpassten Angriffe und Bomben:\n- {total_attacks_missing} Angriffe\n- {total_bombs_missing} Bomben",
+        "desc_remaining_attacks_bombs_today": "Verbleibende Angriffe und Bomben für heute.\nInsgesamt bleiben:\n- {total_attacks_missing} Angriffe\n- {total_bombs_missing} Bomben\n",
+        "member_unknown": "Unbekannt"
+    },
+    "b_module": {
+        "title": "Verbleibende Bomben heute.",
+        "desc_rest_day": "Ruhetag",
+        "desc_all_bombs_used": "Alle Bomben wurden verwendet.\n",
+        "desc_remaining_bombs": "Es bleiben {total_bombs_missing} ungenutzte Bomben.\n",
+        "member_unknown": "Unbekannt"
+    },
+    "info_clash_module": {
+        "title": "Anzeige des aktuellen Clash-Status",
+        "desc_total_remaining_attacks": "Gesamtzahl der verbleibenden Angriffe: {remining_atck}",
+        "desc_cumulative_score": "Kumulierte Punktzahl: {accumulate_score}",
+        "desc_current_score": "Aktuelle Punktzahl: {current_score}",
+        "desc_final_score": "Endpunktzahl: {final_score}"
+    },
+    "bc_module": {
+        "title": "Clash-Tabelle",
+        "description": "Zuweisung von Zielen für den Clash.",
+        "step_1_title": "Leistungen ermittelt",
+        "step_1_desc": "Die 3 sichtbaren Verteidigungsteams im Spiel, für jedes der Teams.",
+        "step_2_title": "Vier weitere Teams",
+        "step_2_desc": "Diese werden durch lineare Regression und maschinelles Lernen auf einem Daten-Set von 147 Ihrer ermittelten Leistungen über 3 Jahre interpoliert",
+        "step_3_title": "Zuweisungsmethode",
+        "step_3_desc": "Verwendung des kombinatorischen Optimierungsalgorithmus von Kuhn Munkres zur Minimierung des Durchschnitts der Leistungsunterschiede.",
+        "avantage_title": "Vergleich der Leistungen",
+        "avantage": "Vorteil",
+        "disavantage": "Nachteil"
+    },
+    "assign_clash_target": {
+        "clash_inactive": "`Kein aktiver Clash`",
+        "together": "NIEMAND !! WIR SPIELEN ALLE ZUSAMMEN !",
+        "member_list": "Liste der Mitglieder",
+        "select_message": "Wähle diejenigen aus, die solo sein werden"
+    },
+    "interpolate_module": {
+        "title": "Leistungsvorhersage",
+        "description": "Gegebene Leistungen :\n{base}\n\nVorhergesagte Leistungen : \n{results}"
+    },
+    "commands": {
+        "set_langage_command": {
+            "impossible_choice": "Unmögliche Wahl",
+            "successful_change": "Sprachwechsel erfolgreich",
+            "selected_language": "Ausgewählte Sprache : {lang}"
+        }
+    }
+}
