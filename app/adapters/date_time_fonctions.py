@@ -1,7 +1,18 @@
 import datetime
 from typing import Literal
 import pytz
-from babel.dates import format_date
+import calendar
+
+
+LOCALIZED_DAY_NAMES = {
+    "fr": ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
+    "en": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "it": ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"],
+    "es": ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+    "zh": ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+    "ru": ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"],
+    "de": ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"],
+}
 
 
 def debutJourneeByTimecode(timecode: int) -> int:
@@ -77,7 +88,7 @@ def display_day_name_n_day_in_the_past(
     """
     now -= datetime.timedelta(hours=5)
     one_day_before = now - datetime.timedelta(days=nb_day_in_past)
-    day_name = format_date(one_day_before, "EEEE", locale=lang)
+    day_name = LOCALIZED_DAY_NAMES[lang][calendar.weekday(one_day_before.year, one_day_before.month, one_day_before.day)]
 
     return day_name
 
